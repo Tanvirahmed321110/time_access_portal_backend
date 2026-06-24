@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="custom_layout" name="Custom Layout">
+
+        <!-- <!DOCTYPE html> -->
+        <html lang="en">
+
+            <head>
+                <meta charset="UTF-8"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                <!-- Ts Control Library CDN -->
+                <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet"/>
+                <link rel="stylesheet" href="/time_access_portal/static/src/css/custom_class.css?v=1"/>
+                <link rel="stylesheet" href="/time_access_portal/static/src/css/my_component.css?v=1"/>
+                <link rel="stylesheet" href="/time_access_portal/static/src/css/global.css?v=1"/>
+                <link rel="stylesheet" href="/time_access_portal/static/src/css/pages.css?v=1"/>
+                <t t-raw="header"/>
+            </head>
+
+            <body>
+
+                <!--===========================================================-->
+                <!--================||  Header Section Here  ||=============== -->
+                <!--===========================================================-->
+                <header>
+                    <div class="container">
+                        <div class="header-wrap flex-between gap-4">
+
+                            <!-- Menu Icon for Mobile -->
+                            <div class="mobile-show desktop-hide">
+                                <button class="menu-btn" type="button" id="menu-btn">
+                                    <svg viewBox="0 0 24 24" width="22" fill="none" stroke="#ededed"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4 6.5h16" stroke-width="2" stroke-linecap="round"></path>
+                                        <path d="M4 12h16" stroke-width="2" stroke-linecap="round"></path>
+                                        <path d="M4 17.5h16" stroke-width="2" stroke-linecap="round"></path>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <!--========== Header Logo =========-->
+                            <a href="index.html" class="logo mobile-hide">B2B
+                                <span>WHOLESALE</span>
+                            </a>
+                            <div class="mobile-show desktop-hide">
+                                <img style="max-width: 140px;"
+                                     src="https://timeaccess-store.com/cdn/shop/files/Timeaccesslogo_png.png?v=1675580990&amp;width=220"
+                                     alt=""/>
+                            </div>
+
+                            <!--======== Nav Menu Here ========-->
+                            <ul class="d-flex gap-5 menus flex-center" id="menus">
+                                <li class="desktop-hide mobile-show">
+                                    <h3 style="color: var(--color-text-light);">B2B Portal</h3>
+                                </li>
+                                <li>
+                                    <a href="index.html" class="active" onclick="switchPage('portal-page')">Products
+                                        Portal
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/profile.html">Wholesaler Profile</a>
+                                </li>
+                            </ul>
+
+                            <!--========== Cart Icon ========== -->
+                            <div class="nav-icons">
+                                <a href="cart.html" class="cart-icon-btn flex-center">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <!-- Sophisticated, solid structured luxury bag/cart silhouette -->
+                                        <path
+                                                d="M19 7H5L3.5 15.5C3.2 17.5 4.7 19.2 6.8 19.2H17.2C19.3 19.2 20.8 17.5 20.5 15.5L19 7z"
+                                                fill="currentColor" opacity="0.08"/>
+                                        <path
+                                                d="M19 7H5L3.5 15.5C3.2 17.5 4.7 19.2 6.8 19.2H17.2C19.3 19.2 20.8 17.5 20.5 15.5L19 7z"
+                                                stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                                        <!-- Perfect geometric structural handle -->
+                                        <path d="M8.5 7V5.5C8.5 3.6 10.1 2 12 2v0c1.9 0 3.5 1.6 3.5 3.5V7"
+                                              stroke="currentColor"
+                                              stroke-width="1.6" stroke-linecap="round"/>
+                                    </svg>
+
+                                    <!-- cart count/batch -->
+                                    <span class="cart-count" id="cartCount">12</span>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </header>
+
+
+
+
+                <main class="main-content " id="main-content">
+                    <t t-raw="0"/>
+                </main>
+
+
+                <!--===========================================================-->
+                <!--================||  Footer Section Here  ||=============== -->
+                <!--===========================================================-->
+                <footer>
+                    <div class="container">
+                        <div class="footer-wrap flex-between">
+                            <p>© 2026 <span>B2B Wholesale Portal</span>. All Rights Reserved.
+                            </p>
+                            <p class="powered-by">Powered by
+                                <a
+                                        href="https://www.xsellencebdltd.com/">
+                                    <span>xsellencebdltd</span>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </footer>
+
+
+                <!--    Javascript Links Here     -->
+                <script src="/time_access_portal/static/src/js/main.js?v=1"></script>
+            </body>
+        </html>
+    </template>
+</odoo>

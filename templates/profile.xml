@@ -1,0 +1,93 @@
+<odoo>
+    <template id="profile_page">
+        <t t-call="time_access_portal.custom_layout">
+
+            <link rel="stylesheet" href="/time_access_portal/static/src/css/cart-checkout.css?v=1"/>
+
+
+            
+            <!--=============================================================-->
+            <!--================||  Checkout Section Here  ||=============== -->
+            <!--============================================================-->
+            <section class="cart-page mt-7 mb-7 profile">
+                <div class="container">
+                    <div id="cart-page" class="page active-page">
+                        <h2 class="page-title">Wholesaler Corporate Profile</h2>
+
+                        <div class="profile-grid mt-6">
+
+                            <!-- left side -->
+                            <div class="avatar-section">
+                                <div class="avatar-placeholder"><svg style="opacity: .85;" viewBox="0 0 24 24"
+                                        fill="none" xmlns="http://www.w3.org/2000/svg" width="44" height="44">
+                                        <!-- Main Building Structure -->
+                                        <path d="M2 22H22" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" />
+                                        <path d="M17 22V7C17 5.89543 16.1046 5 15 5H9C7.89543 5 7 5.89543 7 22"
+                                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path d="M7 11H17" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" />
+                                        <path d="M7 15H17" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" />
+
+                                        <!-- Side Buildings / Pillars -->
+                                        <path d="M3 22V12C3 10.8954 3.89543 10 4.99999 10H7" stroke="currentColor"
+                                            stroke-width="1.5" stroke-linejoin="round" />
+                                        <path d="M17 10H19C20.1046 10 21 10.8954 21 12V22" stroke="currentColor"
+                                            stroke-width="1.5" stroke-linejoin="round" />
+
+                                        <!-- Main Entrance / Door -->
+                                        <path
+                                            d="M10.5 22V19C10.5 18.1716 11.1716 17.5 12 17.5C12.8284 17.5 13.5 18.1716 13.5 19V22"
+                                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                                <h3 class="text-primary">Apex Global Trade</h3>
+                                <p style="color: var(--text-muted); font-size: 0.85rem; margin-top:5px;">Verified Tier-1
+                                    Buyer</p>
+                            </div>
+
+                            <!-- right form -->
+                            <div class="box-panel">
+                                <h3 class="text-primary fw-bolder">Account Configuration &amp; Terms</h3>
+
+                                <div class="mt-2">
+                                    <div class="grid-2 gap-5 gap-sm-3">
+                                        <div class="input-group">
+                                            <label>Primary Contact Person</label>
+                                            <input type="text" class="" value="Rahat Chowdhury"/>
+                                            <div class="error-message">Error Message</div>
+                                        </div>
+                                        <div class="input-group">
+                                            <label>Corporate Email Address</label>
+                                            <input type="email" value="procurement@apexglobal.com"/>
+                                        </div>
+                                    </div>
+                                    <div class="grid-2 gap-5 gap-sm-3 mt-5">
+                                        <div class="input-group"><label>Account Credit Limit</label><input type="text"
+                                                value="$50,000.00"/></div>
+                                        <div class="input-group"><label>Phone</label><input type="text"
+                                                value="0170545641545"/> </div>
+                                    </div>
+                                    <div class="input-group mt-5">
+                                        <label for="">Address</label>
+                                        <textarea name="" id=""></textarea>
+                                    </div>
+                                </div>
+
+                                <!-- save button -->
+                                <div class="flex-end d-flex justify-end mt-6">
+                                    <button class="btn btn-primary">Save Changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+        </t>
+    </template>
+</odoo>
