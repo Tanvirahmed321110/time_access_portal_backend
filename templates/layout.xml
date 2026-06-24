@@ -39,7 +39,7 @@
                             </div>
 
                             <!--========== Header Logo =========-->
-                            <a href="index.html" class="logo mobile-hide">B2B
+                            <a href="/index" class="logo mobile-hide">B2B
                                 <span>WHOLESALE</span>
                             </a>
                             <div class="mobile-show desktop-hide">
@@ -54,18 +54,18 @@
                                     <h3 style="color: var(--color-text-light);">B2B Portal</h3>
                                 </li>
                                 <li>
-                                    <a href="index.html" class="active" onclick="switchPage('portal-page')">Products
+                                    <a href="/index" class="active" onclick="switchPage('portal-page')">Products
                                         Portal
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/profile.html">Wholesaler Profile</a>
+                                    <a href="/index/profile">Wholesaler Profile</a>
                                 </li>
                             </ul>
 
                             <!--========== Cart Icon ========== -->
                             <div class="nav-icons">
-                                <a href="cart.html" class="cart-icon-btn flex-center">
+                                <a href="/index/cart" class="cart-icon-btn flex-center">
                                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <!-- Sophisticated, solid structured luxury bag/cart silhouette -->
                                         <path
@@ -118,6 +118,7 @@
 
                 <!--    Javascript Links Here     -->
                 <script src="/time_access_portal/static/src/js/main.js?v=1"></script>
+                <script src="/time_access_portal/static/src/js/home.js?v=1"></script>
             </body>
         </html>
     </template>
