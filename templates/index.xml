@@ -158,10 +158,9 @@
 
                                             <!-- Card Buttons -->
                                             <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
-                                                <a href="/cart.html" class="btn btn-outline"
-                                                   onclick="addToCart('PROD-101', false)">Add
+                                                <button  class="btn add_to_cart btn-outline">Add
                                                     to Cart
-                                                </a>
+                                                </button>
                                                 <a href="/cart.html" class="btn btn-primary"
                                                    onclick="addToCart('PROD-101', true)">Buy
                                                     Now
@@ -960,7 +959,7 @@
 
                                         <!-- Card Buttons -->
                                         <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
-                                            <button class="btn btn-outline" onclick="addToCart('PROD-101', false)">Add
+                                            <button class="btn btn-outline add_to_cart" onclick="addToCart('PROD-101', false)">Add
                                                 to Cart
                                             </button>
                                             <button class="btn btn-primary" onclick="addToCart('PROD-101', true)">Buy
@@ -1104,7 +1103,7 @@
 
 
             <!-- Add To Cart Popup -->
-            <div id="b2bCartPopup" class="b2b-cart-popup show">
+            <div id="b2bCartPopup" class="b2b-cart-popup ">
                 <div class="b2b-cart-popup-box">
                     <div class="b2b-cart-popup-icon" id="b2bCartPopupIcon">
                         ✓
