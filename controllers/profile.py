@@ -7,6 +7,6 @@ class TimeAccessPortal(http.Controller):
     @http.route('/index/profile', type='http', auth='user', website=True)
     def index_f(self, **kw):
         return request.render('time_access_portal.profile_page', {
-            '': '',
+            'active_menu': 'profile',
         })
 
