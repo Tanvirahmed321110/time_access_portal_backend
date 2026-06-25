@@ -11,13 +11,15 @@
 
                         <!-- Category Buttons Here -->
                         <div class="category-buttons d-flex gap-3 flex-wrap" id="categoryContainer">
-                            <button class="cart-btn active" >All
-                                Categories</button>
-                            <button class="cart-btn" >Watch</button>
-                            <button class="cart-btn" >Apparel &amp;amp;
-                                Clothing</button>
-                            <button class="cart-btn" >Casio</button>
-                            <button class="cart-btn" >Smart Watch</button>
+                            <button class="cart-btn active">All
+                                Categories
+                            </button>
+                            <button class="cart-btn">Watch</button>
+                            <button class="cart-btn">Apparel &amp;amp;
+                                Clothing
+                            </button>
+                            <button class="cart-btn">Casio</button>
+                            <button class="cart-btn">Smart Watch</button>
                         </div>
 
                         <div class="search-sort-bar mt-6 flex-between flex-wrap gap-sm-4 gap-7">
@@ -25,7 +27,7 @@
                             <!-- Search Input Here -->
                             <div class="search-box input-group">
                                 <input type="text" class="search-input" id="searchInput" oninput="searchProducts()"
-                                    placeholder="Search by Product Name or Item ID "/>
+                                       placeholder="Search by Product Name or Item ID "/>
                                 <i class="fas fa-search"></i>
                             </div>
 
@@ -43,21 +45,21 @@
                                 <div class="view-toggle d-flex gap-1">
 
                                     <!-- Grid View -->
-                                    <button class="flex-center active" id="gridBtn"  type="button"
-                                        aria-label="Grid View">
+                                    <button class="flex-center active" id="gridBtn" type="button"
+                                            aria-label="Grid View">
                                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <!-- Top Left -->
                                             <rect x="3.5" y="3.5" width="7" height="7" rx="2" stroke="currentColor"
-                                                stroke-width="1.6" stroke-linejoin="round" />
+                                                  stroke-width="1.6" stroke-linejoin="round"/>
                                             <!-- Top Right -->
                                             <rect x="13.5" y="3.5" width="7" height="7" rx="2" stroke="currentColor"
-                                                stroke-width="1.6" stroke-linejoin="round" />
+                                                  stroke-width="1.6" stroke-linejoin="round"/>
                                             <!-- Bottom Left -->
                                             <rect x="3.5" y="13.5" width="7" height="7" rx="2" stroke="currentColor"
-                                                stroke-width="1.6" stroke-linejoin="round" />
+                                                  stroke-width="1.6" stroke-linejoin="round"/>
                                             <!-- Bottom Right -->
                                             <rect x="13.5" y="13.5" width="7" height="7" rx="2" stroke="currentColor"
-                                                stroke-width="1.6" stroke-linejoin="round" />
+                                                  stroke-width="1.6" stroke-linejoin="round"/>
                                         </svg>
 
                                     </button>
@@ -67,21 +69,21 @@
                                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <!-- Row 1 -->
                                             <rect x="3.5" y="4" width="4" height="4" rx="1.2" stroke="currentColor"
-                                                stroke-width="1.6" stroke-linejoin="round" />
+                                                  stroke-width="1.6" stroke-linejoin="round"/>
                                             <path d="M11 5H20.5" stroke="currentColor" stroke-width="1.6"
-                                                stroke-linecap="round" />
+                                                  stroke-linecap="round"/>
 
                                             <!-- Row 2 -->
                                             <rect x="3.5" y="10" width="4" height="4" rx="1.2" stroke="currentColor"
-                                                stroke-width="1.6" stroke-linejoin="round" />
+                                                  stroke-width="1.6" stroke-linejoin="round"/>
                                             <path d="M11 11H20.5" stroke="currentColor" stroke-width="1.6"
-                                                stroke-linecap="round" />
+                                                  stroke-linecap="round"/>
 
                                             <!-- Row 3 -->
                                             <rect x="3.5" y="16" width="4" height="4" rx="1.2" stroke="currentColor"
-                                                stroke-width="1.6" stroke-linejoin="round" />
+                                                  stroke-width="1.6" stroke-linejoin="round"/>
                                             <path d="M11 17H17.5" stroke="currentColor" stroke-width="1.6"
-                                                stroke-linecap="round" opacity="0.8" />
+                                                  stroke-linecap="round" opacity="0.8"/>
                                         </svg>
 
                                     </button>
@@ -93,12 +95,7 @@
             </section>
 
 
-
-
-
-
-
-                        <!--============================================================-->
+            <!--============================================================-->
             <!--================||  Product Section Here  ||=============== -->
             <!--============================================================-->
             <section class="product-sec">
@@ -108,7 +105,7 @@
                         <div class="contents">
                             <!--===================================||  Grid View Products Here  ||====================================-->
                             <div class="content  grid-5 grid-lg-4 grid-sm-2 gap-sm-3 gap-lg-4 gap-6"
-                                id="grid-list-contents">
+                                 id="grid-list-contents">
 
                                 <!--================= single product card ===============-->
                                 <div class="product-card">
@@ -120,11 +117,11 @@
                                     <div class="top-area">
                                         <div class="top">
                                             <img class="default-img"
-                                                src="https://timeaccess-store.com/cdn/shop/files/SPB473J1-G.jpg?v=1781940506&amp;width=1000"
-                                                alt=""/>
+                                                 src="https://timeaccess-store.com/cdn/shop/files/SPB473J1-G.jpg?v=1781940506&amp;width=1000"
+                                                 alt=""/>
                                             <img class="hover-img"
-                                                src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&amp;q=80"
-                                                alt=""/>
+                                                 src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&amp;q=80"
+                                                 alt=""/>
                                         </div>
                                     </div>
 
@@ -136,12 +133,17 @@
 
                                             <!-- product name -->
                                             <a href="#" class="product-name" onclick="viewDetails('PROD-105')">UltraHD
-                                                4K Display Panels (Wholesale) Display New</a>
+                                                4K Display Panels (Wholesale) Display New
+                                            </a>
 
                                             <!-- price -->
                                             <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">
-                                                <div class="new-price fs-md">TK <span>1200.00</span></div>
-                                                <div class="old-price">TK <span>1340.00</span></div>
+                                                <div class="new-price fs-md">TK
+                                                    <span>1200.00</span>
+                                                </div>
+                                                <div class="old-price">TK
+                                                    <span>1340.00</span>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -151,17 +153,19 @@
                                             <div class="qty-wrapper d-flex align-center mt-3 gap-2">
                                                 <label class="">Quantity:</label>
                                                 <input type="number" class="qty-input" id="qty-PROD-101" value="5"
-                                                    min="5"/>
+                                                       min="5"/>
                                             </div>
 
                                             <!-- Card Buttons -->
                                             <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
                                                 <a href="/cart.html" class="btn btn-outline"
-                                                    onclick="addToCart('PROD-101', false)">Add
-                                                    to Cart</a>
+                                                   onclick="addToCart('PROD-101', false)">Add
+                                                    to Cart
+                                                </a>
                                                 <a href="/cart.html" class="btn btn-primary"
-                                                    onclick="addToCart('PROD-101', true)">Buy
-                                                    Now</a>
+                                                   onclick="addToCart('PROD-101', true)">Buy
+                                                    Now
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -177,11 +181,11 @@
                                     <div class="top-area">
                                         <div class="top">
                                             <img class="default-img"
-                                                src="//timeaccess-store.com/cdn/shop/files/T116.417.16.092.00-E.jpg?v=1781863432&amp;width=1000"
-                                                alt=""/>
+                                                 src="//timeaccess-store.com/cdn/shop/files/T116.417.16.092.00-E.jpg?v=1781863432&amp;width=1000"
+                                                 alt=""/>
                                             <img class="hover-img"
-                                                src="//timeaccess-store.com/cdn/shop/files/T116.417.16.092.00-C.jpg?v=1781863432&amp;width=1000"
-                                                alt=""/>
+                                                 src="//timeaccess-store.com/cdn/shop/files/T116.417.16.092.00-C.jpg?v=1781863432&amp;width=1000"
+                                                 alt=""/>
                                         </div>
                                     </div>
 
@@ -193,12 +197,17 @@
 
                                             <!-- product name -->
                                             <a href="#" class="product-name" onclick="viewDetails('PROD-105')">Seiko
-                                                Prospex 'Zakynthos' European Limited Edition Watch SPB473J1</a>
+                                                Prospex 'Zakynthos' European Limited Edition Watch SPB473J1
+                                            </a>
 
                                             <!-- price -->
                                             <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">
-                                                <div class="new-price fs-md">TK <span>1200.00</span></div>
-                                                <div class="old-price">TK <span>1340.00</span></div>
+                                                <div class="new-price fs-md">TK
+                                                    <span>1200.00</span>
+                                                </div>
+                                                <div class="old-price">TK
+                                                    <span>1340.00</span>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -208,15 +217,17 @@
                                             <div class="qty-wrapper d-flex align-center mt-3 gap-2">
                                                 <label class="">Quantity:</label>
                                                 <input type="number" class="qty-input" id="qty-PROD-101" value="5"
-                                                    min="5"/>
+                                                       min="5"/>
                                             </div>
 
                                             <!-- Card Buttons -->
                                             <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
                                                 <a href="/cart.html" class="btn btn-outline">Add
-                                                    to Cart</a>
+                                                    to Cart
+                                                </a>
                                                 <a href="/checkout.html" class="btn btn-primary">Buy
-                                                    Now</a>
+                                                    Now
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -232,11 +243,11 @@
                                     <div class="top-area">
                                         <div class="top">
                                             <img class="default-img"
-                                                src="//timeaccess-store.com/cdn/shop/files/T165.807.11.031.00-a.jpg?v=1781357864&amp;width=1000"
-                                                alt=""/>
+                                                 src="//timeaccess-store.com/cdn/shop/files/T165.807.11.031.00-a.jpg?v=1781357864&amp;width=1000"
+                                                 alt=""/>
                                             <img class="hover-img"
-                                                src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&amp;q=80"
-                                                alt=""/>
+                                                 src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&amp;q=80"
+                                                 alt=""/>
                                         </div>
                                     </div>
 
@@ -248,12 +259,17 @@
 
                                             <!-- product name -->
                                             <a href="#" class="product-name" onclick="viewDetails('PROD-105')">Rado
-                                                Florence Diamond Two-Tone Black Dial Watch | R48912703</a>
+                                                Florence Diamond Two-Tone Black Dial Watch | R48912703
+                                            </a>
 
                                             <!-- price -->
                                             <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">
-                                                <div class="new-price fs-md">TK <span>1200.00</span></div>
-                                                <div class="old-price">TK <span>1340.00</span></div>
+                                                <div class="new-price fs-md">TK
+                                                    <span>1200.00</span>
+                                                </div>
+                                                <div class="old-price">TK
+                                                    <span>1340.00</span>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -263,17 +279,19 @@
                                             <div class="qty-wrapper d-flex align-center mt-3 gap-2">
                                                 <label class="">Quantity:</label>
                                                 <input type="number" class="qty-input" id="qty-PROD-101" value="5"
-                                                    min="5"/>
+                                                       min="5"/>
                                             </div>
 
                                             <!-- Card Buttons -->
                                             <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
                                                 <a href="/cart.html" class="btn btn-outline"
-                                                    onclick="addToCart('PROD-101', false)">Add
-                                                    to Cart</a>
+                                                   onclick="addToCart('PROD-101', false)">Add
+                                                    to Cart
+                                                </a>
                                                 <a href="/cart.html" class="btn btn-primary"
-                                                    onclick="addToCart('PROD-101', true)">Buy
-                                                    Now</a>
+                                                   onclick="addToCart('PROD-101', true)">Buy
+                                                    Now
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -289,11 +307,11 @@
                                     <div class="top-area">
                                         <div class="top">
                                             <img class="default-img"
-                                                src="//timeaccess-store.com/cdn/shop/files/T137.410.11.031.00FS.jpg?v=1737527856&amp;width=1080"
-                                                alt=""/>
+                                                 src="//timeaccess-store.com/cdn/shop/files/T137.410.11.031.00FS.jpg?v=1737527856&amp;width=1080"
+                                                 alt=""/>
                                             <img class="hover-img"
-                                                src="//timeaccess-store.com/cdn/shop/files/T137-410-11-031-00_AMB_1.png?v=1737285750&amp;width=1680"
-                                                alt=""/>
+                                                 src="//timeaccess-store.com/cdn/shop/files/T137-410-11-031-00_AMB_1.png?v=1737285750&amp;width=1680"
+                                                 alt=""/>
                                         </div>
                                     </div>
 
@@ -305,12 +323,17 @@
 
                                             <!-- product name -->
                                             <a href="#" class="product-name" onclick="viewDetails('PROD-105')">TISSOT
-                                                GENTLEMEN 38MM POWERMATRIC SILVER DIAL WATCH | T165.807.11.031.00</a>
+                                                GENTLEMEN 38MM POWERMATRIC SILVER DIAL WATCH | T165.807.11.031.00
+                                            </a>
 
                                             <!-- price -->
                                             <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">
-                                                <div class="new-price fs-md">TK <span>1200.00</span></div>
-                                                <div class="old-price">TK <span>1340.00</span></div>
+                                                <div class="new-price fs-md">TK
+                                                    <span>1200.00</span>
+                                                </div>
+                                                <div class="old-price">TK
+                                                    <span>1340.00</span>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -320,17 +343,19 @@
                                             <div class="qty-wrapper d-flex align-center mt-3 gap-2">
                                                 <label class="">Quantity:</label>
                                                 <input type="number" class="qty-input" id="qty-PROD-101" value="5"
-                                                    min="5"/>
+                                                       min="5"/>
                                             </div>
 
                                             <!-- Card Buttons -->
                                             <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
                                                 <a href="/cart.html" class="btn btn-outline"
-                                                    onclick="addToCart('PROD-101', false)">Add
-                                                    to Cart</a>
+                                                   onclick="addToCart('PROD-101', false)">Add
+                                                    to Cart
+                                                </a>
                                                 <a href="/cart.html" class="btn btn-primary"
-                                                    onclick="addToCart('PROD-101', true)">Buy
-                                                    Now</a>
+                                                   onclick="addToCart('PROD-101', true)">Buy
+                                                    Now
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -346,11 +371,11 @@
                                     <div class="top-area">
                                         <div class="top">
                                             <img class="default-img"
-                                                src="https://timeaccess-store.com/cdn/shop/files/SPB473J1-G.jpg?v=1781940506&amp;width=1000"
-                                                alt=""/>
+                                                 src="https://timeaccess-store.com/cdn/shop/files/SPB473J1-G.jpg?v=1781940506&amp;width=1000"
+                                                 alt=""/>
                                             <img class="hover-img"
-                                                src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&amp;q=80"
-                                                alt=""/>
+                                                 src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&amp;q=80"
+                                                 alt=""/>
                                         </div>
                                     </div>
 
@@ -362,12 +387,17 @@
 
                                             <!-- product name -->
                                             <a href="#" class="product-name" onclick="viewDetails('PROD-105')">UltraHD
-                                                4K Display Panels (Wholesale) Display New</a>
+                                                4K Display Panels (Wholesale) Display New
+                                            </a>
 
                                             <!-- price -->
                                             <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">
-                                                <div class="new-price fs-md">TK <span>1200.00</span></div>
-                                                <div class="old-price">TK <span>1340.00</span></div>
+                                                <div class="new-price fs-md">TK
+                                                    <span>1200.00</span>
+                                                </div>
+                                                <div class="old-price">TK
+                                                    <span>1340.00</span>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -377,17 +407,19 @@
                                             <div class="qty-wrapper d-flex align-center mt-3 gap-2">
                                                 <label class="">Quantity:</label>
                                                 <input type="number" class="qty-input" id="qty-PROD-101" value="5"
-                                                    min="5"/>
+                                                       min="5"/>
                                             </div>
 
                                             <!-- Card Buttons -->
                                             <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
                                                 <button class="btn btn-outline"
-                                                    onclick="addToCart('PROD-101', false)">Add
-                                                    to Cart</button>
+                                                        onclick="addToCart('PROD-101', false)">Add
+                                                    to Cart
+                                                </button>
                                                 <button class="btn btn-primary"
-                                                    onclick="addToCart('PROD-101', true)">Buy
-                                                    Now</button>
+                                                        onclick="addToCart('PROD-101', true)">Buy
+                                                    Now
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -403,11 +435,11 @@
                                     <div class="top-area">
                                         <div class="top">
                                             <img class="default-img"
-                                                src="//timeaccess-store.com/cdn/shop/files/T116.417.16.092.00-E.jpg?v=1781863432&amp;width=1000"
-                                                alt=""/>
+                                                 src="//timeaccess-store.com/cdn/shop/files/T116.417.16.092.00-E.jpg?v=1781863432&amp;width=1000"
+                                                 alt=""/>
                                             <img class="hover-img"
-                                                src="//timeaccess-store.com/cdn/shop/files/T116.417.16.092.00-C.jpg?v=1781863432&amp;width=1000"
-                                                alt=""/>
+                                                 src="//timeaccess-store.com/cdn/shop/files/T116.417.16.092.00-C.jpg?v=1781863432&amp;width=1000"
+                                                 alt=""/>
                                         </div>
                                     </div>
 
@@ -419,12 +451,17 @@
 
                                             <!-- product name -->
                                             <a href="#" class="product-name" onclick="viewDetails('PROD-105')">Seiko
-                                                Prospex 'Zakynthos' European Limited Edition Watch SPB473J1</a>
+                                                Prospex 'Zakynthos' European Limited Edition Watch SPB473J1
+                                            </a>
 
                                             <!-- price -->
                                             <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">
-                                                <div class="new-price fs-md">TK <span>1200.00</span></div>
-                                                <div class="old-price">TK <span>1340.00</span></div>
+                                                <div class="new-price fs-md">TK
+                                                    <span>1200.00</span>
+                                                </div>
+                                                <div class="old-price">TK
+                                                    <span>1340.00</span>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -434,17 +471,19 @@
                                             <div class="qty-wrapper d-flex align-center mt-3 gap-2">
                                                 <label class="">Quantity:</label>
                                                 <input type="number" class="qty-input" id="qty-PROD-101" value="5"
-                                                    min="5"/>
+                                                       min="5"/>
                                             </div>
 
                                             <!-- Card Buttons -->
                                             <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
                                                 <a href="/cart.html" class="btn btn-outline"
-                                                    onclick="addToCart('PROD-101', false)">Add
-                                                    to Cart</a>
+                                                   onclick="addToCart('PROD-101', false)">Add
+                                                    to Cart
+                                                </a>
                                                 <a href="/cart.html" class="btn btn-primary"
-                                                    onclick="addToCart('PROD-101', true)">Buy
-                                                    Now</a>
+                                                   onclick="addToCart('PROD-101', true)">Buy
+                                                    Now
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -454,17 +493,17 @@
                                 <div class="product-card">
 
                                     <!-- cart tag -->
-                                    <div class="tag-badge">hot </div>
+                                    <div class="tag-badge">hot</div>
 
                                     <!--===== Product Images =====-->
                                     <div class="top-area">
                                         <div class="top">
                                             <img class="default-img"
-                                                src="//timeaccess-store.com/cdn/shop/files/T165.807.11.031.00-a.jpg?v=1781357864&amp;width=1000"
-                                                alt=""/>
+                                                 src="//timeaccess-store.com/cdn/shop/files/T165.807.11.031.00-a.jpg?v=1781357864&amp;width=1000"
+                                                 alt=""/>
                                             <img class="hover-img"
-                                                src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&amp;q=80"
-                                                alt=""/>
+                                                 src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&amp;q=80"
+                                                 alt=""/>
                                         </div>
                                     </div>
 
@@ -476,12 +515,17 @@
 
                                             <!-- product name -->
                                             <a href="#" class="product-name" onclick="viewDetails('PROD-105')">Rado
-                                                Florence Diamond Two-Tone Black Dial Watch | R48912703</a>
+                                                Florence Diamond Two-Tone Black Dial Watch | R48912703
+                                            </a>
 
                                             <!-- price -->
                                             <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">
-                                                <div class="new-price fs-md">TK <span>1200.00</span></div>
-                                                <div class="old-price">TK <span>1340.00</span></div>
+                                                <div class="new-price fs-md">TK
+                                                    <span>1200.00</span>
+                                                </div>
+                                                <div class="old-price">TK
+                                                    <span>1340.00</span>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -491,17 +535,19 @@
                                             <div class="qty-wrapper d-flex align-center mt-3 gap-2">
                                                 <label class="">Quantity:</label>
                                                 <input type="number" class="qty-input" id="qty-PROD-101" value="5"
-                                                    min="5"/>
+                                                       min="5"/>
                                             </div>
 
                                             <!-- Card Buttons -->
                                             <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
                                                 <button class="btn btn-outline"
-                                                    onclick="addToCart('PROD-101', false)">Add
-                                                    to Cart</button>
+                                                        onclick="addToCart('PROD-101', false)">Add
+                                                    to Cart
+                                                </button>
                                                 <button class="btn btn-primary"
-                                                    onclick="addToCart('PROD-101', true)">Buy
-                                                    Now</button>
+                                                        onclick="addToCart('PROD-101', true)">Buy
+                                                    Now
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -517,11 +563,11 @@
                                     <div class="top-area">
                                         <div class="top">
                                             <img class="default-img"
-                                                src="//timeaccess-store.com/cdn/shop/files/T137.410.11.031.00FS.jpg?v=1737527856&amp;width=1080"
-                                                alt=""/>
+                                                 src="//timeaccess-store.com/cdn/shop/files/T137.410.11.031.00FS.jpg?v=1737527856&amp;width=1080"
+                                                 alt=""/>
                                             <img class="hover-img"
-                                                src="//timeaccess-store.com/cdn/shop/files/T137-410-11-031-00_AMB_1.png?v=1737285750&amp;width=1680"
-                                                alt=""/>
+                                                 src="//timeaccess-store.com/cdn/shop/files/T137-410-11-031-00_AMB_1.png?v=1737285750&amp;width=1680"
+                                                 alt=""/>
                                         </div>
                                     </div>
 
@@ -533,12 +579,17 @@
 
                                             <!-- product name -->
                                             <a href="#" class="product-name" onclick="viewDetails('PROD-105')">TISSOT
-                                                GENTLEMEN 38MM POWERMATRIC SILVER DIAL WATCH | T165.807.11.031.00</a>
+                                                GENTLEMEN 38MM POWERMATRIC SILVER DIAL WATCH | T165.807.11.031.00
+                                            </a>
 
                                             <!-- price -->
                                             <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">
-                                                <div class="new-price fs-md">TK <span>1200.00</span></div>
-                                                <div class="old-price">TK <span>1340.00</span></div>
+                                                <div class="new-price fs-md">TK
+                                                    <span>1200.00</span>
+                                                </div>
+                                                <div class="old-price">TK
+                                                    <span>1340.00</span>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -552,11 +603,13 @@
                                         <!-- Card Buttons -->
                                         <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
                                             <a href="/cart.html" class="btn btn-outline"
-                                                onclick="addToCart('PROD-101', false)">Add
-                                                to Cart</a>
+                                               onclick="addToCart('PROD-101', false)">Add
+                                                to Cart
+                                            </a>
                                             <a href="/cart.html" class="btn btn-primary"
-                                                onclick="addToCart('PROD-101', true)">Buy
-                                                Now</a>
+                                               onclick="addToCart('PROD-101', true)">Buy
+                                                Now
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -571,11 +624,11 @@
                                     <div class="top-area">
                                         <div class="top">
                                             <img class="default-img"
-                                                src="https://timeaccess-store.com/cdn/shop/files/T116.417.16.052.01-A.jpg?v=1781081648&amp;width=1000"
-                                                alt=""/>
+                                                 src="https://timeaccess-store.com/cdn/shop/files/T116.417.16.052.01-A.jpg?v=1781081648&amp;width=1000"
+                                                 alt=""/>
                                             <img class="hover-img"
-                                                src="https://timeaccess-store.com/cdn/shop/files/T116.417.16.052.01-C.jpg?v=1781081649&amp;width=1000"
-                                                alt=""/>
+                                                 src="https://timeaccess-store.com/cdn/shop/files/T116.417.16.052.01-C.jpg?v=1781081649&amp;width=1000"
+                                                 alt=""/>
                                         </div>
                                     </div>
 
@@ -587,12 +640,17 @@
 
                                             <!-- product name -->
                                             <a href="#" class="product-name" onclick="viewDetails('PROD-105')">UltraHD
-                                                4K Display Panels (Wholesale) Display New</a>
+                                                4K Display Panels (Wholesale) Display New
+                                            </a>
 
                                             <!-- price -->
                                             <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">
-                                                <div class="new-price fs-md">TK <span>1200.00</span></div>
-                                                <div class="old-price">TK <span>1340.00</span></div>
+                                                <div class="new-price fs-md">TK
+                                                    <span>1200.00</span>
+                                                </div>
+                                                <div class="old-price">TK
+                                                    <span>1340.00</span>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -606,9 +664,11 @@
                                         <!-- Card Buttons -->
                                         <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
                                             <button class="btn btn-outline" onclick="addToCart('PROD-101', false)">Add
-                                                to Cart</button>
+                                                to Cart
+                                            </button>
                                             <button class="btn btn-primary" onclick="addToCart('PROD-101', true)">Buy
-                                                Now</button>
+                                                Now
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -622,11 +682,11 @@
                                     <div class="top-area">
                                         <div class="top">
                                             <img class="default-img"
-                                                src="//timeaccess-store.com/cdn/shop/files/T116.417.16.092.00-E.jpg?v=1781863432&amp;width=1000"
-                                                alt=""/>
+                                                 src="//timeaccess-store.com/cdn/shop/files/T116.417.16.092.00-E.jpg?v=1781863432&amp;width=1000"
+                                                 alt=""/>
                                             <img class="hover-img"
-                                                src="//timeaccess-store.com/cdn/shop/files/T116.417.16.092.00-C.jpg?v=1781863432&amp;width=1000"
-                                                alt=""/>
+                                                 src="//timeaccess-store.com/cdn/shop/files/T116.417.16.092.00-C.jpg?v=1781863432&amp;width=1000"
+                                                 alt=""/>
                                         </div>
                                     </div>
 
@@ -638,12 +698,17 @@
 
                                             <!-- product name -->
                                             <a href="#" class="product-name" onclick="viewDetails('PROD-105')">Seiko
-                                                Prospex 'Zakynthos' European Limited Edition Watch SPB473J1</a>
+                                                Prospex 'Zakynthos' European Limited Edition Watch SPB473J1
+                                            </a>
 
                                             <!-- price -->
                                             <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">
-                                                <div class="new-price fs-md">TK <span>1200.00</span></div>
-                                                <div class="old-price">TK <span>1340.00</span></div>
+                                                <div class="new-price fs-md">TK
+                                                    <span>1200.00</span>
+                                                </div>
+                                                <div class="old-price">TK
+                                                    <span>1340.00</span>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -657,11 +722,13 @@
                                         <!-- Card Buttons -->
                                         <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
                                             <a href="/cart.html" class="btn btn-outline"
-                                                onclick="addToCart('PROD-101', false)">Add
-                                                to Cart</a>
+                                               onclick="addToCart('PROD-101', false)">Add
+                                                to Cart
+                                            </a>
                                             <a href="/cart.html" class="btn btn-primary"
-                                                onclick="addToCart('PROD-101', true)">Buy
-                                                Now</a>
+                                               onclick="addToCart('PROD-101', true)">Buy
+                                                Now
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -676,11 +743,11 @@
                                     <div class="top-area">
                                         <div class="top">
                                             <img class="default-img"
-                                                src="//timeaccess-store.com/cdn/shop/files/T165.807.11.031.00-a.jpg?v=1781357864&amp;width=1000"
-                                                alt=""/>
+                                                 src="//timeaccess-store.com/cdn/shop/files/T165.807.11.031.00-a.jpg?v=1781357864&amp;width=1000"
+                                                 alt=""/>
                                             <img class="hover-img"
-                                                src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&amp;q=80"
-                                                alt=""/>
+                                                 src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&amp;q=80"
+                                                 alt=""/>
                                         </div>
                                     </div>
 
@@ -692,12 +759,17 @@
 
                                             <!-- product name -->
                                             <a href="#" class="product-name" onclick="viewDetails('PROD-105')">Rado
-                                                Florence Diamond Two-Tone Black Dial Watch | R48912703</a>
+                                                Florence Diamond Two-Tone Black Dial Watch | R48912703
+                                            </a>
 
                                             <!-- price -->
                                             <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">
-                                                <div class="new-price fs-md">TK <span>1200.00</span></div>
-                                                <div class="old-price">TK <span>1340.00</span></div>
+                                                <div class="new-price fs-md">TK
+                                                    <span>1200.00</span>
+                                                </div>
+                                                <div class="old-price">TK
+                                                    <span>1340.00</span>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -711,9 +783,11 @@
                                         <!-- Card Buttons -->
                                         <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
                                             <button class="btn btn-outline" onclick="addToCart('PROD-101', false)">Add
-                                                to Cart</button>
+                                                to Cart
+                                            </button>
                                             <button class="btn btn-primary" onclick="addToCart('PROD-101', true)">Buy
-                                                Now</button>
+                                                Now
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -727,11 +801,11 @@
                                     <div class="top-area">
                                         <div class="top">
                                             <img class="default-img"
-                                                src="//timeaccess-store.com/cdn/shop/files/T116.417.16.092.00-E.jpg?v=1781863432&amp;width=1000"
-                                                alt=""/>
+                                                 src="//timeaccess-store.com/cdn/shop/files/T116.417.16.092.00-E.jpg?v=1781863432&amp;width=1000"
+                                                 alt=""/>
                                             <img class="hover-img"
-                                                src="//timeaccess-store.com/cdn/shop/files/T116.417.16.092.00-C.jpg?v=1781863432&amp;width=1000"
-                                                alt=""/>
+                                                 src="//timeaccess-store.com/cdn/shop/files/T116.417.16.092.00-C.jpg?v=1781863432&amp;width=1000"
+                                                 alt=""/>
                                         </div>
                                     </div>
 
@@ -743,12 +817,17 @@
 
                                             <!-- product name -->
                                             <a href="#" class="product-name" onclick="viewDetails('PROD-105')">Seiko
-                                                Prospex 'Zakynthos' European Limited Edition Watch SPB473J1</a>
+                                                Prospex 'Zakynthos' European Limited Edition Watch SPB473J1
+                                            </a>
 
                                             <!-- price -->
                                             <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">
-                                                <div class="new-price fs-md">TK <span>1200.00</span></div>
-                                                <div class="old-price">TK <span>1340.00</span></div>
+                                                <div class="new-price fs-md">TK
+                                                    <span>1200.00</span>
+                                                </div>
+                                                <div class="old-price">TK
+                                                    <span>1340.00</span>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -762,11 +841,13 @@
                                         <!-- Card Buttons -->
                                         <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
                                             <a href="/cart.html" class="btn btn-outline"
-                                                onclick="addToCart('PROD-101', false)">Add
-                                                to Cart</a>
+                                               onclick="addToCart('PROD-101', false)">Add
+                                                to Cart
+                                            </a>
                                             <a href="/cart.html" class="btn btn-primary"
-                                                onclick="addToCart('PROD-101', true)">Buy
-                                                Now</a>
+                                               onclick="addToCart('PROD-101', true)">Buy
+                                                Now
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -781,11 +862,11 @@
                                     <div class="top-area">
                                         <div class="top">
                                             <img class="default-img"
-                                                src="//timeaccess-store.com/cdn/shop/files/T165.807.11.031.00-a.jpg?v=1781357864&amp;width=1000"
-                                                alt=""/>
+                                                 src="//timeaccess-store.com/cdn/shop/files/T165.807.11.031.00-a.jpg?v=1781357864&amp;width=1000"
+                                                 alt=""/>
                                             <img class="hover-img"
-                                                src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&amp;q=80"
-                                                alt=""/>
+                                                 src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&amp;q=80"
+                                                 alt=""/>
                                         </div>
                                     </div>
 
@@ -797,12 +878,17 @@
 
                                             <!-- product name -->
                                             <a href="#" class="product-name" onclick="viewDetails('PROD-105')">Rado
-                                                Florence Diamond Two-Tone Black Dial Watch | R48912703</a>
+                                                Florence Diamond Two-Tone Black Dial Watch | R48912703
+                                            </a>
 
                                             <!-- price -->
                                             <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">
-                                                <div class="new-price fs-md">TK <span>1200.00</span></div>
-                                                <div class="old-price">TK <span>1340.00</span></div>
+                                                <div class="new-price fs-md">TK
+                                                    <span>1200.00</span>
+                                                </div>
+                                                <div class="old-price">TK
+                                                    <span>1340.00</span>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -816,9 +902,11 @@
                                         <!-- Card Buttons -->
                                         <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
                                             <button class="btn btn-outline" onclick="addToCart('PROD-101', false)">Add
-                                                to Cart</button>
+                                                to Cart
+                                            </button>
                                             <button class="btn btn-primary" onclick="addToCart('PROD-101', true)">Buy
-                                                Now</button>
+                                                Now
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -833,11 +921,11 @@
                                     <div class="top-area">
                                         <div class="top">
                                             <img class="default-img"
-                                                src="//timeaccess-store.com/cdn/shop/files/T137.410.11.031.00FS.jpg?v=1737527856&amp;width=1080"
-                                                alt=""/>
+                                                 src="//timeaccess-store.com/cdn/shop/files/T137.410.11.031.00FS.jpg?v=1737527856&amp;width=1080"
+                                                 alt=""/>
                                             <img class="hover-img"
-                                                src="//timeaccess-store.com/cdn/shop/files/T137-410-11-031-00_AMB_1.png?v=1737285750&amp;width=1680"
-                                                alt=""/>
+                                                 src="//timeaccess-store.com/cdn/shop/files/T137-410-11-031-00_AMB_1.png?v=1737285750&amp;width=1680"
+                                                 alt=""/>
                                         </div>
                                     </div>
 
@@ -849,12 +937,17 @@
 
                                             <!-- product name -->
                                             <a href="#" class="product-name" onclick="viewDetails('PROD-105')">TISSOT
-                                                GENTLEMEN 38MM POWERMATRIC SILVER DIAL WATCH | T165.807.11.031.00</a>
+                                                GENTLEMEN 38MM POWERMATRIC SILVER DIAL WATCH | T165.807.11.031.00
+                                            </a>
 
                                             <!-- price -->
                                             <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">
-                                                <div class="new-price fs-md">TK <span>1200.00</span></div>
-                                                <div class="old-price">TK <span>1340.00</span></div>
+                                                <div class="new-price fs-md">TK
+                                                    <span>1200.00</span>
+                                                </div>
+                                                <div class="old-price">TK
+                                                    <span>1340.00</span>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -868,9 +961,11 @@
                                         <!-- Card Buttons -->
                                         <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
                                             <button class="btn btn-outline" onclick="addToCart('PROD-101', false)">Add
-                                                to Cart</button>
+                                                to Cart
+                                            </button>
                                             <button class="btn btn-primary" onclick="addToCart('PROD-101', true)">Buy
-                                                Now</button>
+                                                Now
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -885,11 +980,11 @@
                                     <div class="top-area">
                                         <div class="top">
                                             <img class="default-img"
-                                                src="https://timeaccess-store.com/cdn/shop/files/T116.417.16.052.01-A.jpg?v=1781081648&amp;width=1000"
-                                                alt=""/>
+                                                 src="https://timeaccess-store.com/cdn/shop/files/T116.417.16.052.01-A.jpg?v=1781081648&amp;width=1000"
+                                                 alt=""/>
                                             <img class="hover-img"
-                                                src="https://timeaccess-store.com/cdn/shop/files/T116.417.16.052.01-C.jpg?v=1781081649&amp;width=1000"
-                                                alt=""/>
+                                                 src="https://timeaccess-store.com/cdn/shop/files/T116.417.16.052.01-C.jpg?v=1781081649&amp;width=1000"
+                                                 alt=""/>
                                         </div>
                                     </div>
 
@@ -901,12 +996,17 @@
 
                                             <!-- product name -->
                                             <a href="#" class="product-name" onclick="viewDetails('PROD-105')">UltraHD
-                                                4K Display Panels (Wholesale) Display New</a>
+                                                4K Display Panels (Wholesale) Display New
+                                            </a>
 
                                             <!-- price -->
                                             <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">
-                                                <div class="new-price fs-md">TK <span>1200.00</span></div>
-                                                <div class="old-price">TK <span>1340.00</span></div>
+                                                <div class="new-price fs-md">TK
+                                                    <span>1200.00</span>
+                                                </div>
+                                                <div class="old-price">TK
+                                                    <span>1340.00</span>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -920,9 +1020,11 @@
                                         <!-- Card Buttons -->
                                         <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
                                             <button class="btn btn-outline" onclick="addToCart('PROD-101', false)">Add
-                                                to Cart</button>
+                                                to Cart
+                                            </button>
                                             <button class="btn btn-primary" onclick="addToCart('PROD-101', true)">Buy
-                                                Now</button>
+                                                Now
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -934,23 +1036,37 @@
                             <!--============== Pagination (per page at least 30 item show)=============-->
                             <div class="d-flex align-end justify-end mt-7 active">
                                 <nav class="pagination d-flex gap-4 " aria-="Page navigation">
-                                    <a href="#" class="page prev"><svg viewBox="0 0 24 24" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
+                                    <a href="#" class="page prev">
+                                        <svg viewBox="0 0 24 24" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
                                             <path d="M15 19L8 12L15 5" stroke="currentColor" stroke-width="1.8"
-                                                stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg></a>
+                                                  stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </a>
                                     <ul class="d-flex gap-2">
-                                        <li><a href="#" class="page ">1</a></li>
-                                        <li><a href="#" class="page active">2</a></li>
-                                        <li><a href="#" class="page">3</a></li>
-                                        <li><span class="page jump">...</span></li>
-                                        <li><a href="#" class="page">12</a></li>
+                                        <li>
+                                            <a href="#" class="page ">1</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="page active">2</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="page">3</a>
+                                        </li>
+                                        <li>
+                                            <span class="page jump">...</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="page">12</a>
+                                        </li>
                                     </ul>
-                                    <a href="#" class="page next"><svg viewBox="0 0 24 24" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
+                                    <a href="#" class="page next">
+                                        <svg viewBox="0 0 24 24" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
                                             <path d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="1.8"
-                                                stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg></a>
+                                                  stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </a>
                                 </nav>
                             </div>
                         </div>
@@ -961,20 +1077,21 @@
                             <div class="no-results-icon">
                                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
-                                        d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z"
-                                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                        stroke-linejoin="round" />
+                                            d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z"
+                                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                            stroke-linejoin="round"/>
                                     <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="1.5"
-                                        stroke-linecap="round" stroke-linejoin="round" />
+                                          stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M9 9L13 13" stroke="currentColor" stroke-width="1.5"
-                                        stroke-linecap="round" />
+                                          stroke-linecap="round"/>
                                     <path d="M13 9L9 13" stroke="currentColor" stroke-width="1.5"
-                                        stroke-linecap="round" />
+                                          stroke-linecap="round"/>
                                 </svg>
                             </div>
                             <h3 class="no-results-title">No Matching Products Found</h3>
                             <p class="no-results-text">We couldn't find any items matching your search. Please check the
-                                spelling or try searching with a different product name or Item ID (e.g., PROD-105).</p>
+                                spelling or try searching with a different product name or Item ID (e.g., PROD-105).
+                            </p>
 
                             <button type="button" class="btn-clear-search" onclick="location.reload();">
                                 Clear Search &amp;amp; View All
@@ -984,6 +1101,21 @@
 
                 </div>
             </section>
+
+
+            <!-- Add To Cart Popup -->
+            <div id="b2bCartPopup" class="b2b-cart-popup show">
+                <div class="b2b-cart-popup-box">
+                    <div class="b2b-cart-popup-icon" id="b2bCartPopupIcon">
+                        ✓
+                    </div>
+
+                    <div class="b2b-cart-popup-content">
+                        <h4 id="b2bCartPopupTitle">Added to Cart</h4>
+                        <p id="b2bCartPopupMessage">Product added to draft order successfully.</p>
+                    </div>
+                </div>
+            </div>
 
         </t>
     </template>
