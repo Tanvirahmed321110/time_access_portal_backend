@@ -33,7 +33,8 @@
 
 
         # views
-        # 'views/project_inherit_view.xml',
+        'views/product_product_view.xml',
+        'views/sequence_inherit.xml',
     ],
     'assets': {
         'web.assets_frontend': [

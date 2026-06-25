@@ -107,926 +107,139 @@
                             <div class="content  grid-5 grid-lg-4 grid-sm-2 gap-sm-3 gap-lg-4 gap-6"
                                  id="grid-list-contents">
 
-                                <!--================= single product card ===============-->
-                                <div class="product-card">
+                                <t t-foreach="products" t-as="product">
+                                    <div class="product-card">
 
-                                    <!-- cart tag -->
-                                    <div class="tag-badge">hot seller</div>
+                                        <!-- cart tag -->
+                                        <div class="tag-badge">hot seller</div>
 
-                                    <!--===== Product Images =====-->
-                                    <div class="top-area">
-                                        <div class="top">
-                                            <img class="default-img"
-                                                 src="https://timeaccess-store.com/cdn/shop/files/SPB473J1-G.jpg?v=1781940506&amp;width=1000"
-                                                 alt=""/>
-                                            <img class="hover-img"
-                                                 src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&amp;q=80"
-                                                 alt=""/>
-                                        </div>
-                                    </div>
-
-                                    <!--===== Product Content ====-->
-                                    <div class="product-content">
-                                        <div>
-                                            <!-- product id -->
-                                            <div class="product-id fs-xs">Item ID: PROD-105</div>
-
-                                            <!-- product name -->
-                                            <a href="#" class="product-name" onclick="viewDetails('PROD-105')">UltraHD
-                                                4K Display Panels (Wholesale) Display New
-                                            </a>
-
-                                            <!-- price -->
-                                            <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">
-                                                <div class="new-price fs-md">TK
-                                                    <span>1200.00</span>
-                                                </div>
-                                                <div class="old-price">TK
-                                                    <span>1340.00</span>
-                                                </div>
+                                        <!--===== Product Images =====-->
+                                        <div class="top-area">
+                                            <div class="top">
+                                                <t t-if="product.image_1920">
+                                                    <img class="default-img"
+                                                         t-att-src="image_data_uri(product.image_1920)"
+                                                         alt="product image"/>
+                                                </t>
+                                                <t t-else="">
+                                                    <img class="default-img"
+                                                         src="/web/static/img/placeholder.png"
+                                                         alt="product image"/>
+                                                </t>
+                                                <!--                                            <img class="hover-img"-->
+                                                <!--                                                 src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&amp;q=80"-->
+                                                <!--                                                 alt=""/>-->
                                             </div>
                                         </div>
 
+                                        <!--===== Product Content ====-->
+                                        <div class="product-content">
+                                            <div>
+                                                <!-- product id -->
+                                                <div class="product-id fs-xs">Item ID: <span t-esc="product.default_code"> </span></div>
 
-                                        <div class="qty-btns">
-                                            <!-- quantity input -->
-                                            <div class="qty-wrapper d-flex align-center mt-3 gap-2">
-                                                <label class="">Quantity:</label>
-                                                <input type="number" class="qty-input" id="qty-PROD-101" value="5"
-                                                       min="5"/>
-                                            </div>
-
-                                            <!-- Card Buttons -->
-                                            <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
-                                                <button  class="btn add_to_cart btn-outline">Add
-                                                    to Cart
-                                                </button>
-                                                <a href="/cart.html" class="btn btn-primary"
-                                                   onclick="addToCart('PROD-101', true)">Buy
-                                                    Now
+                                                <!-- product name -->
+                                                <a href="#" class="product-name" t-esc="product.name">UltraHD
+                                                    4K Display Panels (Wholesale) Display New
                                                 </a>
+
+                                                <!-- price -->
+                                                <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">
+                                                    <div class="new-price fs-md">TK
+                                                        <span t-esc="product.list_price">1200.00</span>
+                                                    </div>
+                                                    <div class="old-price">TK
+                                                        <span>1340.00</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="qty-btns">
+                                                <!-- quantity input -->
+                                                <div class="qty-wrapper d-flex align-center mt-3 gap-2">
+                                                    <label class="">Quantity:</label>
+                                                    <input type="number" class="qty-input" id="qty-PROD-101" value="5"
+                                                           min="5"/>
+                                                </div>
+
+                                                <!-- Card Buttons -->
+                                                <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
+                                                    <button class="btn add_to_cart btn-outline">Add
+                                                        to Cart
+                                                    </button>
+                                                    <a href="/cart.html" class="btn btn-primary"
+                                                       onclick="addToCart('PROD-101', true)">Buy
+                                                        Now
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </t>
 
                                 <!--================= single product card ===============-->
-                                <div class="product-card">
-
-                                    <!-- cart tag -->
-                                    <div class="tag-badge">hot seller</div>
-
-                                    <!--===== Product Images =====-->
-                                    <div class="top-area">
-                                        <div class="top">
-                                            <img class="default-img"
-                                                 src="//timeaccess-store.com/cdn/shop/files/T116.417.16.092.00-E.jpg?v=1781863432&amp;width=1000"
-                                                 alt=""/>
-                                            <img class="hover-img"
-                                                 src="//timeaccess-store.com/cdn/shop/files/T116.417.16.092.00-C.jpg?v=1781863432&amp;width=1000"
-                                                 alt=""/>
-                                        </div>
-                                    </div>
-
-                                    <!--===== Product Content ====-->
-                                    <div class="product-content">
-                                        <div>
-                                            <!-- product id -->
-                                            <div class="product-id fs-xs">Item ID: PROD-105</div>
-
-                                            <!-- product name -->
-                                            <a href="#" class="product-name" onclick="viewDetails('PROD-105')">Seiko
-                                                Prospex 'Zakynthos' European Limited Edition Watch SPB473J1
-                                            </a>
-
-                                            <!-- price -->
-                                            <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">
-                                                <div class="new-price fs-md">TK
-                                                    <span>1200.00</span>
-                                                </div>
-                                                <div class="old-price">TK
-                                                    <span>1340.00</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="qty-btns">
-                                            <!-- quantity input -->
-                                            <div class="qty-wrapper d-flex align-center mt-3 gap-2">
-                                                <label class="">Quantity:</label>
-                                                <input type="number" class="qty-input" id="qty-PROD-101" value="5"
-                                                       min="5"/>
-                                            </div>
-
-                                            <!-- Card Buttons -->
-                                            <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
-                                                <a href="/cart.html" class="btn btn-outline">Add
-                                                    to Cart
-                                                </a>
-                                                <a href="/checkout.html" class="btn btn-primary">Buy
-                                                    Now
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!--================= single product card ===============-->
-                                <div class="product-card">
-
-                                    <!-- cart tag -->
-                                    <div class="tag-badge">hot seller</div>
-
-                                    <!--===== Product Images =====-->
-                                    <div class="top-area">
-                                        <div class="top">
-                                            <img class="default-img"
-                                                 src="//timeaccess-store.com/cdn/shop/files/T165.807.11.031.00-a.jpg?v=1781357864&amp;width=1000"
-                                                 alt=""/>
-                                            <img class="hover-img"
-                                                 src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&amp;q=80"
-                                                 alt=""/>
-                                        </div>
-                                    </div>
-
-                                    <!--===== Product Content ====-->
-                                    <div class="product-content">
-                                        <div>
-                                            <!-- product id -->
-                                            <div class="product-id fs-xs">Item ID: PROD-105</div>
-
-                                            <!-- product name -->
-                                            <a href="#" class="product-name" onclick="viewDetails('PROD-105')">Rado
-                                                Florence Diamond Two-Tone Black Dial Watch | R48912703
-                                            </a>
-
-                                            <!-- price -->
-                                            <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">
-                                                <div class="new-price fs-md">TK
-                                                    <span>1200.00</span>
-                                                </div>
-                                                <div class="old-price">TK
-                                                    <span>1340.00</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="qty-btns">
-                                            <!-- quantity input -->
-                                            <div class="qty-wrapper d-flex align-center mt-3 gap-2">
-                                                <label class="">Quantity:</label>
-                                                <input type="number" class="qty-input" id="qty-PROD-101" value="5"
-                                                       min="5"/>
-                                            </div>
-
-                                            <!-- Card Buttons -->
-                                            <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
-                                                <a href="/cart.html" class="btn btn-outline"
-                                                   onclick="addToCart('PROD-101', false)">Add
-                                                    to Cart
-                                                </a>
-                                                <a href="/cart.html" class="btn btn-primary"
-                                                   onclick="addToCart('PROD-101', true)">Buy
-                                                    Now
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!--================= single product card ===============-->
-                                <div class="product-card">
-
-                                    <!-- cart tag -->
-                                    <div class="tag-badge">Sale</div>
-
-                                    <!--===== Product Images =====-->
-                                    <div class="top-area">
-                                        <div class="top">
-                                            <img class="default-img"
-                                                 src="//timeaccess-store.com/cdn/shop/files/T137.410.11.031.00FS.jpg?v=1737527856&amp;width=1080"
-                                                 alt=""/>
-                                            <img class="hover-img"
-                                                 src="//timeaccess-store.com/cdn/shop/files/T137-410-11-031-00_AMB_1.png?v=1737285750&amp;width=1680"
-                                                 alt=""/>
-                                        </div>
-                                    </div>
-
-                                    <!--===== Product Content ====-->
-                                    <div class="product-content">
-                                        <div>
-                                            <!-- product id -->
-                                            <div class="product-id fs-xs">Item ID: PROD-105</div>
-
-                                            <!-- product name -->
-                                            <a href="#" class="product-name" onclick="viewDetails('PROD-105')">TISSOT
-                                                GENTLEMEN 38MM POWERMATRIC SILVER DIAL WATCH | T165.807.11.031.00
-                                            </a>
-
-                                            <!-- price -->
-                                            <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">
-                                                <div class="new-price fs-md">TK
-                                                    <span>1200.00</span>
-                                                </div>
-                                                <div class="old-price">TK
-                                                    <span>1340.00</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="qty-btns">
-                                            <!-- quantity input -->
-                                            <div class="qty-wrapper d-flex align-center mt-3 gap-2">
-                                                <label class="">Quantity:</label>
-                                                <input type="number" class="qty-input" id="qty-PROD-101" value="5"
-                                                       min="5"/>
-                                            </div>
-
-                                            <!-- Card Buttons -->
-                                            <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
-                                                <a href="/cart.html" class="btn btn-outline"
-                                                   onclick="addToCart('PROD-101', false)">Add
-                                                    to Cart
-                                                </a>
-                                                <a href="/cart.html" class="btn btn-primary"
-                                                   onclick="addToCart('PROD-101', true)">Buy
-                                                    Now
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!--================= single product card ===============-->
-                                <div class="product-card">
-
-                                    <!-- cart tag -->
-                                    <div class="tag-badge">discount</div>
-
-                                    <!--===== Product Images =====-->
-                                    <div class="top-area">
-                                        <div class="top">
-                                            <img class="default-img"
-                                                 src="https://timeaccess-store.com/cdn/shop/files/SPB473J1-G.jpg?v=1781940506&amp;width=1000"
-                                                 alt=""/>
-                                            <img class="hover-img"
-                                                 src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&amp;q=80"
-                                                 alt=""/>
-                                        </div>
-                                    </div>
-
-                                    <!--===== Product Content ====-->
-                                    <div class="product-content">
-                                        <div>
-                                            <!-- product id -->
-                                            <div class="product-id fs-xs">Item ID: PROD-105</div>
-
-                                            <!-- product name -->
-                                            <a href="#" class="product-name" onclick="viewDetails('PROD-105')">UltraHD
-                                                4K Display Panels (Wholesale) Display New
-                                            </a>
-
-                                            <!-- price -->
-                                            <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">
-                                                <div class="new-price fs-md">TK
-                                                    <span>1200.00</span>
-                                                </div>
-                                                <div class="old-price">TK
-                                                    <span>1340.00</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="qty-btns">
-                                            <!-- quantity input -->
-                                            <div class="qty-wrapper d-flex align-center mt-3 gap-2">
-                                                <label class="">Quantity:</label>
-                                                <input type="number" class="qty-input" id="qty-PROD-101" value="5"
-                                                       min="5"/>
-                                            </div>
-
-                                            <!-- Card Buttons -->
-                                            <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
-                                                <button class="btn btn-outline"
-                                                        onclick="addToCart('PROD-101', false)">Add
-                                                    to Cart
-                                                </button>
-                                                <button class="btn btn-primary"
-                                                        onclick="addToCart('PROD-101', true)">Buy
-                                                    Now
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!--================= single product card ===============-->
-                                <div class="product-card">
-
-                                    <!-- cart tag -->
-                                    <div class="tag-badge">new item</div>
-
-                                    <!--===== Product Images =====-->
-                                    <div class="top-area">
-                                        <div class="top">
-                                            <img class="default-img"
-                                                 src="//timeaccess-store.com/cdn/shop/files/T116.417.16.092.00-E.jpg?v=1781863432&amp;width=1000"
-                                                 alt=""/>
-                                            <img class="hover-img"
-                                                 src="//timeaccess-store.com/cdn/shop/files/T116.417.16.092.00-C.jpg?v=1781863432&amp;width=1000"
-                                                 alt=""/>
-                                        </div>
-                                    </div>
-
-                                    <!--===== Product Content ====-->
-                                    <div class="product-content">
-                                        <div>
-                                            <!-- product id -->
-                                            <div class="product-id fs-xs">Item ID: PROD-105</div>
-
-                                            <!-- product name -->
-                                            <a href="#" class="product-name" onclick="viewDetails('PROD-105')">Seiko
-                                                Prospex 'Zakynthos' European Limited Edition Watch SPB473J1
-                                            </a>
-
-                                            <!-- price -->
-                                            <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">
-                                                <div class="new-price fs-md">TK
-                                                    <span>1200.00</span>
-                                                </div>
-                                                <div class="old-price">TK
-                                                    <span>1340.00</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="qty-btns">
-                                            <!-- quantity input -->
-                                            <div class="qty-wrapper d-flex align-center mt-3 gap-2">
-                                                <label class="">Quantity:</label>
-                                                <input type="number" class="qty-input" id="qty-PROD-101" value="5"
-                                                       min="5"/>
-                                            </div>
-
-                                            <!-- Card Buttons -->
-                                            <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
-                                                <a href="/cart.html" class="btn btn-outline"
-                                                   onclick="addToCart('PROD-101', false)">Add
-                                                    to Cart
-                                                </a>
-                                                <a href="/cart.html" class="btn btn-primary"
-                                                   onclick="addToCart('PROD-101', true)">Buy
-                                                    Now
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!--================= single product card ===============-->
-                                <div class="product-card">
-
-                                    <!-- cart tag -->
-                                    <div class="tag-badge">hot</div>
-
-                                    <!--===== Product Images =====-->
-                                    <div class="top-area">
-                                        <div class="top">
-                                            <img class="default-img"
-                                                 src="//timeaccess-store.com/cdn/shop/files/T165.807.11.031.00-a.jpg?v=1781357864&amp;width=1000"
-                                                 alt=""/>
-                                            <img class="hover-img"
-                                                 src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&amp;q=80"
-                                                 alt=""/>
-                                        </div>
-                                    </div>
-
-                                    <!--===== Product Content ====-->
-                                    <div class="product-content">
-                                        <div>
-                                            <!-- product id -->
-                                            <div class="product-id fs-xs">Item ID: PROD-105</div>
-
-                                            <!-- product name -->
-                                            <a href="#" class="product-name" onclick="viewDetails('PROD-105')">Rado
-                                                Florence Diamond Two-Tone Black Dial Watch | R48912703
-                                            </a>
-
-                                            <!-- price -->
-                                            <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">
-                                                <div class="new-price fs-md">TK
-                                                    <span>1200.00</span>
-                                                </div>
-                                                <div class="old-price">TK
-                                                    <span>1340.00</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="qty-btns">
-                                            <!-- quantity input -->
-                                            <div class="qty-wrapper d-flex align-center mt-3 gap-2">
-                                                <label class="">Quantity:</label>
-                                                <input type="number" class="qty-input" id="qty-PROD-101" value="5"
-                                                       min="5"/>
-                                            </div>
-
-                                            <!-- Card Buttons -->
-                                            <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
-                                                <button class="btn btn-outline"
-                                                        onclick="addToCart('PROD-101', false)">Add
-                                                    to Cart
-                                                </button>
-                                                <button class="btn btn-primary"
-                                                        onclick="addToCart('PROD-101', true)">Buy
-                                                    Now
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!--================= single product card ===============-->
-                                <div class="product-card">
-
-                                    <!-- cart tag -->
-                                    <div class="tag-badge">top item</div>
-
-                                    <!--===== Product Images =====-->
-                                    <div class="top-area">
-                                        <div class="top">
-                                            <img class="default-img"
-                                                 src="//timeaccess-store.com/cdn/shop/files/T137.410.11.031.00FS.jpg?v=1737527856&amp;width=1080"
-                                                 alt=""/>
-                                            <img class="hover-img"
-                                                 src="//timeaccess-store.com/cdn/shop/files/T137-410-11-031-00_AMB_1.png?v=1737285750&amp;width=1680"
-                                                 alt=""/>
-                                        </div>
-                                    </div>
-
-                                    <!--===== Product Content ====-->
-                                    <div class="product-content">
-                                        <div>
-                                            <!-- product id -->
-                                            <div class="product-id fs-xs">Item ID: PROD-105</div>
-
-                                            <!-- product name -->
-                                            <a href="#" class="product-name" onclick="viewDetails('PROD-105')">TISSOT
-                                                GENTLEMEN 38MM POWERMATRIC SILVER DIAL WATCH | T165.807.11.031.00
-                                            </a>
-
-                                            <!-- price -->
-                                            <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">
-                                                <div class="new-price fs-md">TK
-                                                    <span>1200.00</span>
-                                                </div>
-                                                <div class="old-price">TK
-                                                    <span>1340.00</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <!-- quantity input -->
-                                        <div class="qty-wrapper d-flex align-center mt-3 gap-2">
-                                            <label class="">Quantity:</label>
-                                            <input type="number" class="qty-input" id="qty-PROD-101" value="5" min="5"/>
-                                        </div>
-
-                                        <!-- Card Buttons -->
-                                        <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
-                                            <a href="/cart.html" class="btn btn-outline"
-                                               onclick="addToCart('PROD-101', false)">Add
-                                                to Cart
-                                            </a>
-                                            <a href="/cart.html" class="btn btn-primary"
-                                               onclick="addToCart('PROD-101', true)">Buy
-                                                Now
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!--================= single product card ===============-->
-                                <div class="product-card">
-
-                                    <!-- cart tag -->
-                                    <div class="tag-badge">hot seller</div>
-
-                                    <!--===== Product Images =====-->
-                                    <div class="top-area">
-                                        <div class="top">
-                                            <img class="default-img"
-                                                 src="https://timeaccess-store.com/cdn/shop/files/T116.417.16.052.01-A.jpg?v=1781081648&amp;width=1000"
-                                                 alt=""/>
-                                            <img class="hover-img"
-                                                 src="https://timeaccess-store.com/cdn/shop/files/T116.417.16.052.01-C.jpg?v=1781081649&amp;width=1000"
-                                                 alt=""/>
-                                        </div>
-                                    </div>
-
-                                    <!--===== Product Content ====-->
-                                    <div class="product-content">
-                                        <div>
-                                            <!-- product id -->
-                                            <div class="product-id fs-xs">Item ID: PROD-105</div>
-
-                                            <!-- product name -->
-                                            <a href="#" class="product-name" onclick="viewDetails('PROD-105')">UltraHD
-                                                4K Display Panels (Wholesale) Display New
-                                            </a>
-
-                                            <!-- price -->
-                                            <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">
-                                                <div class="new-price fs-md">TK
-                                                    <span>1200.00</span>
-                                                </div>
-                                                <div class="old-price">TK
-                                                    <span>1340.00</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <!-- quantity input -->
-                                        <div class="qty-wrapper d-flex align-center mt-3 gap-2">
-                                            <label class="">Quantity:</label>
-                                            <input type="number" class="qty-input" id="qty-PROD-101" value="5" min="5"/>
-                                        </div>
-
-                                        <!-- Card Buttons -->
-                                        <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
-                                            <button class="btn btn-outline" onclick="addToCart('PROD-101', false)">Add
-                                                to Cart
-                                            </button>
-                                            <button class="btn btn-primary" onclick="addToCart('PROD-101', true)">Buy
-                                                Now
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--================= single product card ===============-->
-                                <div class="product-card">
-
-                                    <!-- cart tag -->
-                                    <div class="tag-badge">hot seller</div>
-
-                                    <!--===== Product Images =====-->
-                                    <div class="top-area">
-                                        <div class="top">
-                                            <img class="default-img"
-                                                 src="//timeaccess-store.com/cdn/shop/files/T116.417.16.092.00-E.jpg?v=1781863432&amp;width=1000"
-                                                 alt=""/>
-                                            <img class="hover-img"
-                                                 src="//timeaccess-store.com/cdn/shop/files/T116.417.16.092.00-C.jpg?v=1781863432&amp;width=1000"
-                                                 alt=""/>
-                                        </div>
-                                    </div>
-
-                                    <!--===== Product Content ====-->
-                                    <div class="product-content">
-                                        <div>
-                                            <!-- product id -->
-                                            <div class="product-id fs-xs">Item ID: PROD-105</div>
-
-                                            <!-- product name -->
-                                            <a href="#" class="product-name" onclick="viewDetails('PROD-105')">Seiko
-                                                Prospex 'Zakynthos' European Limited Edition Watch SPB473J1
-                                            </a>
-
-                                            <!-- price -->
-                                            <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">
-                                                <div class="new-price fs-md">TK
-                                                    <span>1200.00</span>
-                                                </div>
-                                                <div class="old-price">TK
-                                                    <span>1340.00</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <!-- quantity input -->
-                                        <div class="qty-wrapper d-flex align-center mt-3 gap-2">
-                                            <label class="">Quantity:</label>
-                                            <input type="number" class="qty-input" id="qty-PROD-101" value="5" min="5"/>
-                                        </div>
-
-                                        <!-- Card Buttons -->
-                                        <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
-                                            <a href="/cart.html" class="btn btn-outline"
-                                               onclick="addToCart('PROD-101', false)">Add
-                                                to Cart
-                                            </a>
-                                            <a href="/cart.html" class="btn btn-primary"
-                                               onclick="addToCart('PROD-101', true)">Buy
-                                                Now
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!--================= single product card ===============-->
-                                <div class="product-card">
-
-                                    <!-- cart tag -->
-                                    <div class="tag-badge">hot seller</div>
-
-                                    <!--===== Product Images =====-->
-                                    <div class="top-area">
-                                        <div class="top">
-                                            <img class="default-img"
-                                                 src="//timeaccess-store.com/cdn/shop/files/T165.807.11.031.00-a.jpg?v=1781357864&amp;width=1000"
-                                                 alt=""/>
-                                            <img class="hover-img"
-                                                 src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&amp;q=80"
-                                                 alt=""/>
-                                        </div>
-                                    </div>
-
-                                    <!--===== Product Content ====-->
-                                    <div class="product-content">
-                                        <div>
-                                            <!-- product id -->
-                                            <div class="product-id fs-xs">Item ID: PROD-105</div>
-
-                                            <!-- product name -->
-                                            <a href="#" class="product-name" onclick="viewDetails('PROD-105')">Rado
-                                                Florence Diamond Two-Tone Black Dial Watch | R48912703
-                                            </a>
-
-                                            <!-- price -->
-                                            <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">
-                                                <div class="new-price fs-md">TK
-                                                    <span>1200.00</span>
-                                                </div>
-                                                <div class="old-price">TK
-                                                    <span>1340.00</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <!-- quantity input -->
-                                        <div class="qty-wrapper d-flex align-center mt-3 gap-2">
-                                            <label class="">Quantity:</label>
-                                            <input type="number" class="qty-input" id="qty-PROD-101" value="5" min="5"/>
-                                        </div>
-
-                                        <!-- Card Buttons -->
-                                        <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
-                                            <button class="btn btn-outline" onclick="addToCart('PROD-101', false)">Add
-                                                to Cart
-                                            </button>
-                                            <button class="btn btn-primary" onclick="addToCart('PROD-101', true)">Buy
-                                                Now
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--================= single product card ===============-->
-                                <div class="product-card">
-
-                                    <!-- cart tag -->
-                                    <div class="tag-badge">hot seller</div>
-
-                                    <!--===== Product Images =====-->
-                                    <div class="top-area">
-                                        <div class="top">
-                                            <img class="default-img"
-                                                 src="//timeaccess-store.com/cdn/shop/files/T116.417.16.092.00-E.jpg?v=1781863432&amp;width=1000"
-                                                 alt=""/>
-                                            <img class="hover-img"
-                                                 src="//timeaccess-store.com/cdn/shop/files/T116.417.16.092.00-C.jpg?v=1781863432&amp;width=1000"
-                                                 alt=""/>
-                                        </div>
-                                    </div>
-
-                                    <!--===== Product Content ====-->
-                                    <div class="product-content">
-                                        <div>
-                                            <!-- product id -->
-                                            <div class="product-id fs-xs">Item ID: PROD-105</div>
-
-                                            <!-- product name -->
-                                            <a href="#" class="product-name" onclick="viewDetails('PROD-105')">Seiko
-                                                Prospex 'Zakynthos' European Limited Edition Watch SPB473J1
-                                            </a>
-
-                                            <!-- price -->
-                                            <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">
-                                                <div class="new-price fs-md">TK
-                                                    <span>1200.00</span>
-                                                </div>
-                                                <div class="old-price">TK
-                                                    <span>1340.00</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <!-- quantity input -->
-                                        <div class="qty-wrapper d-flex align-center mt-3 gap-2">
-                                            <label class="">Quantity:</label>
-                                            <input type="number" class="qty-input" id="qty-PROD-101" value="5" min="5"/>
-                                        </div>
-
-                                        <!-- Card Buttons -->
-                                        <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
-                                            <a href="/cart.html" class="btn btn-outline"
-                                               onclick="addToCart('PROD-101', false)">Add
-                                                to Cart
-                                            </a>
-                                            <a href="/cart.html" class="btn btn-primary"
-                                               onclick="addToCart('PROD-101', true)">Buy
-                                                Now
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!--================= single product card ===============-->
-                                <div class="product-card">
-
-                                    <!-- cart tag -->
-                                    <div class="tag-badge">hot seller</div>
-
-                                    <!--===== Product Images =====-->
-                                    <div class="top-area">
-                                        <div class="top">
-                                            <img class="default-img"
-                                                 src="//timeaccess-store.com/cdn/shop/files/T165.807.11.031.00-a.jpg?v=1781357864&amp;width=1000"
-                                                 alt=""/>
-                                            <img class="hover-img"
-                                                 src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&amp;q=80"
-                                                 alt=""/>
-                                        </div>
-                                    </div>
-
-                                    <!--===== Product Content ====-->
-                                    <div class="product-content">
-                                        <div>
-                                            <!-- product id -->
-                                            <div class="product-id fs-xs">Item ID: PROD-105</div>
-
-                                            <!-- product name -->
-                                            <a href="#" class="product-name" onclick="viewDetails('PROD-105')">Rado
-                                                Florence Diamond Two-Tone Black Dial Watch | R48912703
-                                            </a>
-
-                                            <!-- price -->
-                                            <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">
-                                                <div class="new-price fs-md">TK
-                                                    <span>1200.00</span>
-                                                </div>
-                                                <div class="old-price">TK
-                                                    <span>1340.00</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <!-- quantity input -->
-                                        <div class="qty-wrapper d-flex align-center mt-3 gap-2">
-                                            <label class="">Quantity:</label>
-                                            <input type="number" class="qty-input" id="qty-PROD-101" value="5" min="5"/>
-                                        </div>
-
-                                        <!-- Card Buttons -->
-                                        <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
-                                            <button class="btn btn-outline" onclick="addToCart('PROD-101', false)">Add
-                                                to Cart
-                                            </button>
-                                            <button class="btn btn-primary" onclick="addToCart('PROD-101', true)">Buy
-                                                Now
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!--================= single product card ===============-->
-                                <div class="product-card">
-
-                                    <!-- cart tag -->
-                                    <div class="tag-badge">hot seller</div>
-
-                                    <!--===== Product Images =====-->
-                                    <div class="top-area">
-                                        <div class="top">
-                                            <img class="default-img"
-                                                 src="//timeaccess-store.com/cdn/shop/files/T137.410.11.031.00FS.jpg?v=1737527856&amp;width=1080"
-                                                 alt=""/>
-                                            <img class="hover-img"
-                                                 src="//timeaccess-store.com/cdn/shop/files/T137-410-11-031-00_AMB_1.png?v=1737285750&amp;width=1680"
-                                                 alt=""/>
-                                        </div>
-                                    </div>
-
-                                    <!--===== Product Content ====-->
-                                    <div class="product-content">
-                                        <div>
-                                            <!-- product id -->
-                                            <div class="product-id fs-xs">Item ID: PROD-105</div>
-
-                                            <!-- product name -->
-                                            <a href="#" class="product-name" onclick="viewDetails('PROD-105')">TISSOT
-                                                GENTLEMEN 38MM POWERMATRIC SILVER DIAL WATCH | T165.807.11.031.00
-                                            </a>
-
-                                            <!-- price -->
-                                            <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">
-                                                <div class="new-price fs-md">TK
-                                                    <span>1200.00</span>
-                                                </div>
-                                                <div class="old-price">TK
-                                                    <span>1340.00</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <!-- quantity input -->
-                                        <div class="qty-wrapper d-flex align-center mt-3 gap-2">
-                                            <label class="">Quantity:</label>
-                                            <input type="number" class="qty-input" id="qty-PROD-101" value="5" min="5"/>
-                                        </div>
-
-                                        <!-- Card Buttons -->
-                                        <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
-                                            <button class="btn btn-outline add_to_cart" onclick="addToCart('PROD-101', false)">Add
-                                                to Cart
-                                            </button>
-                                            <button class="btn btn-primary" onclick="addToCart('PROD-101', true)">Buy
-                                                Now
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!--================= single product card ===============-->
-                                <div class="product-card">
-
-                                    <!-- cart tag -->
-                                    <div class="tag-badge">hot seller</div>
-
-                                    <!--===== Product Images =====-->
-                                    <div class="top-area">
-                                        <div class="top">
-                                            <img class="default-img"
-                                                 src="https://timeaccess-store.com/cdn/shop/files/T116.417.16.052.01-A.jpg?v=1781081648&amp;width=1000"
-                                                 alt=""/>
-                                            <img class="hover-img"
-                                                 src="https://timeaccess-store.com/cdn/shop/files/T116.417.16.052.01-C.jpg?v=1781081649&amp;width=1000"
-                                                 alt=""/>
-                                        </div>
-                                    </div>
-
-                                    <!--===== Product Content ====-->
-                                    <div class="product-content">
-                                        <div>
-                                            <!-- product id -->
-                                            <div class="product-id fs-xs">Item ID: PROD-105</div>
-
-                                            <!-- product name -->
-                                            <a href="#" class="product-name" onclick="viewDetails('PROD-105')">UltraHD
-                                                4K Display Panels (Wholesale) Display New
-                                            </a>
-
-                                            <!-- price -->
-                                            <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">
-                                                <div class="new-price fs-md">TK
-                                                    <span>1200.00</span>
-                                                </div>
-                                                <div class="old-price">TK
-                                                    <span>1340.00</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <!-- quantity input -->
-                                        <div class="qty-wrapper d-flex align-center mt-3 gap-2">
-                                            <label class="">Quantity:</label>
-                                            <input type="number" class="qty-input" id="qty-PROD-101" value="5" min="5"/>
-                                        </div>
-
-                                        <!-- Card Buttons -->
-                                        <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
-                                            <button class="btn btn-outline" onclick="addToCart('PROD-101', false)">Add
-                                                to Cart
-                                            </button>
-                                            <button class="btn btn-primary" onclick="addToCart('PROD-101', true)">Buy
-                                                Now
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
+                                <!--                                <div class="product-card">-->
+
+                                <!--                                    &lt;!&ndash; cart tag &ndash;&gt;-->
+                                <!--                                    <div class="tag-badge">hot seller</div>-->
+
+                                <!--                                    &lt;!&ndash;===== Product Images =====&ndash;&gt;-->
+                                <!--                                    <div class="top-area">-->
+                                <!--                                        <div class="top">-->
+                                <!--                                            <img class="default-img"-->
+                                <!--                                                 src="https://timeaccess-store.com/cdn/shop/files/SPB473J1-G.jpg?v=1781940506&amp;width=1000"-->
+                                <!--                                                 alt=""/>-->
+                                <!--                                            <img class="hover-img"-->
+                                <!--                                                 src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&amp;q=80"-->
+                                <!--                                                 alt=""/>-->
+                                <!--                                        </div>-->
+                                <!--                                    </div>-->
+
+                                <!--                                    &lt;!&ndash;===== Product Content ====&ndash;&gt;-->
+                                <!--                                    <div class="product-content">-->
+                                <!--                                        <div>-->
+                                <!--                                            &lt;!&ndash; product id &ndash;&gt;-->
+                                <!--                                            <div class="product-id fs-xs">Item ID: PROD-105</div>-->
+
+                                <!--                                            &lt;!&ndash; product name &ndash;&gt;-->
+                                <!--                                            <a href="#" class="product-name" onclick="viewDetails('PROD-105')">UltraHD-->
+                                <!--                                                4K Display Panels (Wholesale) Display New-->
+                                <!--                                            </a>-->
+
+                                <!--                                            &lt;!&ndash; price &ndash;&gt;-->
+                                <!--                                            <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">-->
+                                <!--                                                <div class="new-price fs-md">TK-->
+                                <!--                                                    <span>1200.00</span>-->
+                                <!--                                                </div>-->
+                                <!--                                                <div class="old-price">TK-->
+                                <!--                                                    <span>1340.00</span>-->
+                                <!--                                                </div>-->
+                                <!--                                            </div>-->
+                                <!--                                        </div>-->
+
+
+                                <!--                                        <div class="qty-btns">-->
+                                <!--                                            &lt;!&ndash; quantity input &ndash;&gt;-->
+                                <!--                                            <div class="qty-wrapper d-flex align-center mt-3 gap-2">-->
+                                <!--                                                <label class="">Quantity:</label>-->
+                                <!--                                                <input type="number" class="qty-input" id="qty-PROD-101" value="5"-->
+                                <!--                                                       min="5"/>-->
+                                <!--                                            </div>-->
+
+                                <!--                                            &lt;!&ndash; Card Buttons &ndash;&gt;-->
+                                <!--                                            <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">-->
+                                <!--                                                <button  class="btn add_to_cart btn-outline">Add-->
+                                <!--                                                    to Cart-->
+                                <!--                                                </button>-->
+                                <!--                                                <a href="/cart.html" class="btn btn-primary"-->
+                                <!--                                                   onclick="addToCart('PROD-101', true)">Buy-->
+                                <!--                                                    Now-->
+                                <!--                                                </a>-->
+                                <!--                                            </div>-->
+                                <!--                                        </div>-->
+                                <!--                                    </div>-->
+                                <!--                                </div>-->
 
 
                             </div>
@@ -1072,30 +285,33 @@
 
 
                         <!--===================  When Result Not Match  ====================-->
-                        <div class="no-results-container">
-                            <div class="no-results-icon">
-                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                            d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z"
-                                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                            stroke-linejoin="round"/>
-                                    <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="1.5"
-                                          stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M9 9L13 13" stroke="currentColor" stroke-width="1.5"
-                                          stroke-linecap="round"/>
-                                    <path d="M13 9L9 13" stroke="currentColor" stroke-width="1.5"
-                                          stroke-linecap="round"/>
-                                </svg>
-                            </div>
-                            <h3 class="no-results-title">No Matching Products Found</h3>
-                            <p class="no-results-text">We couldn't find any items matching your search. Please check the
-                                spelling or try searching with a different product name or Item ID (e.g., PROD-105).
-                            </p>
+                        <t t-if=" not product">
+                            <div class="no-results-container">
+                                <div class="no-results-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                                d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z"
+                                                stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                                stroke-linejoin="round"/>
+                                        <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="1.5"
+                                              stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M9 9L13 13" stroke="currentColor" stroke-width="1.5"
+                                              stroke-linecap="round"/>
+                                        <path d="M13 9L9 13" stroke="currentColor" stroke-width="1.5"
+                                              stroke-linecap="round"/>
+                                    </svg>
+                                </div>
+                                <h3 class="no-results-title">No Matching Products Found</h3>
+                                <p class="no-results-text">We couldn't find any items matching your search. Please check
+                                    the
+                                    spelling or try searching with a different product name or Item ID (e.g., PROD-105).
+                                </p>
 
-                            <button type="button" class="btn-clear-search" onclick="location.reload();">
-                                Clear Search &amp;amp; View All
-                            </button>
-                        </div>
+                                <button type="button" class="btn-clear-search" onclick="location.reload();">
+                                    Clear Search &amp;amp; View All
+                                </button>
+                            </div>
+                        </t>
                     </div>
 
                 </div>
