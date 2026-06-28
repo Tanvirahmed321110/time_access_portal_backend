@@ -84,7 +84,13 @@
                                     </svg>
 
                                     <!-- cart count/batch -->
-                                    <span class="cart-count" id="cartCount">12</span>
+                                    <t t-set="sale_order" t-value="request.env['sale.order'].sudo().search([('partner_id', '=', request.env.user.partner_id.id), ('state', '=', 'draft')], limit=1)"/>
+                                    <t t-set="cart_count" t-value="len(sale_order.order_line) if sale_order else 0"/>
+
+                                    <!-- cart count/batch -->
+                                    <span class="cart-count" id="cartCount">
+                                        <t t-esc="cart_count"/>
+                                    </span>
                                 </a>
                             </div>
 
@@ -121,7 +127,6 @@
 
                 <!--    Javascript Links Here     -->
                 <script src="/time_access_portal/static/src/js/main.js?v=1"></script>
-                <script src="/time_access_portal/static/src/js/home.js?v=1"></script>
             </body>
         </html>
     </template>

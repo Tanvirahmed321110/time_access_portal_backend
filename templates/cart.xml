@@ -77,7 +77,7 @@
 
                                                         <!--  Delete   -->
                                                         <td style="padding:15px; text-align: left;">
-                                                            <button class=" text-center" type="button"
+                                                            <button class=" text-center delete-line-btn" t-att-data-line-id="line.id" type="button"
                                                                     aria-label="Delete">
                                                                 <svg width="20" height="20" viewBox="0 0 24 24"
                                                                      fill="none"
@@ -194,6 +194,8 @@
                 </div>
             </section>
 
+
+            <script src="/time_access_portal/static/src/js/cart.js?v=1"></script>
         </t>
     </template>
 </odoo>

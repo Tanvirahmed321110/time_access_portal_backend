@@ -1,7 +1,6 @@
 from odoo import http
 from odoo.http import request
 
-
 class TimeAccessPortal(http.Controller):
 
     @http.route('/index', type='http', auth='user', website=True)

@@ -1,9 +1,9 @@
 from odoo import http
 from odoo.http import request
 
-
 class TimeAccessPortal(http.Controller):
 
+    # ==================  Cart  Page ===================
     @http.route('/cart', type='http', auth='user', website=True)
     def index_f(self, **kw):
 
@@ -27,29 +27,27 @@ class TimeAccessPortal(http.Controller):
     def add_to_cart(self, product_id, quantity=1, **kw):
         partner = request.env.user.partner_id
 
-        # Existing draft order আছে কিনা check
+        # Existing draft order  check
         order = request.env['sale.order'].sudo().search([
             ('partner_id', '=', partner.id),
             ('state', '=', 'draft'),
         ], limit=1)
 
-        # না থাকলে নতুন draft order বানাও
+        #  draft order
         if not order:
             order = request.env['sale.order'].sudo().create({
                 'partner_id': partner.id,
                 'state': 'draft',
             })
 
-        # Product আগে আছে কিনা check
+        # Product check
         existing_line = order.order_line.filtered(
             lambda l: l.product_id.id == product_id
         )
 
         if existing_line:
-            # থাকলে quantity বাড়াও
             existing_line.product_uom_qty += quantity
         else:
-            # না থাকলে নতুন line add করো
             request.env['sale.order.line'].sudo().create({
                 'order_id': order.id,
                 'product_id': product_id,
@@ -57,3 +55,20 @@ class TimeAccessPortal(http.Controller):
             })
 
         return {'success': True, 'order_id': order.id}
+
+
+
+    # ==================  Cart  Remove  ===================
+    @http.route('/cart/remove', type='json', auth='user', website=True)
+    def remove_from_cart(self, line_id, **kw):
+        line = request.env['sale.order.line'].sudo().search([
+            ('id', '=', line_id),
+            ('order_id.partner_id', '=', request.env.user.partner_id.id),
+            ('order_id.state', '=', 'draft'),
+        ], limit=1)
+
+        if line:
+            line.unlink()
+            return {'success': True}
+        return {'success': False}
+

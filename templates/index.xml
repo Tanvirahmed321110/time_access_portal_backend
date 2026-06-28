@@ -379,6 +379,9 @@
                 </div>
             </div>
 
+
+            <script src="/time_access_portal/static/src/js/home.js?v=1"></script>
+            <script src="/time_access_portal/static/src/js/cart.js?v=1"></script>
         </t>
     </template>
 </odoo>
