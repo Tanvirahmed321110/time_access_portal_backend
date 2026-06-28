@@ -4,7 +4,12 @@ footer {
     padding: 16px 0;
 }
 
-
+.search-icon-below {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+}
 
 /*
 =========================

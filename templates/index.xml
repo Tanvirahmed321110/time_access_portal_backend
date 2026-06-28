@@ -9,17 +9,24 @@
                 <div class="container">
                     <div class="filter-sec-wrap">
 
-                        <!-- Category Buttons Here -->
                         <div class="category-buttons d-flex gap-3 flex-wrap" id="categoryContainer">
-                            <button class="cart-btn active">All
-                                Categories
-                            </button>
-                            <button class="cart-btn">Watch</button>
-                            <button class="cart-btn">Apparel &amp;amp;
-                                Clothing
-                            </button>
-                            <button class="cart-btn">Casio</button>
-                            <button class="cart-btn">Smart Watch</button>
+
+                            <!-- All Categories default active -->
+                            <a t-att-href="'/index?sort=%s' % sort"
+                               t-att-class="'cart-btn active' if not selected_category_id else 'cart-btn'">
+                                All Categories
+                            </a>
+
+                            <!-- Only child categories (parent_id != False) -->
+                            <t t-foreach="categories" t-as="category">
+                                <t t-if="category.parent_id">
+                                    <a t-att-href="'/index?category_id=%s&amp;sort=%s' % (category.id, sort)"
+                                       t-att-class="'cart-btn active' if selected_category_id == category.id else 'cart-btn'">
+                                        <t t-esc="category.name"/>
+                                    </a>
+                                </t>
+                            </t>
+
                         </div>
 
                         <div class="search-sort-bar mt-6 flex-between flex-wrap gap-sm-4 gap-7">
@@ -28,15 +35,31 @@
                             <div class="search-box input-group">
                                 <input type="text" class="search-input" id="searchInput" oninput="searchProducts()"
                                        placeholder="Search by Product Name or Item ID "/>
-                                <i class="fas fa-search"></i>
+                                <div class="search-icon-below">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                         fill="none" stroke="#888" stroke-width="2" stroke-linecap="round"
+                                         stroke-linejoin="round">
+                                        <circle cx="11" cy="11" r="8"/>
+                                        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                                    </svg>
+                                </div>
                             </div>
 
                             <div class="filter-options d-flex gap-6">
                                 <div>
                                     <select id="sortSelect" onchange="window.location.href='index?sort=' + this.value">
-                                        <option value="default" t-att-selected="'selected' if sort== 'default' else None">Default Sorting</option>
-                                        <option value="low-high" t-att-selected="'selected' if sort == 'low-high' else None">Price: Low to High</option>
-                                        <option value="high-low" t-att-selected="'selected' if sort == 'high-low' else None">Price: High to Low</option>
+                                        <option value="default"
+                                                t-att-selected="'selected' if sort== 'default' else None">Default
+                                            Sorting
+                                        </option>
+                                        <option value="low-high"
+                                                t-att-selected="'selected' if sort == 'low-high' else None">Price: Low
+                                            to High
+                                        </option>
+                                        <option value="high-low"
+                                                t-att-selected="'selected' if sort == 'high-low' else None">Price: High
+                                            to Low
+                                        </option>
                                     </select>
                                 </div>
 
@@ -108,7 +131,9 @@
                                  id="grid-list-contents">
 
                                 <t t-foreach="products" t-as="product">
-                                    <div class="product-card">
+                                    <div class="product-card"
+                                         t-att-data-name="product.name or ''"
+                                         t-att-data-item-id="product.default_code or product.id">
 
                                         <!-- cart tag -->
                                         <div class="tag-badge">hot seller</div>
@@ -248,74 +273,71 @@
 
 
                             <!--============== Pagination (per page at least 30 item show)=============-->
-                           <t t-if="len(products) > 41">
+                            <t t-if="len(products) > 41">
                                 <div class="d-flex align-end justify-end mt-7 active">
-                                <nav class="pagination d-flex gap-4 " aria-="Page navigation">
-                                    <a href="#" class="page prev">
-                                        <svg viewBox="0 0 24 24" fill="none"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M15 19L8 12L15 5" stroke="currentColor" stroke-width="1.8"
-                                                  stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                    </a>
-                                    <ul class="d-flex gap-2">
-                                        <li>
-                                            <a href="#" class="page ">1</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="page active">2</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="page">3</a>
-                                        </li>
-                                        <li>
-                                            <span class="page jump">...</span>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="page">12</a>
-                                        </li>
-                                    </ul>
-                                    <a href="#" class="page next">
-                                        <svg viewBox="0 0 24 24" fill="none"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="1.8"
-                                                  stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                    </a>
-                                </nav>
-                            </div>
-                           </t>
+                                    <nav class="pagination d-flex gap-4 " aria-="Page navigation">
+                                        <a href="#" class="page prev">
+                                            <svg viewBox="0 0 24 24" fill="none"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M15 19L8 12L15 5" stroke="currentColor" stroke-width="1.8"
+                                                      stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </a>
+                                        <ul class="d-flex gap-2">
+                                            <li>
+                                                <a href="#" class="page ">1</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="page active">2</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="page">3</a>
+                                            </li>
+                                            <li>
+                                                <span class="page jump">...</span>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="page">12</a>
+                                            </li>
+                                        </ul>
+                                        <a href="#" class="page next">
+                                            <svg viewBox="0 0 24 24" fill="none"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="1.8"
+                                                      stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </a>
+                                    </nav>
+                                </div>
+                            </t>
                         </div>
 
-
-                        <!--===================  When Result Not Match  ====================-->
-                        <t t-if=" not product">
-                            <div class="no-results-container">
-                                <div class="no-results-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                                d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z"
-                                                stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                                stroke-linejoin="round"/>
-                                        <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="1.5"
-                                              stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M9 9L13 13" stroke="currentColor" stroke-width="1.5"
-                                              stroke-linecap="round"/>
-                                        <path d="M13 9L9 13" stroke="currentColor" stroke-width="1.5"
-                                              stroke-linecap="round"/>
-                                    </svg>
-                                </div>
-                                <h3 class="no-results-title">No Matching Products Found</h3>
-                                <p class="no-results-text">We couldn't find any items matching your search. Please check
-                                    the
-                                    spelling or try searching with a different product name or Item ID (e.g., PROD-105).
-                                </p>
-
-                                <button type="button" class="btn-clear-search" onclick="location.reload();">
-                                    Clear Search &amp;amp; View All
-                                </button>
+                        <!--===================  When Search Result Not Match  ====================-->
+                        <div class="no-results-container" id="noResultsBox" style="display: none;">
+                            <div class="no-results-icon">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                            d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z"
+                                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                            stroke-linejoin="round"/>
+                                    <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="1.5"
+                                          stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M9 9L13 13" stroke="currentColor" stroke-width="1.5"
+                                          stroke-linecap="round"/>
+                                    <path d="M13 9L9 13" stroke="currentColor" stroke-width="1.5"
+                                          stroke-linecap="round"/>
+                                </svg>
                             </div>
-                        </t>
+                            <h3 class="no-results-title">No Matching Products Found</h3>
+                            <p class="no-results-text">We couldn't find any items matching your search. Please check
+                                the
+                                spelling or try searching with a different product name or Item ID (e.g., PROD-105).
+                            </p>
+
+                            <button type="button" class="btn-clear-search" onclick="location.reload();">
+                                Clear Search &amp;amp; View All
+                            </button>
+                        </div>
                     </div>
 
                 </div>

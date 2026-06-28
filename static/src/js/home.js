@@ -62,3 +62,55 @@ function showB2BCartPopup(title, message) {
         popup.classList.remove("show");
     }, 3500);
 }
+
+
+
+
+
+
+// For Product Search
+function searchProducts() {
+    const searchInput = document.getElementById('searchInput');
+    const searchValue = (searchInput.value || '').toLowerCase().trim();
+
+    const productCards = document.querySelectorAll('.product-card');
+    const noResultsBox = document.getElementById('noResultsBox');
+    const pagination = document.querySelector('.pagination');
+
+    let matchedCount = 0;
+
+    productCards.forEach(function(card) {
+        const productName = (card.getAttribute('data-name') || '').toLowerCase();
+        const itemId = (card.getAttribute('data-item-id') || '').toLowerCase();
+
+        const isMatched =
+            productName.includes(searchValue) ||
+            itemId.includes(searchValue);
+
+        if (!searchValue || isMatched) {
+            card.style.display = '';
+            matchedCount++;
+        } else {
+            card.style.display = 'none';
+        }
+    });
+
+    if (noResultsBox) {
+        noResultsBox.style.display = matchedCount === 0 ? 'block' : 'none';
+    }
+
+    // Search korar somoy pagination hide korbe
+    if (pagination) {
+        pagination.style.display = searchValue ? 'none' : '';
+    }
+}
+
+function clearProductSearch() {
+    const searchInput = document.getElementById('searchInput');
+
+    if (searchInput) {
+        searchInput.value = '';
+    }
+
+    searchProducts();
+}
