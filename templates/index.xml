@@ -33,10 +33,10 @@
 
                             <div class="filter-options d-flex gap-6">
                                 <div>
-                                    <select id="sortSelect" onchange="sortProducts()">
-                                        <option value="default">Default Sorting</option>
-                                        <option value="low-high">Price: Low to High</option>
-                                        <option value="high-low">Price: High to Low</option>
+                                    <select id="sortSelect" onchange="window.location.href='index?sort=' + this.value">
+                                        <option value="default" t-att-selected="'selected' if sort== 'default' else None">Default Sorting</option>
+                                        <option value="low-high" t-att-selected="'selected' if sort == 'low-high' else None">Price: Low to High</option>
+                                        <option value="high-low" t-att-selected="'selected' if sort == 'high-low' else None">Price: High to Low</option>
                                     </select>
                                 </div>
 

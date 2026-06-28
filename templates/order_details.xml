@@ -15,7 +15,7 @@
                 <div id="order-details-section" style="max-width: 1080px; margin: 0 auto ;margin-top: 32px;">
                     <h2 class="page-title">Order Details</h2>
 
-                    <div class="card mt-5 p-6 radius-xxl order-details-card">
+                    <div class="card mt-5 p-7 radius-xxl order-details-card">
                         <!-- Details Header Info -->
                         <div class="details-header flex-between">
                             <div>
@@ -30,7 +30,7 @@
                         </div>
 
                         <!-- Shipping and Wholesaler Info Grid -->
-                        <div class="grid-3 mt-7 gap-3 grid-sm-1">
+                        <div class="grid-3 mt-7 gap-3 grid-sm-1" style="margin:48px 0">
                             <div class="info-box">
                                 <h5 class="text-primary mb-2 fw-bolder">Shipping Address</h5>
                                 <p>Gulshan-2, Dhaka<br/>Dhaka Division, 1212<br/>Bangladesh</p>
