@@ -129,32 +129,35 @@ function clearProductSearch() {
 
 
 
-// add to cart
+//================  add to cart  ==============
 document.querySelectorAll('.add_to_cart').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            var productId = parseInt(this.getAttribute('data-product-id'));
-            var qtyInput = document.querySelector('#qty-' + productId);
-            var quantity = qtyInput ? parseInt(qtyInput.value) : 1;
+    btn.addEventListener('click', function() {
+        let productId = parseInt(this.getAttribute('data-product-id'));
+        let qtyInput = document.querySelector('#qty-' + productId);
+        let quantity = qtyInput ? parseInt(qtyInput.value) : 1;
 
-            fetch('/cart/add', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    jsonrpc: '2.0',
-                    method: 'call',
-                    params: {
-                        product_id: productId,
-                        quantity: quantity,
-                    }
-                })
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.result && data.result.success) {
-                    alert('Added to cart!');
+        fetch('/cart/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                jsonrpc: '2.0',
+                method: 'call',
+                params: {
+                    product_id: productId,
+                    quantity: quantity,
                 }
-            });
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.result && data.result.success) {
+                btn.disabled = true;
+                btn.textContent = 'Added to Cart';
+                btn.classList.add('disabled');
+                btn.setAttribute('title', 'Already added to cart');
+            }
         });
     });
+});

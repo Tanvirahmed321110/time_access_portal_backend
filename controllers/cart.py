@@ -6,8 +6,19 @@ class TimeAccessPortal(http.Controller):
 
     @http.route('/cart', type='http', auth='user', website=True)
     def index_f(self, **kw):
+
+        partner = request.env.user.partner_id
+
+        order = request.env['sale.order'].sudo().search([
+            ('partner_id', '=', partner.id),
+            ('state', '=', 'draft')
+        ],limit=1)
+
+        order_lines = order.order_line if order else []
+
         return request.render('time_access_portal.cart_page', {
-            '': '',
+            'order': order,
+            'order_lines': order_lines,
         })
 
 

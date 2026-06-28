@@ -30,14 +30,22 @@ class TimeAccessPortal(http.Controller):
                 domain.append(('categ_id', 'child_of', selected_category_id))
 
         #=======  Product sort desc and asc  =========
-        order = 'id desc'
+        order_by = 'id desc'
 
         if sort == 'low-high':
-            order = 'list_price asc'
+            order_by = 'list_price asc'
         elif sort == 'high-low':
-            order = 'list_price desc'
+            order_by = 'list_price desc'
 
-        products = request.env['product.template'].sudo().search(domain, order=order)
+        products = request.env['product.template'].sudo().search(domain, order=order_by)
+
+        partner = request.env.user.partner_id
+        sale_order = request.env['sale.order'].sudo().search([
+            ('partner_id', '=', partner.id),
+            ('state', '=', 'draft'),
+        ], limit=1)
+
+        cart_product_ids = sale_order.order_line.mapped('product_id').ids if sale_order else []
 
         return request.render('time_access_portal.index_page', {
             'active_menu': 'products',
@@ -45,4 +53,5 @@ class TimeAccessPortal(http.Controller):
             'sort': sort,
             'categories': categories,
             'selected_category_id': selected_category_id,
+            'cart_product_ids': cart_product_ids,
         })
