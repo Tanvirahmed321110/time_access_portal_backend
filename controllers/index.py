@@ -39,6 +39,7 @@ class TimeAccessPortal(http.Controller):
 
         products = request.env['product.template'].sudo().search(domain, order=order_by)
 
+        # for sale order check
         partner = request.env.user.partner_id
         sale_order = request.env['sale.order'].sudo().search([
             ('partner_id', '=', partner.id),
