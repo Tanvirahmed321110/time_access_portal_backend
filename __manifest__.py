@@ -19,7 +19,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'project'],
+    'depends': ['base', 'product', 'sale', 'stock'],
 
     # always loaded
     'data': [
@@ -30,6 +30,8 @@
         'templates/checkout.xml',
         'templates/profile.xml',
         'templates/order_invoice.xml',
+        'templates/orders.xml',
+        'templates/order_details.xml',
 
 
         # views

@@ -65,6 +65,7 @@ body {
     background-color: var(--color-text-success);
     color: var(--color-white);
     opacity: 1;
+    border: 1px solid var(--color-text-success);
 }
 
 .input-group input,
@@ -183,7 +184,7 @@ textarea {
 
 
 
-/* ===================== Order Confrim Page ==================== */
+/* =====================  Order Confirm Page  ==================== */
 .confirmation-wrapper {
     max-width: 800px;
     margin: 4rem auto;
@@ -361,6 +362,81 @@ textarea {
 }
 
 
+/*==============  order  ==============*/
+.order-sec table th {
+    text-align: center;
+    white-space: nowrap;
+    min-width: 160px;
+}
+
+.order-sec table td {
+    text-align: center;
+    min-width: 160px;
+    font-weight: 500;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.order-sec .card {
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 5px 12px 0px;
+    box-shadow: var(--shadow-1);
+}
+
+.order-sec table tr {
+    border-bottom: 1px solid var(--border-primary);
+}
+
+.order-sec table tbody tr:nth-child(even) {
+    background-color: #f2f2f29e;
+}
+
+.order-sec table thead tr {
+    border-top: 1px solid var(--border-primary);
+    border-bottom: 1px solid var(--border-primary);
+}
+
+.order-sec .paid {
+    padding: 4px 8px;
+    border-radius: var(--radius-round);
+
+}
+
+
+.order-sec .badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.order-sec .badge.success {
+    background: #e6f4ea;
+    color: var(--color-secondary);
+    font-weight: 700;
+}
+
+.order-sec .badge.pending {
+    background: #fff4e6;
+    color: #e67e22;
+    font-weight: 700;
+}
+
+.order-sec .badge.cancel {
+    background: #a3600941;
+    color: red;
+}
+
+
+.summary-table td {
+    padding: 12px;
+}
+
+
 
 
 @media (max-width:767px) {
@@ -441,5 +517,20 @@ textarea {
 
     .order-confrim .product-info img {
         min-width: 45px;
+    }
+
+
+    /* order details page */
+    .order-details-card {
+        padding: 16px;
+    }
+
+    .order-sec .badge {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 4px;
+        font-size: 0.63rem;
+        font-weight: 700;
+        text-transform: uppercase;
     }
 }

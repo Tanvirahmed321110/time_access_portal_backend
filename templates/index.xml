@@ -136,7 +136,9 @@
                                         <div class="product-content">
                                             <div>
                                                 <!-- product id -->
-                                                <div class="product-id fs-xs">Item ID: <span t-esc="product.default_code"> </span></div>
+                                                <div class="product-id fs-xs">Item ID:
+                                                    <span t-esc="product.default_code"></span>
+                                                </div>
 
                                                 <!-- product name -->
                                                 <a href="#" class="product-name" t-esc="product.name">UltraHD
@@ -246,7 +248,8 @@
 
 
                             <!--============== Pagination (per page at least 30 item show)=============-->
-                            <div class="d-flex align-end justify-end mt-7 active">
+                           <t t-if="len(products) > 41">
+                                <div class="d-flex align-end justify-end mt-7 active">
                                 <nav class="pagination d-flex gap-4 " aria-="Page navigation">
                                     <a href="#" class="page prev">
                                         <svg viewBox="0 0 24 24" fill="none"
@@ -281,6 +284,7 @@
                                     </a>
                                 </nav>
                             </div>
+                           </t>
                         </div>
 
 
