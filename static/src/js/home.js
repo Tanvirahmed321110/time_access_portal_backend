@@ -105,12 +105,22 @@ function searchProducts() {
     }
 }
 
+// for clear input
 function clearProductSearch() {
     const searchInput = document.getElementById('searchInput');
 
     if (searchInput) {
         searchInput.value = '';
     }
-
     searchProducts();
 }
+
+
+ //  for sort dropdown
+ document.getElementById('sortSelect').addEventListener('change', function() {
+    let url = new URL(window.location.href);
+    let cat = url.searchParams.get('category_id') || '';
+    let newUrl = '/index?sort=' + this.value;
+    if (cat) newUrl += '&category_id=' + cat;
+    window.location.href = newUrl;
+});

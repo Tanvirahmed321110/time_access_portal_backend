@@ -11,13 +11,13 @@
 
                         <div class="category-buttons d-flex gap-3 flex-wrap" id="categoryContainer">
 
-                            <!-- All Categories default active -->
+                            <!-- All Categories -->
                             <a t-att-href="'/index?sort=%s' % sort"
                                t-att-class="'cart-btn active' if not selected_category_id else 'cart-btn'">
                                 All Categories
                             </a>
 
-                            <!-- Only child categories (parent_id != False) -->
+                            <!-- Child categories -->
                             <t t-foreach="categories" t-as="category">
                                 <t t-if="category.parent_id">
                                     <a t-att-href="'/index?category_id=%s&amp;sort=%s' % (category.id, sort)"
@@ -47,9 +47,15 @@
 
                             <div class="filter-options d-flex gap-6">
                                 <div>
-                                    <select id="sortSelect" onchange="window.location.href='index?sort=' + this.value">
+                                    <!-- Sort select -->
+                                    <select id="sortSelect" onchange="
+                                        var cat = '';
+                                        var url = new URL(window.location.href);
+                                        cat = url.searchParams.get('category_id') || '';
+                                        window.location.href = '/index?sort=' + this.value + (cat ? '&amp;category_id=' + cat : '');
+                                    ">
                                         <option value="default"
-                                                t-att-selected="'selected' if sort== 'default' else None">Default
+                                                t-att-selected="'selected' if sort == 'default' else None">Default
                                             Sorting
                                         </option>
                                         <option value="low-high"
