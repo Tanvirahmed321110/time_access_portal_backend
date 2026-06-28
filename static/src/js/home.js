@@ -124,3 +124,37 @@ function clearProductSearch() {
     if (cat) newUrl += '&category_id=' + cat;
     window.location.href = newUrl;
 });
+
+
+
+
+
+// add to cart
+document.querySelectorAll('.add_to_cart').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var productId = parseInt(this.getAttribute('data-product-id'));
+            var qtyInput = document.querySelector('#qty-' + productId);
+            var quantity = qtyInput ? parseInt(qtyInput.value) : 1;
+
+            fetch('/cart/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    jsonrpc: '2.0',
+                    method: 'call',
+                    params: {
+                        product_id: productId,
+                        quantity: quantity,
+                    }
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.result && data.result.success) {
+                    alert('Added to cart!');
+                }
+            });
+        });
+    });

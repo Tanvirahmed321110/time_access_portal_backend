@@ -68,7 +68,7 @@
 
                             <!--========== Cart Icon ========== -->
                             <div class="nav-icons">
-                                <a href="/index/cart" class="cart-icon-btn flex-center">
+                                <a href="/cart" class="cart-icon-btn flex-center">
                                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <!-- Sophisticated, solid structured luxury bag/cart silhouette -->
                                         <path

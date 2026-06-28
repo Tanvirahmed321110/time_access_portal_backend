@@ -37,6 +37,7 @@
         # views
         'views/product_product_view.xml',
         'views/sequence_inherit.xml',
+        'views/category_inherit.xml',
     ],
     'assets': {
         'web.assets_frontend': [

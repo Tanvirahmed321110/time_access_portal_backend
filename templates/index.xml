@@ -49,8 +49,8 @@
                                 <div>
                                     <!-- Sort select -->
                                     <select id="sortSelect" onchange="
-                                        var cat = '';
-                                        var url = new URL(window.location.href);
+                                        let cat = '';
+                                        let url = new URL(window.location.href);
                                         cat = url.searchParams.get('category_id') || '';
                                         window.location.href = '/index?sort=' + this.value + (cat ? '&amp;category_id=' + cat : '');
                                     ">
@@ -192,13 +192,13 @@
                                                 <!-- quantity input -->
                                                 <div class="qty-wrapper d-flex align-center mt-3 gap-2">
                                                     <label class="">Quantity:</label>
-                                                    <input type="number" class="qty-input" id="qty-PROD-101" value="5"
+                                                    <input type="number" class="qty-input"  t-att-id="'qty-%s' % product.id" value="5"
                                                            min="5"/>
                                                 </div>
 
                                                 <!-- Card Buttons -->
                                                 <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
-                                                    <button class="btn add_to_cart btn-outline">Add
+                                                    <button class="btn add_to_cart btn-outline" t-att-data-product-id="product.id">Add
                                                         to Cart
                                                     </button>
                                                     <a href="/cart.html" class="btn btn-primary"
