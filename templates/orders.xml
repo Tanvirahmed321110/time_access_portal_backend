@@ -14,7 +14,8 @@
                     <h2 class="page-title">ALl Orders</h2>
 
                     <div class="orders mt-5">
-                        <div class="card">
+                        <t t-if="orders">
+<div class="card">
                             <div class="table-responsive order-confrim ">
                                 <table class="manifest-table ">
                                     <thead>
@@ -29,60 +30,95 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td><strong class="nowrap">#ORD-9952</strong></td>
-                                            <td class="nowrap">June 24, 2026</td>
-                                            <td>TK 6,000.00</td>
-                                            <td>TK 1,400.00</td>
-                                            <td>TK 3,600.00</td>
-                                            <td><span class="badge pending">Processing</span></td>
-                                            <td class="flex-center"><a href="order_details.html" class="btn btn-outline btn-sm" >View
-                                                    Details</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>#ORD-9841</strong></td>
-                                            <td>June 18, 2026</td>
-                                            <td>TK 12,400.00</td>
-                                            <td>TK 1,400.00</td>
-                                            <td>TK 3,600.00</td>
-                                            <td><span class="badge success">Delivered</span></td>
-                                            <td class="flex-center"><a href="order_details.html" class="btn btn-outline btn-sm" >View
-                                                    Details</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>#ORD-9841</strong></td>
-                                            <td>June 18, 2026</td>
-                                            <td>TK 12,400.00</td>
-                                            <td>TK 1,400.00</td>
-                                            <td>TK 3,600.00</td>
-                                            <td><span class="badge cancel">Canceled</span></td>
-                                            <td class="flex-center"><a href="order_details.html" class="btn btn-outline btn-sm" >View
-                                                    Details</a></td>
-                                        </tr>
+                                        <t t-foreach="orders" t-as="order">
+                                            <tr>
+                                                <td>
+                                                    <strong class="nowrap" t-esc="order.name"></strong>
+                                                </td>
+                                                <td class="nowrap">
+                                                    <t t-esc="order.date_order.strftime('%B %d, %Y') if order.date_order else ''"/>
+                                                </td>
+                                                <td>TK
+                                                    <t t-esc="'%.2f' % order.amount_total"/>
+                                                </td>
+                                                <td>TK
+                                                    <t t-esc="'%.2f' % order.amount_invoiced"/>
+                                                </td>
+                                                <td>TK
+                                                    <t t-esc="'%.2f' % (order.amount_total - order.amount_invoiced)"/>
+                                                </td>
+                                                <td>
+                                                    <t t-if="order.state == 'sale'">
+                                                        <span class="badge pending">Processing</span>
+                                                    </t>
+                                                    <t t-elif="order.state== 'done'">
+                                                        <span class="badge success">Delivered</span>
+                                                    </t>
+                                                    <t t-elif="order.state == 'cancel'">
+                                                        <span class="badge cancel">Canceled</span>
+                                                    </t>
+                                                </td>
+                                                <td class="flex-center">
+                                                    <a t-att-href="'/orders/%s' % order.id"
+                                                       class="btn btn-outline btn-sm">View
+                                                        Details
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <!--                                        <tr>-->
+                                            <!--                                            <td><strong>#ORD-9841</strong></td>-->
+                                            <!--                                            <td>June 18, 2026</td>-->
+                                            <!--                                            <td>TK 12,400.00</td>-->
+                                            <!--                                            <td>TK 1,400.00</td>-->
+                                            <!--                                            <td>TK 3,600.00</td>-->
+                                            <!--                                            <td><span class="badge success">Delivered</span></td>-->
+                                            <!--                                            <td class="flex-center"><a href="order_details.html" class="btn btn-outline btn-sm" >View-->
+                                            <!--                                                    Details</a></td>-->
+                                            <!--                                        </tr>-->
+                                            <!--                                        <tr>-->
+                                            <!--                                            <td><strong>#ORD-9841</strong></td>-->
+                                            <!--                                            <td>June 18, 2026</td>-->
+                                            <!--                                            <td>TK 12,400.00</td>-->
+                                            <!--                                            <td>TK 1,400.00</td>-->
+                                            <!--                                            <td>TK 3,600.00</td>-->
+                                            <!--                                            <td><span class="badge cancel">Canceled</span></td>-->
+                                            <!--                                            <td class="flex-center"><a href="order_details.html" class="btn btn-outline btn-sm" >View-->
+                                            <!--                                                    Details</a></td>-->
+                                            <!--                                        </tr>-->
+                                        </t>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-
+                        </t>
 
 
                         <!--=============== When Order Empty ===============-->
-                        <div class="no-results-container">
+                       <t t-else="">
+                            <div class="no-results-container">
                             <div class="no-results-icon">
                                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                    <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                    <path d="M9 9L13 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
-                                    <path d="M13 9L9 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                                    <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z"
+                                          stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                          stroke-linejoin="round"></path>
+                                    <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="1.5"
+                                          stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M9 9L13 13" stroke="currentColor" stroke-width="1.5"
+                                          stroke-linecap="round"></path>
+                                    <path d="M13 9L9 13" stroke="currentColor" stroke-width="1.5"
+                                          stroke-linecap="round"></path>
                                 </svg>
                             </div>
                             <h3 class="no-results-title">You haven't placed any orders yet</h3>
-                            <p class="no-results-text">It looks like you haven't made any purchases. Once you order your wholesale items, they will appear right here.</p>
+                            <p class="no-results-text">It looks like you haven't made any purchases. Once you order your
+                                wholesale items, they will appear right here.
+                            </p>
 
-                            <button type="button" class="btn-clear-search" onclick="window.location.href='/';">
+                            <a href="/index" type="button" class="btn-clear-search">
                                 Browse Products &amp; Shop Now
-                            </button>
+                            </a>
                         </div>
+                       </t>
                     </div>
                 </div>
             </section>

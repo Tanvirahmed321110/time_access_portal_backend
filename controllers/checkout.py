@@ -44,6 +44,7 @@ class TimeAccessPortal(http.Controller):
             'product_id': product_id,
         })
 
+    # ===== Cart flow =====
     @http.route('/cart/confirm', type='json', auth='user', website=True)
     def confirm_order(self, product_id=None, qty=1, **kw):
         partner = request.env.user.partner_id

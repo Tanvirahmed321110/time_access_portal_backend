@@ -80,13 +80,13 @@
                                                     <span>
                                                         <t t-esc="line.product_id.name"/>
                                                     </span>
-                                                    <span>x
+                                                    <span class="fw-medium">x
                                                         <t t-esc="line.product_uom_qty"/>
                                                     </span>
                                                 </div>
                                                 <div class="summary-line flex-between gap-2">
                                                     <span>Unit Price:</span>
-                                                    <span>TK
+                                                    <span class="fw-medium">TK
                                                         <t t-esc="'%.2f' % line.price_unit"/>
                                                     </span>
                                                 </div>

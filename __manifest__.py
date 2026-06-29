@@ -29,7 +29,6 @@
         'templates/cart.xml',
         'templates/checkout.xml',
         'templates/profile.xml',
-        'templates/order_invoice.xml',
         'templates/orders.xml',
         'templates/order_details.xml',
 
