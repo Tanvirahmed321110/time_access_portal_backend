@@ -77,7 +77,8 @@
 
                                                         <!--  Delete   -->
                                                         <td style="padding:15px; text-align: left;">
-                                                            <button class=" text-center delete-line-btn" t-att-data-line-id="line.id" type="button"
+                                                            <button class=" text-center delete-line-btn"
+                                                                    t-att-data-line-id="line.id" type="button"
                                                                     aria-label="Delete">
                                                                 <svg width="20" height="20" viewBox="0 0 24 24"
                                                                      fill="none"
@@ -111,39 +112,39 @@
                                 </t>
 
                                 <!--====================  When Cart Empty  ==================-->
-                                <t t-else="">
-                                    <div class="empty-cart-wrapper">
-                                        <div class="empty-cart-icon">
-                                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                        d="M3 4H5.5L7.8 14.2C8.0 15.1 8.8 15.8 9.8 15.8H18.5C19.4 15.8 20.2 15.1 20.4 14.2L21.5 8.5H12"
-                                                        stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
-                                                        stroke-linejoin="round"/>
-                                                <circle cx="10" cy="20" r="1.2" fill="currentColor"/>
-                                                <circle cx="18" cy="20" r="1.2" fill="currentColor"/>
-                                                <path d="M14 11.5H17M15.5 10V13" stroke="currentColor"
-                                                      stroke-width="1.5"
-                                                      stroke-linecap="round" opacity="0.5"
-                                                      transform="rotate(45 15.5 11.5)"/>
-                                            </svg>
-                                        </div>
-
-                                        <h2 class="empty-title">Your Corporate Cart is Empty</h2>
-                                        <p class="empty-subtitle">You haven't allocated any bulk wholesale inventory to
-                                            your
-                                            current procurement manifest yet.
-                                        </p>
-
-                                        <a href="index.html" class="btn btn-primary btn-explore">
-                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                                                 stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                 stroke-linejoin="round" style="margin-right: 4px;">
-                                                <path d="M19 12H5M5 12L12 19M5 12L12 5"/>
-                                            </svg>
-                                            Explore Wholesale Products
-                                        </a>
+                                <div class="empty-cart-wrapper"
+                                     t-att-style="'display:none;' if order_lines else 'display:block;'">
+                                    <div class="empty-cart-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                    d="M3 4H5.5L7.8 14.2C8.0 15.1 8.8 15.8 9.8 15.8H18.5C19.4 15.8 20.2 15.1 20.4 14.2L21.5 8.5H12"
+                                                    stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                                                    stroke-linejoin="round"/>
+                                            <circle cx="10" cy="20" r="1.2" fill="currentColor"/>
+                                            <circle cx="18" cy="20" r="1.2" fill="currentColor"/>
+                                            <path d="M14 11.5H17M15.5 10V13" stroke="currentColor"
+                                                  stroke-width="1.5"
+                                                  stroke-linecap="round" opacity="0.5"
+                                                  transform="rotate(45 15.5 11.5)"/>
+                                        </svg>
                                     </div>
-                                </t>
+
+                                    <h2 class="empty-title">Your Corporate Cart is Empty</h2>
+                                    <p class="empty-subtitle">You haven't allocated any bulk wholesale inventory to
+                                        your
+                                        current procurement manifest yet.
+                                    </p>
+
+                                    <a href="index.html" class="btn btn-primary btn-explore">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                             stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                             stroke-linejoin="round" style="margin-right: 4px;">
+                                            <path d="M19 12H5M5 12L12 19M5 12L12 5"/>
+                                        </svg>
+                                        Explore Wholesale Products
+                                    </a>
+                                </div>
+
                             </div>
 
 
@@ -172,7 +173,7 @@
                                             <span>$0.00</span>
                                         </div>
 
-                                      <!--  Final Total -->
+                                        <!--  Final Total -->
                                         <div class="summary-total flex-between gap-3">
                                             <h4>Grand Total:</h4>
                                             <h4 id="summaryTotal">
@@ -183,9 +184,17 @@
                                     </div>
 
                                     <!--  Checkout Button -->
-                                    <a href="checkout.html" class="btn btn-primary btn-fs-md mt-5 text-center"
-                                       style="width: 100%;">Proceed To Checkout
-                                    </a>
+                                    <t t-if="order_lines">
+                                        <a href="/cart/checkout"
+                                           class="btn btn-primary btn-fs-md mt-5 btn-checkout text-center"
+                                           style="width: 100%;">Proceed To Checkout
+                                        </a>
+                                    </t>
+                                    <t t-else="">
+                                        <a class="btn btn-primary btn-fs-md mt-5 btn-checkout text-center disabled"
+                                           style="width: 100%;">Proceed To Checkout
+                                        </a>
+                                    </t>
                                 </div>
                             </div>
                         </div>

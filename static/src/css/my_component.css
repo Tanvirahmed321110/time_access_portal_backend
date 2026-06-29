@@ -38,6 +38,16 @@
     color: var(--color-text-light);
 }
 
+
+.btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+    background-color: #9ca3af;
+    border-color: #9ca3af;
+    color: #fff;
+}
+
 .input-group {
     position: relative;
 }

@@ -68,7 +68,14 @@ class TimeAccessPortal(http.Controller):
         ], limit=1)
 
         if line:
+            order = line.order_id
             line.unlink()
-            return {'success': True}
+
+            return {
+                'success': True,
+                'amount_untaxed': float(order.amount_untaxed),
+                'amount_tax': float(order.amount_tax),
+                'amount_total': float(order.amount_total),
+            }
         return {'success': False}
 
