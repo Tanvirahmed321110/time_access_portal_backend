@@ -27,7 +27,7 @@
                                     </p>
                                 </div>
                                 <div class=" d-flex justify-end gap-4 flex-wrap btn-wraps gap-sm-3">
-                                    <a href="/index" class="btn btn-outline">Back To Home</a>
+                                    <a href="/orders" class="btn btn-outline">Back To Orders</a>
                                     <button class="btn btn-primary" id="downloadInvoiceBtn">Download Invoice</button>
                                 </div>
                             </div>
