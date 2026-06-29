@@ -90,8 +90,7 @@ textarea {
 .empty-cart-icon {
     width: 90px;
     height: 90px;
-    background: #F9FAFB;
-    /* নিউট্রো গ্রে ব্যাকগ্রাউন্ড */
+    background: #fff;
     color: var(--text-muted);
     border-radius: 50%;
     display: flex;

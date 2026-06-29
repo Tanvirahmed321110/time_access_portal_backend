@@ -67,7 +67,8 @@
                                                             <input type="number" value="5" min="5"
                                                                    t-att-value="line.product_uom_qty"
                                                                    t-att-data-line-id="line.id"
-                                                                   style="width:60px; padding:5px; text-align:center;"/>
+                                                                   class="qty-update-input"
+                                                                   style="width:60px; padding:5px;background:#eded; text-align:center;"/>
                                                         </td>
 
                                                         <!--  Subtotal   -->

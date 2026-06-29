@@ -79,3 +79,23 @@ class TimeAccessPortal(http.Controller):
             }
         return {'success': False}
 
+    # ==================  Update Quantity  ===================
+    @http.route('/cart/update_qty', type='json', auth='user', website=True)
+    def update_cart_qty(self, line_id, quantity, **kw):
+        line = request.env['sale.order.line'].sudo().search([
+            ('id', '=', line_id),
+            ('order_id.partner_id', '=', request.env.user.partner_id.id),
+            ('order_id.state', '=', 'draft'),
+        ], limit=1)
+
+        if line:
+            order = line.order_id
+            line.product_uom_qty = quantity
+            return {
+                'success': True,
+                'amount_untaxed': float(order.amount_untaxed),
+                'amount_tax': float(order.amount_tax),
+                'amount_total': float(order.amount_total),
+                'price_subtotal': float(line.price_subtotal),
+            }
+        return {'success': False}

@@ -94,7 +94,7 @@ if(deletebtns){
 
 
 
-//  check empty cart
+//=========  check empty cart  =============
 function checkEmptyCart() {
     let remainingRows = document.querySelectorAll('#cartTable tbody tr');
     let tableWrap = document.querySelector('.table-wrap');
@@ -114,4 +114,53 @@ function checkEmptyCart() {
         if (tableWrap) tableWrap.style.display = 'block';
         if (emptyCart) emptyCart.style.display = 'none';
     }
+}
+
+
+
+
+
+// =========== Quantity Update ==============
+let qtyInputs = document.querySelectorAll('.qty-update-input');
+if (qtyInputs.length > 0) {
+    qtyInputs.forEach(function(input) {
+        input.addEventListener('change', function() {
+            let lineId = parseInt(this.getAttribute('data-line-id'));
+            let quantity = parseFloat(this.value);
+
+            if (quantity < 1) {
+                this.value = 1;
+                quantity = 1;
+            }
+
+            fetch('/cart/update_qty', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    jsonrpc: '2.0', method: 'call',
+                    params: {
+                        line_id: lineId,
+                        quantity: quantity,
+                    }
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.result && data.result.success) {
+                    // Subtotal update
+                    let row = this.closest('tr');
+                    let subtotalCell = row.querySelector('td:nth-child(4)');
+                    if (subtotalCell) {
+                        subtotalCell.textContent = 'TK ' + parseFloat(data.result.price_subtotal).toFixed(2);
+                    }
+
+                    // Order summary update
+                    let subtotal = document.getElementById('summarySubtotal');
+                    let total = document.getElementById('summaryTotal');
+                    if (subtotal) subtotal.textContent = 'TK ' + parseFloat(data.result.amount_untaxed).toFixed(2);
+                    if (total) total.textContent = 'TK ' + parseFloat(data.result.amount_total).toFixed(2);
+                }
+            });
+        });
+    });
 }
