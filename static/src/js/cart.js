@@ -164,3 +164,40 @@ if (qtyInputs.length > 0) {
         });
     });
 }
+
+
+
+
+
+// =========== Buy Now ==============
+let buyNowBtns = document.querySelectorAll('.btn-buy-now');
+if (buyNowBtns.length > 0) {
+    buyNowBtns.forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            let productId = parseInt(this.getAttribute('data-product-id'));
+            let qtyInput = document.querySelector('#qty-' + productId);
+            let quantity = qtyInput ? parseInt(qtyInput.value) : 1;
+
+            fetch('/cart/add', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    jsonrpc: '2.0', method: 'call',
+                    params: {
+                        product_id: productId,
+                        quantity: quantity,
+                    }
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.result && data.result.success) {
+                    // Cart-এ add হলে checkout-এ redirect
+                    window.location.href = '/checkout';
+                }
+            });
+        });
+    });
+}

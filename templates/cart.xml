@@ -186,7 +186,7 @@
 
                                     <!--  Checkout Button -->
                                     <t t-if="order_lines">
-                                        <a href="/cart/checkout"
+                                        <a href="/checkout"
                                            class="btn btn-primary btn-fs-md mt-5 btn-checkout text-center"
                                            style="width: 100%;">Proceed To Checkout
                                         </a>
