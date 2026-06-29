@@ -22,7 +22,7 @@
                                     </h5>
                                     <p class="mt-2 ">
                                         <span class="fw-bolder">Placed on:
-                                            <span class="fw-medium"><t t-esc="order.date_order.strftime('%B %d, %Y at %I:%M %p') if order.date_order else ''"/></span>
+                                            <span class="fw-normal"><t t-esc="order.date_order.strftime('%B %d, %Y at %I:%M %p') if order.date_order else ''"/></span>
                                         </span>
                                     </p>
                                 </div>
@@ -37,13 +37,13 @@
                                 <div class="info-box">
                                     <h5 class="text-primary mb-2 fw-bolder">Shipping Address</h5>
                                     <p>
-                                        <span class="fw-bold"><t t-esc="request.env.company.name"/></span><br/>
+                                        <span class="fw-medium"><t t-esc="request.env.company.name"/></span><br/>
                                         <t t-esc="request.env.company.street or 'N/A'"/>
                                     </p>
                                 </div>
                                 <div class="info-box">
                                     <h5 class="text-primary mb-2 fw-bolder">Payment Method</h5>
-                                    <p>Bank Transfer<br/>Status:
+                                    <p>Bank Transfer<br/> <span class="fw-medium">Status:</span>
                                         <t t-if="order.invoice_ids">
                                             <span class="badge success">Paid</span>
                                         </t>
@@ -53,8 +53,8 @@
                                     </p>
                                 </div>
                                 <div class="info-box">
-                                    <h5 class="text-primary mb-2 fw-bolder">Fulfillment Status</h5>
-                                    <p>Status:
+                                    <h5 class="text-primary mb-2 fw-bold">Fulfillment Status</h5>
+                                    <p><span class="fw-medium">Status:</span>
                                         <t t-if="order.state == 'sale'">
                                             <span class="badge pending">Processing</span>
                                         </t>
@@ -64,8 +64,17 @@
                                         <t t-elif="order.state == 'cancel'">
                                             <span class="badge cancel">Canceled</span>
                                         </t>
-                                        <br/>Expected
-                                        Delivery: June 28, 2026
+                                        <br/>
+                                        <t t-if="delivery_date">
+                                            Delivered Date: <span class="fw-medium"><t t-esc="delivery_date.strftime('%B %d, %Y')"/></span>
+                                        </t>
+                                        <t t-elif="order.state == 'done' and not delivery_date">
+                                            Delivered Date: <span class="fw-medium"><t t-esc="order.write_date.strftime('%B %d, %Y')"/></span>
+                                        </t>
+                                        <t t-else="">
+                                            <span class="fw-medium">Expected Delivery:</span>
+                                             3 to 7 days
+                                        </t>
                                     </p>
                                 </div>
                             </div>

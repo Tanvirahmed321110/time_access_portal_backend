@@ -30,9 +30,22 @@ class TimeAccessPortal(http.Controller):
             ('partner_id','=', partner.id),
         ])
 
+        # delivery date
+        delivery_date = None
+        if order:
+            # এই সেলস অর্ডারের আন্ডারে যে ডেলিভারি চালানগুলো (Pickings) আছে তা খোঁজা হচ্ছে
+            picking = request.env['stock.picking'].sudo().search([
+                ('sale_id', '=', order.id),
+                ('state', '=', 'done')  # শুধুমাত্র সফলভাবে ডেলিভারি হওয়া চালান
+            ], limit=1, order='date_done desc')
+
+            if picking and picking.date_done:
+                delivery_date = picking.date_done
+
         return request.render('time_access_portal.order_details_page', {
             'active_menu': 'orders',
             'order': order,
             'order_lines': order.order_line if order else [],
+            'delivery_date':delivery_date
         })
 
