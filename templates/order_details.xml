@@ -21,8 +21,8 @@
                                         <t t-esc="order.name"/>
                                     </h5>
                                     <p class="mt-2 ">
-                                        <span class="fw-bold">Placed on:
-                                            <t t-esc="order.date_order.strftime('%B %d, %Y at %I:%M %p') if order.date_order else ''"/>
+                                        <span class="fw-bolder">Placed on:
+                                            <span class="fw-medium"><t t-esc="order.date_order.strftime('%B %d, %Y at %I:%M %p') if order.date_order else ''"/></span>
                                         </span>
                                     </p>
                                 </div>

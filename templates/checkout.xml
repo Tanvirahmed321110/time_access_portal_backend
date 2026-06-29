@@ -40,9 +40,7 @@
                                     </div>
                                     <div class="input-group">
                                         <label>Shipping Warehouse Address</label>
-                                        <textarea placeholder="Full Address...">
-                                            <t t-esc="request.env.user.partner_id.street or ''"/>
-                                        </textarea>
+                                        <textarea placeholder="Full Address..."><t t-esc="request.env.user.partner_id.street or ''"/></textarea>
                                     </div>
                                 </div>
 

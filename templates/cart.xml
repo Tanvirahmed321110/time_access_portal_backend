@@ -136,7 +136,7 @@
                                         current procurement manifest yet.
                                     </p>
 
-                                    <a href="index.html" class="btn btn-primary btn-explore">
+                                    <a href="/index" class="btn btn-primary btn-explore">
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
                                              stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                              stroke-linejoin="round" style="margin-right: 4px;">
