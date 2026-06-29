@@ -61,15 +61,14 @@
     border: 1px solid var(--border-secondary);
     border-radius: var(--radius-xs);
     outline: none;
-    /* transition: var(--transition-base); */
+    /*transition: var(--transition-base);*/
     font-family: inherit;
     outline: none;
 }
 
-.input-group input:focus .input-group textarea:focus {
-    box-shadow: rgba(0, 0, 0, 0.11) 0px 0px 0px 3px;
+.input-group input:focus ,.input-group textarea:focus {
     border-color: transparent;
-    outline: none;
+    outline: 1px solid var(--color-primary);
 }
 
 .input-group label {

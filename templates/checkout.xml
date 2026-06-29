@@ -96,7 +96,7 @@
                                         <div class="summary-total flex-between gap-3">
 
                                             <!-- Grand Total -->
-                                            <div class="summary-total flex-between gap-3 mt-4">
+                                            <div class="summary-total flex-between gap-3 mt-4 w-100-p">
                                                 <h4 class="fs-lg fw-bold">Grand Total:</h4>
                                                 <h4 class="fs-lg fw-bold">
                                                     TK

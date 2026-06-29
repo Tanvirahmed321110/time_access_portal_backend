@@ -691,6 +691,10 @@ tr {
     max-width: 100%;
 }
 
+.w-100-p{
+    width: 100%;
+}
+
 
 .w-fit-content {
     width: fit-content;
