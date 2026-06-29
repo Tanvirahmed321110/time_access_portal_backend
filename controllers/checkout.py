@@ -49,6 +49,23 @@ class TimeAccessPortal(http.Controller):
     def confirm_order(self, product_id=None, qty=1, **kw):
         partner = request.env.user.partner_id
 
+        company_name = kw.get('company_name', '').strip()
+        bin_number = kw.get('bin_number', '').strip()
+        phone = kw.get('phone', '').strip()
+        email = kw.get('email', '').strip()
+        shipping_address = kw.get('shipping_address', '').strip()
+
+        current_company = request.env.company.sudo()
+
+        if current_company:
+            current_company.write({
+                'name': company_name if company_name else current_company.name,
+                'vat': bin_number if bin_number else current_company.vat,
+                'phone': phone if phone else current_company.phone,
+                'email': email if email else current_company.email,
+                'street': shipping_address if shipping_address else current_company.street
+            })
+
         # ===== Buy Now flow =====
         if product_id:
             order = request.env['sale.order'].sudo().create({

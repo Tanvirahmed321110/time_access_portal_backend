@@ -1,9 +1,7 @@
 <odoo>
     <template id="checkout_page">
         <t t-call="time_access_portal.custom_layout">
-
             <link rel="stylesheet" href="/time_access_portal/static/src/css/cart-checkout.css?v=1"/>
-
 
             <!--=============================================================-->
             <!--================||  Checkout Section Here  ||=============== -->
@@ -13,39 +11,43 @@
                     <div id="cart-page" class="page active-page">
                         <h2 class="page-title">Secure B2B Checkout</h2>
 
-                        <from action="#" class="two-column-layout mt-6">
+                        <!-- TYPO FIXED: 'from' কে 'form' করা হয়েছে -->
+                        <form action="#" class="two-column-layout mt-6">
                             <div class="box-panel p-4">
-                                <h4 class="fs-lg fw-bolder text-primary">Corporate Shipping &amp; Billing Information
-                                </h4>
+                                <h4 class="fs-lg fw-bolder text-primary">Corporate Shipping &amp; Billing Information</h4>
 
                                 <div class="flex-column gap-6 mt-5">
                                     <div class="input-group">
                                         <label>Company Name</label>
-                                        <input type="text" placeholder="Company Name"
-                                               t-att-value="request.env.user.partner_id.name or ''"/>
+                                        <!-- name="company_name" এবং কোম্পানির প্রোফাইল থেকে ভ্যালু যোগ করা হয়েছে -->
+                                        <input type="text" name="company_name" placeholder="Company Name"
+                                               t-att-value="request.env.company.name or ''"/>
                                     </div>
                                     <div class="input-group">
                                         <label>Business License / BIN Number</label>
-                                        <input type="text" placeholder="Business License"/>
+                                        <!-- name="bin_number" এবং কোম্পানির প্রোফাইল থেকে ভ্যালু যোগ করা হয়েছে -->
+                                        <input type="text" name="bin_number" placeholder="Business License"
+                                               t-att-value="request.env.company.vat or ''"/>
                                     </div>
                                     <div class="input-group">
                                         <label>Phone</label>
-                                        <input type="text" placeholder="Enter Phone"
-                                               t-att-value="request.env.user.partner_id.phone or ''"/>
+                                        <!-- name="phone" এবং কোম্পানির প্রোফাইল থেকে ভ্যালু যোগ করা হয়েছে -->
+                                        <input type="text" name="phone" placeholder="Enter Phone"
+                                               t-att-value="request.env.company.phone or ''"/>
                                     </div>
                                     <div class="input-group">
                                         <label>Email</label>
-                                        <input type="text" placeholder="Enter Email"
-                                               t-att-value="request.env.user.partner_id.email or ''"/>
+                                        <!-- name="email" এবং কোম্পানির প্রোফাইল থেকে ভ্যালু যোগ করা হয়েছে -->
+                                        <input type="text" name="email" placeholder="Enter Email"
+                                               t-att-value="request.env.company.email or ''"/>
                                     </div>
                                     <div class="input-group">
                                         <label>Shipping Warehouse Address</label>
-                                        <textarea placeholder="Full Address..."><t t-esc="request.env.user.partner_id.street or ''"/></textarea>
+                                        <!-- name="shipping_address" এবং কোনো স্পেস ছাড়া কোম্পানির street ফিল্ড আনা হয়েছে -->
+                                        <textarea name="shipping_address" placeholder="Full Address..." rows="4"><t t-esc="request.env.company.street or ''"/></textarea>
                                     </div>
                                 </div>
-
                             </div>
-
 
                             <!--====================  Card Here  ==================-->
                             <div class="card-wrap radius-xl">
@@ -56,18 +58,12 @@
                                         <!-- Buy Now → single product -->
                                         <t t-if="is_buy_now and order_line">
                                             <div class="summary-line flex-between gap-2">
-                                                <span>
-                                                    <t t-esc="order_line['product'].name"/>
-                                                </span>
-                                                <span>x
-                                                    <t t-esc="order_line['qty']"/>
-                                                </span>
+                                                <span><t t-esc="order_line['product'].name"/></span>
+                                                <span>x <t t-esc="int(order_line['qty'])"/></span>
                                             </div>
                                             <div class="summary-line flex-between gap-2">
                                                 <span>Unit Price:</span>
-                                                <span>TK
-                                                    <t t-esc="'%.2f' % order_line['product'].list_price"/>
-                                                </span>
+                                                <span>TK <t t-esc="'%.2f' % order_line['product'].list_price"/></span>
                                             </div>
                                         </t>
 
@@ -75,18 +71,12 @@
                                         <t t-if="not is_buy_now and order_lines">
                                             <t t-foreach="order_lines" t-as="line">
                                                 <div class="summary-line flex-between gap-2">
-                                                    <span>
-                                                        <t t-esc="line.product_id.name"/>
-                                                    </span>
-                                                    <span class="fw-medium">x
-                                                        <t t-esc="line.product_uom_qty"/>
-                                                    </span>
+                                                    <span><t t-esc="line.product_id.name"/></span>
+                                                    <span class="fw-medium">x <t t-esc="int(line.product_uom_qty)"/></span>
                                                 </div>
                                                 <div class="summary-line flex-between gap-2">
                                                     <span>Unit Price:</span>
-                                                    <span class="fw-medium">TK
-                                                        <t t-esc="'%.2f' % line.price_unit"/>
-                                                    </span>
+                                                    <span class="fw-medium">TK <t t-esc="'%.2f' % line.price_unit"/></span>
                                                 </div>
                                             </t>
                                         </t>
@@ -94,14 +84,9 @@
 
                                     <div class="flex-column gap-3 mt-5">
                                         <div class="summary-total flex-between gap-3">
-
-                                            <!-- Grand Total -->
                                             <div class="summary-total flex-between gap-3 mt-4 w-100-p">
                                                 <h4 class="fs-lg fw-bold">Grand Total:</h4>
-                                                <h4 class="fs-lg fw-bold">
-                                                    TK
-                                                    <t t-esc="'%.2f' % amount_total"/>
-                                                </h4>
+                                                <h4 class="fs-lg fw-bold">TK <t t-esc="'%.2f' % amount_total"/></h4>
                                             </div>
                                         </div>
                                     </div>
@@ -110,22 +95,19 @@
                                     <button class="btn btn-primary btn-fs-md btn-confirm-order checkout mt-5"
                                             t-att-data-product-id="product_id"
                                             t-att-data-qty="qty"
-                                            style="width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 10px;">
-                                        <svg viewBox="0 0 24 24" width="18" fill="none"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor"
-                                                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            style="width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 10px;"
+                                            type="button">
+                                        <svg viewBox="0 0 24 24" width="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>
                                         Place Order
                                     </button>
                                 </div>
                             </div>
-                        </from>
+                        </form>
                     </div>
-
                 </div>
             </section>
-
 
             <script src="/time_access_portal/static/src/js/checkout.js?v=1"></script>
         </t>

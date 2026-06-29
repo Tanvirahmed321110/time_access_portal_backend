@@ -37,12 +37,8 @@
                                 <div class="info-box">
                                     <h5 class="text-primary mb-2 fw-bolder">Shipping Address</h5>
                                     <p>
-                                        <t t-esc="order.partner_id.street or 'N/A'"/>
-                                        <br/>
-                                        <t t-esc="order.partner_id.city or ''"/>,
-                                        <t t-esc="order.partner_id.zip or ''"/>
-                                        <br/>
-                                        <t t-esc="order.partner_id.country_id.name or ''"/>
+                                        <span class="fw-bold"><t t-esc="request.env.company.name"/></span><br/>
+                                        <t t-esc="request.env.company.street or 'N/A'"/>
                                     </p>
                                 </div>
                                 <div class="info-box">
