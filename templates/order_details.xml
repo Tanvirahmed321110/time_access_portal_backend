@@ -26,7 +26,7 @@
                                         </span>
                                     </p>
                                 </div>
-                                <div class=" d-flex justify-end gap-4 flex-wrap btn-wraps gap-sm-3">
+                                <div class=" d-flex justify-end gap-4 flex-wrap btn-wraps gap-sm-3" style="align-items: stretch;">
                                     <a href="/orders" class="btn btn-outline">Back To Orders</a>
                                     <button class="btn btn-primary" id="downloadInvoiceBtn">Download Invoice</button>
                                 </div>
