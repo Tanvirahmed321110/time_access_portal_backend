@@ -1,0 +1,60 @@
+<odoo>
+    <template id="reusable_pagination" name="Reusable Pagination Component">
+        <t t-if="pager and pager['total_pages'] > 1">
+            <div class="pagination mt-6 flex-between">
+                <span class="page-info">
+                    Showing <t t-esc="pager['start']"/>–<t t-esc="pager['end']"/> of <t t-esc="pager['total']"/> items
+                </span>
+
+                <div class="page-btns d-flex gap-2">
+
+                    <!-- Prev Button -->
+                    <t t-if="pager['has_prev']">
+                        <a t-attf-href="#{pager['url']}?page=#{pager['prev_page']}&amp;per_page=#{pager['per_page']}&amp;#{pager['extra_qs']}"
+                           class="page">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="15 18 9 12 15 6"/>
+                            </svg>
+                        </a>
+                    </t>
+                    <t t-else="">
+                        <span class="page disabled">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="15 18 9 12 15 6"/>
+                            </svg>
+                        </span>
+                    </t>
+
+                    <!-- Page Numbers -->
+                    <t t-foreach="pager['pages']" t-as="p">
+                        <t t-if="p != pager['page']">
+                            <a t-attf-href="#{pager['url']}?page=#{p}&amp;per_page=#{pager['per_page']}&amp;#{pager['extra_qs']}"
+                               class="page" t-esc="p"/>
+                        </t>
+                        <t t-else="">
+                            <span class="page active" t-esc="p"/>
+                        </t>
+                    </t>
+
+                    <!-- Next Button -->
+                    <t t-if="pager['has_next']">
+                        <a t-attf-href="#{pager['url']}?page=#{pager['next_page']}&amp;per_page=#{pager['per_page']}&amp;#{pager['extra_qs']}"
+                           class="page">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </a>
+                    </t>
+                    <t t-else="">
+                        <span class="page disabled">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </span>
+                    </t>
+
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

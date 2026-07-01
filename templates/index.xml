@@ -46,28 +46,21 @@
                             </div>
 
                             <div class="filter-options d-flex gap-6">
-                                <div>
-                                    <!-- Sort select -->
-                                    <select id="sortSelect" onchange="
-                                        let cat = '';
-                                        let url = new URL(window.location.href);
-                                        cat = url.searchParams.get('category_id') || '';
-                                        window.location.href = '/index?sort=' + this.value + (cat ? '&amp;category_id=' + cat : '');
-                                    ">
-                                        <option value="default"
-                                                t-att-selected="'selected' if sort == 'default' else None">Default
-                                            Sorting
-                                        </option>
-                                        <option value="low-high"
-                                                t-att-selected="'selected' if sort == 'low-high' else None">Price: Low
-                                            to High
-                                        </option>
-                                        <option value="high-low"
-                                                t-att-selected="'selected' if sort == 'high-low' else None">Price: High
-                                            to Low
-                                        </option>
-                                    </select>
-                                </div>
+                                <!-- Sort select -->
+                                <select id="sortSelect">
+                                    <option value="default"
+                                            t-att-selected="'selected' if sort == 'default' else None">Default
+                                        Sorting
+                                    </option>
+                                    <option value="low-high"
+                                            t-att-selected="'selected' if sort == 'low-high' else None">Price: Low
+                                        to High
+                                    </option>
+                                    <option value="high-low"
+                                            t-att-selected="'selected' if sort == 'high-low' else None">Price: High
+                                        to Low
+                                    </option>
+                                </select>
 
 
                                 <!-- Grid and List View  -->
@@ -294,43 +287,45 @@
 
 
                             <!--============== Pagination (per page at least 30 item show)=============-->
-                            <t t-if="len(products) > 41">
-                                <div class="d-flex align-end justify-end mt-7 active">
-                                    <nav class="pagination d-flex gap-4 " aria-="Page navigation">
-                                        <a href="#" class="page prev">
-                                            <svg viewBox="0 0 24 24" fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M15 19L8 12L15 5" stroke="currentColor" stroke-width="1.8"
-                                                      stroke-linecap="round" stroke-linejoin="round"/>
-                                            </svg>
-                                        </a>
-                                        <ul class="d-flex gap-2">
-                                            <li>
-                                                <a href="#" class="page ">1</a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="page active">2</a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="page">3</a>
-                                            </li>
-                                            <li>
-                                                <span class="page jump">...</span>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="page">12</a>
-                                            </li>
-                                        </ul>
-                                        <a href="#" class="page next">
-                                            <svg viewBox="0 0 24 24" fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="1.8"
-                                                      stroke-linecap="round" stroke-linejoin="round"/>
-                                            </svg>
-                                        </a>
-                                    </nav>
-                                </div>
-                            </t>
+                            <!-- Pagination  template call-->
+                            <t t-call="time_access_portal.reusable_pagination"/>
+                            <!--                            <t t-if="len(products) > 1">-->
+                            <!--                                <div class="d-flex align-end justify-end mt-7 active">-->
+                            <!--                                    <nav class="pagination d-flex gap-4 " aria-="Page navigation">-->
+                            <!--                                        <a href="#" class="page prev">-->
+                            <!--                                            <svg viewBox="0 0 24 24" fill="none"-->
+                            <!--                                                 xmlns="http://www.w3.org/2000/svg">-->
+                            <!--                                                <path d="M15 19L8 12L15 5" stroke="currentColor" stroke-width="1.8"-->
+                            <!--                                                      stroke-linecap="round" stroke-linejoin="round"/>-->
+                            <!--                                            </svg>-->
+                            <!--                                        </a>-->
+                            <!--                                        <ul class="d-flex gap-2">-->
+                            <!--                                            <li>-->
+                            <!--                                                <a href="#" class="page ">1</a>-->
+                            <!--                                            </li>-->
+                            <!--                                            <li>-->
+                            <!--                                                <a href="#" class="page active">2</a>-->
+                            <!--                                            </li>-->
+                            <!--                                            <li>-->
+                            <!--                                                <a href="#" class="page">3</a>-->
+                            <!--                                            </li>-->
+                            <!--                                            <li>-->
+                            <!--                                                <span class="page jump">...</span>-->
+                            <!--                                            </li>-->
+                            <!--                                            <li>-->
+                            <!--                                                <a href="#" class="page">12</a>-->
+                            <!--                                            </li>-->
+                            <!--                                        </ul>-->
+                            <!--                                        <a href="#" class="page next">-->
+                            <!--                                            <svg viewBox="0 0 24 24" fill="none"-->
+                            <!--                                                 xmlns="http://www.w3.org/2000/svg">-->
+                            <!--                                                <path d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="1.8"-->
+                            <!--                                                      stroke-linecap="round" stroke-linejoin="round"/>-->
+                            <!--                                            </svg>-->
+                            <!--                                        </a>-->
+                            <!--                                    </nav>-->
+                            <!--                                </div>-->
+                            <!--                            </t>-->
                         </div>
 
                         <!--===================  When Search Result Not Match  ====================-->

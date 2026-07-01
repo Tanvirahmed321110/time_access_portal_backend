@@ -116,15 +116,53 @@ function clearProductSearch() {
 }
 
 
- //  for sort dropdown
- document.getElementById('sortSelect').addEventListener('change', function() {
-    let url = new URL(window.location.href);
-    let cat = url.searchParams.get('category_id') || '';
-    let newUrl = '/index?sort=' + this.value;
-    if (cat) newUrl += '&category_id=' + cat;
-    window.location.href = newUrl;
+// for sort dropdown
+// document.getElementById('sortSelect').addEventListener('change', function() {
+//     const sortValue = this.value;
+//     const container = document.getElementById('grid-list-contents');
+//     const cards = Array.from(container.querySelectorAll('.product-card'));
+//
+//     cards.sort((a, b) => {
+//         const priceA = parseFloat(a.querySelector('.new-price span').textContent);
+//         const priceB = parseFloat(b.querySelector('.new-price span').textContent);
+//
+//         if (sortValue === 'low-high') return priceA - priceB;
+//         if (sortValue === 'high-low') return priceB - priceA;
+//         return 0;
+//     });
+//
+//     cards.forEach(card => container.appendChild(card));
+// });
+
+
+// for sort dropdown
+document.addEventListener('DOMContentLoaded', function() {
+    const container = document.getElementById('grid-list-contents');
+    const sortSelect = document.getElementById('sortSelect');
+
+    // ===== Original order save kora (page load somoy) =====
+    const originalCards = Array.from(container.querySelectorAll('.product-card'));
+
+    sortSelect.addEventListener('change', function() {
+        const sortValue = this.value;
+
+        if (sortValue === 'default') {
+            // ===== Original order restore kora =====
+            originalCards.forEach(card => container.appendChild(card));
+            return;
+        }
+
+        const cards = Array.from(container.querySelectorAll('.product-card'));
+
+        cards.sort((a, b) => {
+            const priceA = parseFloat(a.querySelector('.new-price span').textContent);
+            const priceB = parseFloat(b.querySelector('.new-price span').textContent);
+
+            if (sortValue === 'low-high') return priceA - priceB;
+            if (sortValue === 'high-low') return priceB - priceA;
+            return 0;
+        });
+
+        cards.forEach(card => container.appendChild(card));
+    });
 });
-
-
-
-

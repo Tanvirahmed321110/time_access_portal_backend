@@ -551,6 +551,7 @@ input[type="checkbox"]:focus {
     align-items: center;
     justify-content: center;
     font-size: var(--fs-sm);
+    color:var(--color-text-primary);
 }
 
 .pagination .jumper {
@@ -562,8 +563,8 @@ input[type="checkbox"]:focus {
 .pagination .page.active,
 .pagination .next:not(.disabled):hover,
 .pagination .prev:not(.disabled):hover {
-    background-color: var(--primary-color);
-    color: var(--my-white);
+    background-color: var(--color-primary);
+    color: var(--color-white);
 }
 
 /* Disabled state fixed style */

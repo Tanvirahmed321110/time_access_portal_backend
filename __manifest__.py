@@ -31,6 +31,7 @@
         'templates/profile.xml',
         'templates/orders.xml',
         'templates/order_details.xml',
+        'templates/pagination.xml',
 
 
         # views
