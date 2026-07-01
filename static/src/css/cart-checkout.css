@@ -179,8 +179,13 @@ textarea {
 
 
 
-
-
+.pagination .page.disabled, .pagination .prev.disabled, .pagination .next.disabled {
+    background-color: #fff;    box-shadow: var(--shadow-1);
+}
+.pagination .page, .pagination .jumper, .pagination .next, .pagination .prev {
+        box-shadow: var(--shadow-1);
+    background-color:#fff;
+}
 
 
 /* =====================  Order Confirm Page  ==================== */

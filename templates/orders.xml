@@ -40,16 +40,13 @@
                                                 </div>
                                             </div>
 
-                                            <!-- অর্ডার ডেট সেকশন -->
                                             <div style="font-size: 14px; color: #64748b; margin-bottom: 16px; display: flex; align-items: center; gap: 6px;">
                                                 <i class="fa fa-calendar"></i>
                                                 <t t-esc="order.date_order.strftime('%B %d, %Y') if order.date_order else ''"/>
                                             </div>
 
-                                            <!-- ডিভাইডার লাইন -->
                                             <hr style="border: 0; border-top: 1px solid #f1f5f9; margin-bottom: 16px;"/>
 
-                                            <!-- অ্যামাউন্ট ইনফো গ্রুপ -->
                                             <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px;">
                                                 <!-- মোট বিল -->
                                                 <div style="display: flex; justify-content: space-between; font-size: 14px; color: #64748b;">
@@ -59,7 +56,6 @@
                                                     </span>
                                                 </div>
 
-                                                <!-- পেইড অ্যামাউন্ট -->
                                                 <div style="display: flex; justify-content: space-between; font-size: 14px; color: #64748b;">
                                                     <span>Total Paid:</span>
                                                     <span style="font-weight: 600; color: #16a34a;">TK
@@ -67,7 +63,6 @@
                                                     </span>
                                                 </div>
 
-                                                <!-- ডিউ অ্যামাউন্ট (কন্ডিশনসহ: ডিউ ০ হলে সবুজ, বেশি হলে লাল দেখাবে) -->
                                                 <div style="display: flex; justify-content: space-between; font-size: 15px; padding-top: 10px; border-top: 1px dashed #e2e8f0;">
                                                     <span style="font-weight: 600; color: #1e293b;">Total Due:</span>
                                                     <t t-set="total_due"
@@ -84,10 +79,10 @@
                                             </div>
                                         </div>
 
-                                        <!-- অ্যাকশন বাটন (মোবাইল ফ্রেন্ডলি ফুল উইডথ) -->
+
                                         <div style="margin-top: auto;">
                                             <a t-att-href="'/orders/%s' % order.id"
-                                               class="btn btn-outline btn-sm"
+                                               class="btn btn-primary btn-sm"
                                                style="display: block; text-align: center; width: 100%; padding: 11px 0; font-weight: 600; border-radius: 10px; text-decoration: none;">
                                                 View Details
                                             </a>
@@ -97,6 +92,9 @@
                                 </t>
 
                             </div>
+
+                            <!-- ===== Pagination Add Kora Holo ===== -->
+                            <t t-call="time_access_portal.reusable_pagination"/>
                         </t>
 
                         <!--=============== When Order Empty ===============-->
