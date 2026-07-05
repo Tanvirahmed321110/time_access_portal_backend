@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-    <!-- Action: Add to Carts -->
+    <!-- Add to Carts Menu Action: only Add to Cart state -->
     <record id="action_add_to_carts" model="ir.actions.act_window">
         <field name="name">Add to Carts</field>
         <field name="res_model">sale.order</field>
@@ -17,58 +17,17 @@
               action="action_add_to_carts"
               sequence="1"/>
 
-    <!-- Hide add_to_cart from statusbar -->
-    <record id="view_order_form_inherit_add_to_cart_state" model="ir.ui.view">
-        <field name="name">sale.order.form.inherit.add.to.cart.state</field>
-        <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_form"/>
-        <field name="arch" type="xml">
-
-            <xpath expr="//field[@name='state']" position="attributes">
-                <attribute name="statusbar_visible">draft,sent,sale</attribute>
-            </xpath>
-
-        </field>
-    </record>
-
-
-     <!-- ========================================================= -->
-    <!-- Add to Carts Menu Action: only Add to Cart state           -->
-    <!-- ========================================================= -->
-    <record id="action_add_to_carts" model="ir.actions.act_window">
-        <field name="name">Add to Carts</field>
-        <field name="res_model">sale.order</field>
-        <field name="view_mode">list,form</field>
-        <field name="domain">[('state', '=', 'add_to_cart')]</field>
-        <field name="context">{'default_state': 'add_to_cart'}</field>
-    </record>
-
-    <menuitem id="menu_add_to_carts"
-              name="Add to Carts"
-              parent="sale.sale_order_menu"
-              action="action_add_to_carts"
-              sequence="1"/>
-
-
-    <!-- ========================================================= -->
-    <!-- Quotations Menu: hide Add to Cart orders                   -->
-    <!-- ========================================================= -->
+    <!-- Quotations Menu: hide Add to Cart orders -->
     <record id="sale.action_quotations_with_onboarding" model="ir.actions.act_window">
         <field name="domain">[('state', 'in', ['draft', 'sent'])]</field>
     </record>
 
-
-    <!-- ========================================================= -->
-    <!-- Orders Menu: hide Add to Cart orders                       -->
-    <!-- ========================================================= -->
+    <!-- Orders Menu: hide Add to Cart orders -->
     <record id="sale.action_orders" model="ir.actions.act_window">
         <field name="domain">[('state', 'not in', ['draft', 'sent', 'cancel', 'add_to_cart'])]</field>
     </record>
 
-
-    <!-- ========================================================= -->
-    <!-- Hide Add to Cart from sale order statusbar                 -->
-    <!-- ========================================================= -->
+    <!-- Hide Add to Cart from sale order statusbar -->
     <record id="view_order_form_inherit_add_to_cart_state" model="ir.ui.view">
         <field name="name">sale.order.form.inherit.add.to.cart.state</field>
         <field name="model">sale.order</field>

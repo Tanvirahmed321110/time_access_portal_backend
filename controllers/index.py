@@ -67,10 +67,11 @@ class TimeAccessPortal(http.Controller):
         partner = request.env.user.partner_id
         sale_order = request.env['sale.order'].sudo().search([
             ('partner_id', '=', partner.id),
-            ('state', '=', 'draft'),
+            ('state', '=', 'add_to_cart'),
         ], limit=1)
 
         cart_product_ids = sale_order.order_line.mapped('product_id').ids if sale_order else []
+
 
         return request.render('time_access_portal.index_page', {
             'active_menu': 'products',

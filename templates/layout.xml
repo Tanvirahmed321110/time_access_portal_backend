@@ -84,7 +84,7 @@
                                     </svg>
 
                                     <!-- cart count/batch -->
-                                    <t t-set="sale_order" t-value="request.env['sale.order'].sudo().search([('partner_id', '=', request.env.user.partner_id.id), ('state', '=', 'draft')], limit=1)"/>
+                                    <t t-set="sale_order" t-value="request.env['sale.order'].sudo().search([('partner_id', '=', request.env.user.partner_id.id), ('state', '=', 'add_to_cart')], limit=1)"/>
                                     <t t-set="cart_count" t-value="len(sale_order.order_line) if sale_order else 0"/>
 
                                     <!-- cart count/batch -->
