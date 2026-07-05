@@ -39,6 +39,7 @@
         'views/product_product_view.xml',
         'views/sequence_inherit.xml',
         'views/category_inherit.xml',
+        'views/sales_inherit_view.xml',
     ],
     'assets': {
         'web.assets_frontend': [

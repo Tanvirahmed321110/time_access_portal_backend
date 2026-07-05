@@ -1,18 +1,20 @@
 from odoo import http
 from odoo.http import request
 
+
 class TimeAccessPortal(http.Controller):
 
-    # ==================  Cart  Page ===================
+    CART_STATE = 'add_to_cart'
+
+    # ================== Cart Page ===================
     @http.route('/cart', type='http', auth='user', website=True)
     def index_f(self, **kw):
-
         partner = request.env.user.partner_id
 
         order = request.env['sale.order'].sudo().search([
             ('partner_id', '=', partner.id),
-            ('state', '=', 'draft')
-        ],limit=1)
+            ('state', '=', self.CART_STATE),
+        ], limit=1)
 
         order_lines = order.order_line if order else []
 
@@ -21,50 +23,59 @@ class TimeAccessPortal(http.Controller):
             'order_lines': order_lines,
         })
 
-
-    # ==================  Add To Cart  ===================
+    # ================== Add To Cart ===================
     @http.route('/cart/add', type='json', auth='user', website=True)
     def add_to_cart(self, product_id, quantity=1, **kw):
         partner = request.env.user.partner_id
 
-        # Existing draft order  check
+        product = request.env['product.product'].sudo().browse(int(product_id)).exists()
+        if not product:
+            return {
+                'success': False,
+                'message': 'Product not found',
+            }
+
+        quantity = float(quantity or 1)
+
         order = request.env['sale.order'].sudo().search([
             ('partner_id', '=', partner.id),
-            ('state', '=', 'draft'),
+            ('state', '=', self.CART_STATE),
         ], limit=1)
 
-        #  draft order
         if not order:
             order = request.env['sale.order'].sudo().create({
                 'partner_id': partner.id,
-                'state': 'draft',
+                'state': self.CART_STATE,
             })
 
-        # Product check
         existing_line = order.order_line.filtered(
-            lambda l: l.product_id.id == product_id
+            lambda line: line.product_id.id == product.id
         )
 
         if existing_line:
-            existing_line.product_uom_qty += quantity
+            existing_line[0].sudo().write({
+                'product_uom_qty': existing_line[0].product_uom_qty + quantity,
+            })
         else:
             request.env['sale.order.line'].sudo().create({
                 'order_id': order.id,
-                'product_id': product_id,
+                'product_id': product.id,
                 'product_uom_qty': quantity,
+                'product_uom': product.uom_id.id,
             })
 
-        return {'success': True, 'order_id': order.id}
+        return {
+            'success': True,
+            'order_id': order.id,
+        }
 
-
-
-    # ==================  Cart  Remove  ===================
+    # ================== Cart Remove ===================
     @http.route('/cart/remove', type='json', auth='user', website=True)
     def remove_from_cart(self, line_id, **kw):
         line = request.env['sale.order.line'].sudo().search([
-            ('id', '=', line_id),
+            ('id', '=', int(line_id)),
             ('order_id.partner_id', '=', request.env.user.partner_id.id),
-            ('order_id.state', '=', 'draft'),
+            ('order_id.state', '=', self.CART_STATE),
         ], limit=1)
 
         if line:
@@ -77,20 +88,29 @@ class TimeAccessPortal(http.Controller):
                 'amount_tax': float(order.amount_tax),
                 'amount_total': float(order.amount_total),
             }
+
         return {'success': False}
 
-    # ==================  Update Quantity  ===================
+    # ================== Update Quantity ===================
     @http.route('/cart/update_qty', type='json', auth='user', website=True)
     def update_cart_qty(self, line_id, quantity, **kw):
         line = request.env['sale.order.line'].sudo().search([
-            ('id', '=', line_id),
+            ('id', '=', int(line_id)),
             ('order_id.partner_id', '=', request.env.user.partner_id.id),
-            ('order_id.state', '=', 'draft'),
+            ('order_id.state', '=', self.CART_STATE),
         ], limit=1)
 
         if line:
             order = line.order_id
-            line.product_uom_qty = quantity
+            quantity = float(quantity or 1)
+
+            if quantity < 1:
+                quantity = 1
+
+            line.sudo().write({
+                'product_uom_qty': quantity,
+            })
+
             return {
                 'success': True,
                 'amount_untaxed': float(order.amount_untaxed),
@@ -98,4 +118,5 @@ class TimeAccessPortal(http.Controller):
                 'amount_total': float(order.amount_total),
                 'price_subtotal': float(line.price_subtotal),
             }
+
         return {'success': False}

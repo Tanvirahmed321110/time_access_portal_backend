@@ -130,13 +130,17 @@
                                  id="grid-list-contents">
 
                                 <t t-foreach="products" t-as="product">
+                                    <t t-set="variant" t-value="product.product_variant_id"/>
+
                                     <div class="product-card"
                                          t-att-data-name="product.name or ''"
                                          t-att-data-item-id="product.default_code or product.id">
 
                                         <!-- cart tag -->
                                         <t t-if="product.product_tag_ids">
-                                            <div class="tag-badge" t-esc="product.product_tag_ids"></div>
+                                            <t t-foreach="product.product_tag_ids" t-as="tag">
+                                                <div class="tag-badge" t-esc="tag.name"/>
+                                            </t>
                                         </t>
 
                                         <!--===== Product Images =====-->
@@ -152,43 +156,39 @@
                                                          src="/web/static/img/placeholder.png"
                                                          alt="product image"/>
                                                 </t>
-                                                <!--                                            <img class="hover-img"-->
-                                                <!--                                                 src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&amp;q=80"-->
-                                                <!--                                                 alt=""/>-->
                                             </div>
                                         </div>
 
                                         <!--===== Product Content ====-->
                                         <div class="product-content">
                                             <div>
-                                                <!-- product id -->
                                                 <div class="product-id fs-xs">SKU:
-                                                    <span t-esc="product.default_code"></span>
+                                                    <span t-esc="product.default_code or ''"/>
                                                 </div>
 
-                                                <!-- product name -->
-                                                <a href="#" class="product-name" t-esc="product.name">UltraHD
-                                                    4K Display Panels (Wholesale) Display New
-                                                </a>
+                                                <a href="#" class="product-name" t-esc="product.name"/>
 
-                                                <!-- price -->
-                                                <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">
-                                                    <div class="new-price fs-md">TK
-                                                        <span t-esc="product.b2b_price">1200.00</span>
+                                                <!-- B2B price only for management -->
+                                                <t t-if="request.env.user.has_group('time_access_portal.group_b2b_management')">
+                                                    <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">
+                                                        <div class="new-price fs-md">TK
+                                                            <span t-esc="'%.2f' % product.b2b_price"/>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </t>
                                             </div>
 
-
                                             <div class="qty-btns">
-                                                <!-- quantity input -->
                                                 <div class="d-flex align-center gap-4">
                                                     <div class="qty-wrapper d-flex align-center mt-3 gap-2">
-                                                        <label class="">Quantity:</label>
-                                                        <input type="number" class="qty-input"
-                                                               t-att-id="'qty-%s' % product.id" value="5"
+                                                        <label>Quantity:</label>
+                                                        <input type="number"
+                                                               class="qty-input"
+                                                               t-att-id="'qty-%s' % variant.id"
+                                                               value="5"
                                                                min="5"/>
                                                     </div>
+
                                                     <div class="mt-2">
                                                         <span>Stock:</span>
                                                         <span class="fw-bold"
@@ -197,13 +197,12 @@
                                                     </div>
                                                 </div>
 
-                                                <!-- Card Buttons -->
                                                 <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
 
                                                     <!-- Add to Cart Button -->
-                                                    <t t-if="product.id in cart_product_ids">
+                                                    <t t-if="variant.id in cart_product_ids">
                                                         <button class="btn add_to_cart btn-outline disabled"
-                                                                t-att-data-product-id="product.id"
+                                                                t-att-data-product-id="variant.id"
                                                                 disabled="disabled"
                                                                 title="Already added to cart">
                                                             Added to Cart
@@ -212,14 +211,15 @@
 
                                                     <t t-else="">
                                                         <button class="btn add_to_cart btn-outline"
-                                                                t-att-data-product-id="product.id">
+                                                                t-att-data-product-id="variant.id">
                                                             Add to Cart
                                                         </button>
                                                     </t>
 
                                                     <!-- Buy Now Button -->
-                                                    <a href="#" class="btn btn-primary btn-buy-now"
-                                                       t-att-data-product-id="product.id">
+                                                    <a href="#"
+                                                       class="btn btn-primary btn-buy-now"
+                                                       t-att-data-product-id="variant.id">
                                                         Buy Now
                                                     </a>
                                                 </div>

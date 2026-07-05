@@ -3,7 +3,7 @@
     <!-- Group Category -->
     <record id="timeaccess_category_b2b_portal" model="ir.module.category">
         <field name="name">B2B Portal</field>
-        <field name="sequence">0</field>
+        <field name="sequence">10</field>
     </record>
 
     <!-- General User -->

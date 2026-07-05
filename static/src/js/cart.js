@@ -194,7 +194,6 @@ if (buyNowBtns.length > 0) {
             .then(res => res.json())
             .then(data => {
                 if (data.result && data.result.success) {
-                    // Cart-এ add হলে checkout-এ redirect
                     window.location.href = '/checkout';
                 }
             });
