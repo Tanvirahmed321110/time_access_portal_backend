@@ -425,8 +425,13 @@ textarea {
 }
 
 .order-sec .badge.pending {
-    background: #fff4e6;
-    color: #e67e22;
+    background: #b0db34;
+    color: #915621;
+    font-weight: 700;
+}
+.order-sec .badge.processing {
+    background: #abc759;
+    color: #743d0c;
     font-weight: 700;
 }
 

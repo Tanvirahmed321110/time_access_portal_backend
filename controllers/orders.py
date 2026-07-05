@@ -12,7 +12,7 @@ class TimeAccessPortal(http.Controller):
 
         domain = [
             ('partner_id', '=', partner.id),
-            ('state', 'in', ['sale', 'done', 'cancel']),
+            ('state', 'in', ['sale', 'done', 'cancel','draft']),
         ]
 
         # ===== Pagination Setup =====

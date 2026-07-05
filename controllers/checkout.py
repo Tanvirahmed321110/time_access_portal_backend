@@ -27,7 +27,7 @@ class TimeAccessPortal(http.Controller):
         else:
             sale_order = request.env['sale.order'].sudo().search([
                 ('partner_id', '=', partner.id),
-                ('state', '=', 'draft'),
+                ('state', '=', 'add_to_cart'),
             ], limit=1)
 
             if sale_order:
@@ -45,12 +45,12 @@ class TimeAccessPortal(http.Controller):
         })
 
     # ===== Cart flow =====
+    # ===== Confirm Cart / Buy Now as Draft Quotation =====
     @http.route('/cart/confirm', type='json', auth='user', website=True)
     def confirm_order(self, product_id=None, qty=1, **kw):
         partner = request.env.user.partner_id
 
         company_name = kw.get('company_name', '').strip()
-        bin_number = kw.get('bin_number', '').strip()
         phone = kw.get('phone', '').strip()
         email = kw.get('email', '').strip()
         shipping_address = kw.get('shipping_address', '').strip()
@@ -58,34 +58,62 @@ class TimeAccessPortal(http.Controller):
         current_company = request.env.company.sudo()
 
         if current_company:
-            current_company.write({
-                'name': company_name if company_name else current_company.name,
-                'vat': bin_number if bin_number else current_company.vat,
-                'phone': phone if phone else current_company.phone,
-                'email': email if email else current_company.email,
-                'street': shipping_address if shipping_address else current_company.street
-            })
+            vals = {}
+
+            if company_name:
+                vals['name'] = company_name
+            if phone:
+                vals['phone'] = phone
+            if email:
+                vals['email'] = email
+            if shipping_address:
+                vals['street'] = shipping_address
+
+            if vals:
+                current_company.write(vals)
 
         # ===== Buy Now flow =====
         if product_id:
+            product = request.env['product.product'].sudo().browse(int(product_id)).exists()
+
+            if not product:
+                return {
+                    'success': False,
+                    'error': 'Product not found',
+                }
+
             order = request.env['sale.order'].sudo().create({
                 'partner_id': partner.id,
+                'state': 'draft',
             })
+
             request.env['sale.order.line'].sudo().create({
                 'order_id': order.id,
-                'product_id': int(product_id),
-                'product_uom_qty': float(qty),
+                'product_id': product.id,
+                'product_uom_qty': float(qty or 1),
+                'product_uom': product.uom_id.id,
+                'price_unit': product.lst_price,
             })
 
         # ===== Cart flow =====
         else:
             order = request.env['sale.order'].sudo().search([
                 ('partner_id', '=', partner.id),
-                ('state', '=', 'draft'),
+                ('state', '=', 'add_to_cart'),
             ], limit=1)
 
             if not order:
-                return {'success': False, 'error': 'No cart found'}
+                return {
+                    'success': False,
+                    'error': 'No cart found',
+                }
 
-        order.action_confirm()
-        return {'success': True, 'order_id': order.id}
+            # Add to Cart state theke Draft/Quotation stage e niye jabe
+            order.sudo().write({
+                'state': 'draft',
+            })
+
+        return {
+            'success': True,
+            'order_id': order.id,
+        }

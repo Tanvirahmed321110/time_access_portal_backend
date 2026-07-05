@@ -4,7 +4,6 @@ from odoo.http import request
 
 class TimeAccessPortal(http.Controller):
 
-    CART_STATE = 'add_to_cart'
 
     # ================== Cart Page ===================
     @http.route('/cart', type='http', auth='user', website=True)
@@ -13,7 +12,7 @@ class TimeAccessPortal(http.Controller):
 
         order = request.env['sale.order'].sudo().search([
             ('partner_id', '=', partner.id),
-            ('state', '=', self.CART_STATE),
+            ('state', '=', 'add_to_cart'),
         ], limit=1)
 
         order_lines = order.order_line if order else []
@@ -39,13 +38,13 @@ class TimeAccessPortal(http.Controller):
 
         order = request.env['sale.order'].sudo().search([
             ('partner_id', '=', partner.id),
-            ('state', '=', self.CART_STATE),
+            ('state', '=', 'add_to_cart'),
         ], limit=1)
 
         if not order:
             order = request.env['sale.order'].sudo().create({
                 'partner_id': partner.id,
-                'state': self.CART_STATE,
+                'state': 'add_to_cart',
             })
 
         existing_line = order.order_line.filtered(
@@ -75,7 +74,7 @@ class TimeAccessPortal(http.Controller):
         line = request.env['sale.order.line'].sudo().search([
             ('id', '=', int(line_id)),
             ('order_id.partner_id', '=', request.env.user.partner_id.id),
-            ('order_id.state', '=', self.CART_STATE),
+            ('order_id.state', '=', 'add_to_cart'),
         ], limit=1)
 
         if line:
@@ -97,7 +96,7 @@ class TimeAccessPortal(http.Controller):
         line = request.env['sale.order.line'].sudo().search([
             ('id', '=', int(line_id)),
             ('order_id.partner_id', '=', request.env.user.partner_id.id),
-            ('order_id.state', '=', self.CART_STATE),
+            ('order_id.state', '=', 'add_to_cart'),
         ], limit=1)
 
         if line:

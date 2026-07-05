@@ -22,11 +22,14 @@
                                     </h5>
                                     <p class="mt-2 ">
                                         <span class="fw-bolder">Placed on:
-                                            <span class="fw-normal"><t t-esc="order.date_order.strftime('%B %d, %Y at %I:%M %p') if order.date_order else ''"/></span>
+                                            <span class="fw-normal">
+                                                <t t-esc="order.date_order.strftime('%B %d, %Y at %I:%M %p') if order.date_order else ''"/>
+                                            </span>
                                         </span>
                                     </p>
                                 </div>
-                                <div class=" d-flex justify-end gap-4 flex-wrap btn-wraps gap-sm-3" style="align-items: stretch;">
+                                <div class=" d-flex justify-end gap-4 flex-wrap btn-wraps gap-sm-3"
+                                     style="align-items: stretch;">
                                     <a href="/orders" class="btn btn-outline">Back To Orders</a>
                                     <button class="btn btn-primary" id="downloadInvoiceBtn">Download Invoice</button>
                                 </div>
@@ -37,13 +40,18 @@
                                 <div class="info-box">
                                     <h5 class="text-primary mb-2 fw-bolder">Shipping Address</h5>
                                     <p>
-                                        <span class="fw-medium"><t t-esc="request.env.company.name"/></span><br/>
+                                        <span class="fw-medium">
+                                            <t t-esc="request.env.company.name"/>
+                                        </span>
+                                        <br/>
                                         <t t-esc="request.env.company.street or 'N/A'"/>
                                     </p>
                                 </div>
                                 <div class="info-box">
                                     <h5 class="text-primary mb-2 fw-bolder">Payment Method</h5>
-                                    <p>Bank Transfer<br/> <span class="fw-medium">Status:</span>
+                                    <p>
+                                        <br/>
+                                        <span class="fw-medium">Status:</span>
                                         <t t-if="order.invoice_ids">
                                             <span class="badge success">Paid</span>
                                         </t>
@@ -54,11 +62,16 @@
                                 </div>
                                 <div class="info-box">
                                     <h5 class="text-primary mb-2 fw-bold">Fulfillment Status</h5>
-                                    <p><span class="fw-medium">Status:</span>
-                                        <t t-if="order.state == 'sale'">
-                                            <span class="badge pending">Processing</span>
+                                    <p>
+                                        <span class="fw-medium">Status:</span>
+
+                                        <t t-if="order.state == 'draft'">
+                                            <span class="badge pending">Pending</span>
                                         </t>
-                                        <t t-elif="order.state == 'done'">
+                                        <t t-elif="order.state == 'sale'">
+                                            <span class="badge processing">Processing</span>
+                                        </t>
+                                        <t t-elif="order.state == 'Done'">
                                             <span class="badge success">Delivered</span>
                                         </t>
                                         <t t-elif="order.state == 'cancel'">
@@ -66,14 +79,20 @@
                                         </t>
                                         <br/>
                                         <t t-if="delivery_date">
-                                            Delivered Date: <span class="fw-medium"><t t-esc="delivery_date.strftime('%B %d, %Y')"/></span>
+                                            Delivered Date:
+                                            <span class="fw-medium">
+                                                <t t-esc="delivery_date.strftime('%B %d, %Y')"/>
+                                            </span>
                                         </t>
                                         <t t-elif="order.state == 'done' and not delivery_date">
-                                            Delivered Date: <span class="fw-medium"><t t-esc="order.write_date.strftime('%B %d, %Y')"/></span>
+                                            Delivered Date:
+                                            <span class="fw-medium">
+                                                <t t-esc="order.write_date.strftime('%B %d, %Y')"/>
+                                            </span>
                                         </t>
                                         <t t-else="">
                                             <span class="fw-medium">Expected Delivery:</span>
-                                             3 to 7 days
+                                            3 to 7 days
                                         </t>
                                     </p>
                                 </div>

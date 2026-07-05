@@ -8,7 +8,6 @@ if (confirmBtn) {
 
 
         let companyName = document.querySelector('[name="company_name"]')?.value || '';
-        let binNumber = document.querySelector('[name="bin_number"]')?.value || '';
         let phone = document.querySelector('[name="phone"]')?.value || '';
         let email = document.querySelector('[name="email"]')?.value || '';
         let shippingAddress = document.querySelector('[name="shipping_address"]')?.value || '';
@@ -23,7 +22,6 @@ if (confirmBtn) {
                     product_id: productId,
                     qty: qty,
                     company_name: companyName,
-                    bin_number: binNumber,
                     phone: phone,
                     email: email,
                     shipping_address: shippingAddress

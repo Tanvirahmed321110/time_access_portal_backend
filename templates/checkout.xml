@@ -19,31 +19,21 @@
                                 <div class="flex-column gap-6 mt-5">
                                     <div class="input-group">
                                         <label>Company Name</label>
-                                        <!-- name="company_name" এবং কোম্পানির প্রোফাইল থেকে ভ্যালু যোগ করা হয়েছে -->
                                         <input type="text" name="company_name" placeholder="Company Name"
                                                t-att-value="request.env.company.name or ''"/>
                                     </div>
                                     <div class="input-group">
-                                        <label>Business License / BIN Number</label>
-                                        <!-- name="bin_number" এবং কোম্পানির প্রোফাইল থেকে ভ্যালু যোগ করা হয়েছে -->
-                                        <input type="text" name="bin_number" placeholder="Business License"
-                                               t-att-value="request.env.company.vat or ''"/>
-                                    </div>
-                                    <div class="input-group">
                                         <label>Phone</label>
-                                        <!-- name="phone" এবং কোম্পানির প্রোফাইল থেকে ভ্যালু যোগ করা হয়েছে -->
                                         <input type="text" name="phone" placeholder="Enter Phone"
                                                t-att-value="request.env.company.phone or ''"/>
                                     </div>
                                     <div class="input-group">
                                         <label>Email</label>
-                                        <!-- name="email" এবং কোম্পানির প্রোফাইল থেকে ভ্যালু যোগ করা হয়েছে -->
                                         <input type="text" name="email" placeholder="Enter Email"
                                                t-att-value="request.env.company.email or ''"/>
                                     </div>
                                     <div class="input-group">
                                         <label>Shipping Warehouse Address</label>
-                                        <!-- name="shipping_address" এবং কোনো স্পেস ছাড়া কোম্পানির street ফিল্ড আনা হয়েছে -->
                                         <textarea name="shipping_address" placeholder="Full Address..." rows="4"><t t-esc="request.env.company.street or ''"/></textarea>
                                     </div>
                                 </div>

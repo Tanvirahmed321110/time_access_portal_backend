@@ -28,10 +28,13 @@
                                                     <t t-esc="order.name"/>
                                                 </span>
                                                 <div>
-                                                    <t t-if="order.state == 'sale'">
-                                                        <span class="badge pending">Processing</span>
+                                                    <t t-if="order.state == 'draft'">
+                                                        <span class="badge pending">Pending</span>
                                                     </t>
-                                                    <t t-elif="order.state == 'done'">
+                                                    <t t-elif="order.state == 'sale'">
+                                                        <span class="badge processing">Processing</span>
+                                                    </t>
+                                                      <t t-elif="order.state == 'Done'">
                                                         <span class="badge success">Delivered</span>
                                                     </t>
                                                     <t t-elif="order.state == 'cancel'">
