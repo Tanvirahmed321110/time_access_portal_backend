@@ -8,10 +8,19 @@
         <field name="inherit_id" ref="product.product_template_only_form_view"/>
         <field name="arch" type="xml">
 
-            <xpath expr="//field[@name='categ_id']" position="after">
-                <field name="is_b2b_portal"
-                       string="Show in B2B Portal"
-                       widget="boolean_toggle"/>
+            <xpath expr="//field[@name='purchase_ok']/.." position="after">
+                <span class="d-inline-block">
+                    <field name="is_b2b_portal"/>
+                    <label for="is_b2b_portal"/>
+                </span>
+            </xpath>
+
+            <xpath expr="//field[@name='categ_id']" position="before">
+                <field name="b2b_price" string="B2B Price" widget="monetary" class="oe_inline"/>
+            </xpath>
+
+            <xpath expr="//field[@name='b2b_price']" position="after">
+                <field name="b2b_qty" string="B2B Quantity" class="oe_inline"/>
             </xpath>
 
         </field>

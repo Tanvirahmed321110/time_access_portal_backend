@@ -135,7 +135,9 @@
                                          t-att-data-item-id="product.default_code or product.id">
 
                                         <!-- cart tag -->
-                                        <div class="tag-badge">hot seller</div>
+                                        <t t-if="product.product_tag_ids">
+                                            <div class="tag-badge" t-esc="product.product_tag_ids"></div>
+                                        </t>
 
                                         <!--===== Product Images =====-->
                                         <div class="top-area">
@@ -160,7 +162,7 @@
                                         <div class="product-content">
                                             <div>
                                                 <!-- product id -->
-                                                <div class="product-id fs-xs">Item ID:
+                                                <div class="product-id fs-xs">SKU:
                                                     <span t-esc="product.default_code"></span>
                                                 </div>
 
@@ -172,10 +174,7 @@
                                                 <!-- price -->
                                                 <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">
                                                     <div class="new-price fs-md">TK
-                                                        <span t-esc="product.list_price">1200.00</span>
-                                                    </div>
-                                                    <div class="old-price">TK
-                                                        <span>1340.00</span>
+                                                        <span t-esc="product.b2b_price">1200.00</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -183,11 +182,19 @@
 
                                             <div class="qty-btns">
                                                 <!-- quantity input -->
-                                                <div class="qty-wrapper d-flex align-center mt-3 gap-2">
-                                                    <label class="">Quantity:</label>
-                                                    <input type="number" class="qty-input"
-                                                           t-att-id="'qty-%s' % product.id" value="5"
-                                                           min="5"/>
+                                                <div class="d-flex align-center gap-4">
+                                                    <div class="qty-wrapper d-flex align-center mt-3 gap-2">
+                                                        <label class="">Quantity:</label>
+                                                        <input type="number" class="qty-input"
+                                                               t-att-id="'qty-%s' % product.id" value="5"
+                                                               min="5"/>
+                                                    </div>
+                                                    <div class="mt-2">
+                                                        <span>Stock:</span>
+                                                        <span class="fw-bold"
+                                                              t-field="product.qty_available"
+                                                              t-options="{'widget': 'float', 'precision': 0}"/>
+                                                    </div>
                                                 </div>
 
                                                 <!-- Card Buttons -->
