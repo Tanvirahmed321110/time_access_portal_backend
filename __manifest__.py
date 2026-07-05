@@ -35,7 +35,7 @@
         'templates/pagination.xml',
 
 
-        # views
+        # views here
         'views/product_product_view.xml',
         'views/sequence_inherit.xml',
         'views/category_inherit.xml',
