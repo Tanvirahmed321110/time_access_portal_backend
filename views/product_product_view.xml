@@ -16,7 +16,11 @@
             </xpath>
 
             <xpath expr="//field[@name='categ_id']" position="before">
-                <field name="b2b_price" string="B2B Price" widget="monetary" class="oe_inline"/>
+                <field name="b2b_price"
+                       string="B2B Price"
+                       widget="monetary"
+                       groups="time_access_portal.group_b2b_management"
+                       class="oe_inline"/>
             </xpath>
 
             <xpath expr="//field[@name='b2b_price']" position="after">

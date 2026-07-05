@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Group Category -->
+    <record id="timeaccess_category_b2b_portal" model="ir.module.category">
+        <field name="name">B2B Portal</field>
+        <field name="sequence">0</field>
+    </record>
+
+    <!-- General User -->
+    <record id="group_b2b_general_user" model="res.groups">
+        <field name="name">B2B General User</field>
+        <field name="category_id" ref="timeaccess_category_b2b_portal"> </field>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"> </field>
+    </record>
+
+    <!-- Management -->
+    <record id="group_b2b_management" model="res.groups">
+        <field name="name">B2B Management</field>
+        <field name="category_id" ref="timeaccess_category_b2b_portal"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+</odoo>
