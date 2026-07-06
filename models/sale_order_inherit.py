@@ -19,7 +19,13 @@ class SaleOrderLine(models.Model):
 
     is_b2b_portal_line = fields.Boolean(
         string="Is B2B Portal Product",
-        compute="_compute_is_b2b_portal_line",
+        compute="_compute_b2b_price_info",
+        store=False,
+    )
+
+    price_type_label = fields.Char(
+        string="Price Label",
+        compute="_compute_b2b_price_info",
         store=False,
     )
 
@@ -31,7 +37,7 @@ class SaleOrderLine(models.Model):
     )
 
     @api.depends('product_id')
-    def _compute_is_b2b_portal_line(self):
+    def _compute_b2b_price_info(self):
         for line in self:
             product = line.product_id
             template = product.product_tmpl_id if product else False
@@ -45,6 +51,7 @@ class SaleOrderLine(models.Model):
                 is_b2b = product.is_b2b_portal
 
             line.is_b2b_portal_line = is_b2b
+            line.price_type_label = "B2B Price" if is_b2b else "Unit Price"
 
     @api.depends(
         'product_id',

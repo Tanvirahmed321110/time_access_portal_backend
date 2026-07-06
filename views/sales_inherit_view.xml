@@ -41,18 +41,18 @@
         </field>
     </record>
 
-    <!-- Rename Unit Price to B2B Price in Sale Order Lines -->
+    <!-- Show per-row Price Type label (B2B Price / List Price) next to Unit Price -->
     <record id="view_order_form_inherit_b2b_dynamic_price_label" model="ir.ui.view">
-    <field name="name">sale.order.form.inherit.b2b.dynamic.price.label</field>
-    <field name="model">sale.order</field>
-    <field name="inherit_id" ref="sale.view_order_form"/>
-    <field name="arch" type="xml">
+        <field name="name">sale.order.form.inherit.b2b.dynamic.price.label</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
 
-        <xpath expr="//field[@name='order_line']//field[@name='price_unit']" position="before">
-            <field name="is_b2b_portal_line" column_invisible="1"/>
-        </xpath>
+            <xpath expr="//field[@name='order_line']//field[@name='price_unit']" position="before">
+                <field name="is_b2b_portal_line" column_invisible="1"/>
+            </xpath>
 
-    </field>
-</record>
+        </field>
+    </record>
 
 </odoo>

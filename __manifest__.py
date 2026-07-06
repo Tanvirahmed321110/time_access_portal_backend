@@ -48,6 +48,7 @@
 
         'web.assets_backend': [
             'time_access_portal/static/src/css/custom_backend.css',
+            'time_access_portal/static/src/js/b2b_price_label.js',
         ],
     },
     # only loaded in demonstration mode
