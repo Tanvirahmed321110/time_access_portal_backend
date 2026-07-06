@@ -202,9 +202,9 @@
 
 
                                                 <!-- quantity validation sms here -->
-                                                <div class="error-text mt-3 px-2 p-2 radius-sm fw-medium fs-xs " style="background:red;color:#f2f2f2">
-                                                    error sms show here
-                                                </div>
+                                               <div class="error-text mt-3 px-2 p-2 radius-sm fw-medium fs-xs"
+                                                 style="background:red;color:#f2f2f2; display:none;">
+                                            </div>
 
                                                 <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
 

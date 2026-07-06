@@ -169,14 +169,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
 // ========== Reusable Stock Qty Validation ==========
 function validateQtyInput(input) {
+    if (!input) {
+        return true;
+    }
+
     let stock = parseFloat(input.getAttribute('data-stock') || input.getAttribute('max') || 0);
     let minQty = parseFloat(input.getAttribute('min') || 1);
     let qty = parseFloat(input.value || 0);
 
-    let scope = input.closest('.product-card') || input.closest('tr') || document;
+    let scope = input.closest('.qty-btns') || input.closest('.product-card') || input.closest('tr') || document;
+
     let errorBox = scope.querySelector('.error-text');
     let buttons = scope.querySelectorAll('.add_to_cart, .btn-buy-now');
 
@@ -216,20 +220,22 @@ function validateQtyInput(input) {
     });
 
     input.dataset.qtyInvalid = valid ? '0' : '1';
+
     return valid;
 }
 
 
-
 // ========== Init Qty Validation ==========
-document.querySelectorAll('.qty-input, .qty-update-input').forEach(function(input) {
-    validateQtyInput(input);
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.qty-input, .qty-update-input').forEach(function(input) {
+        validateQtyInput(input);
 
-    input.addEventListener('input', function() {
-        validateQtyInput(this);
-    });
+        input.addEventListener('input', function() {
+            validateQtyInput(this);
+        });
 
-    input.addEventListener('change', function() {
-        validateQtyInput(this);
+        input.addEventListener('change', function() {
+            validateQtyInput(this);
+        });
     });
 });
