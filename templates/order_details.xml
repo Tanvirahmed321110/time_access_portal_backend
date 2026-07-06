@@ -2,7 +2,7 @@
     <template id="order_details_page">
         <t t-call="time_access_portal.custom_layout">
 
-            <link rel="stylesheet" href="/time_access_portal/static/src/css/cart-checkout.css?v=1"/>
+            <link rel="stylesheet" href="/time_access_portal/static/src/css/cart-checkout.css?v=2"/>
 
 
             <!--===================================================================-->
@@ -21,7 +21,7 @@
                                         <t t-esc="order.name"/>
                                     </h5>
                                     <p class="mt-2 ">
-                                       <t t-if="order.date_order">
+                                        <t t-if="order.date_order">
                                             <t t-set="order_bd" t-value="order.with_context(tz='Asia/Dhaka')"/>
 
                                             <span class="fw-normal"
@@ -70,35 +70,38 @@
                                     <p>
                                         <span class="fw-medium">Status:</span>
 
-                                        <t t-if="order.state == 'draft'">
-                                            <span class="badge pending">Pending</span>
-                                        </t>
-                                        <t t-elif="order.state == 'sale'">
-                                            <span class="badge processing">Processing</span>
-                                        </t>
-                                        <t t-elif="order.state == 'Done'">
-                                            <span class="badge success">Delivered</span>
-                                        </t>
-                                        <t t-elif="order.state == 'cancel'">
-                                            <span class="badge cancel">Canceled</span>
-                                        </t>
-                                        <br/>
-                                        <t t-if="delivery_date">
-                                            Delivered Date:
-                                            <span class="fw-medium">
-                                                <t t-esc="delivery_date.strftime('%B %d, %Y')"/>
-                                            </span>
-                                        </t>
-                                        <t t-elif="order.state == 'done' and not delivery_date">
-                                            Delivered Date:
-                                            <span class="fw-medium">
-                                                <t t-esc="order.write_date.strftime('%B %d, %Y')"/>
-                                            </span>
-                                        </t>
-                                        <t t-else="">
-                                            <span class="fw-medium">Expected Delivery:</span>
-                                            3 to 7 days
-                                        </t>
+                                            <t t-set="delivery_pickings"
+                                               t-value="order.picking_ids.filtered(lambda p: p.state != 'cancel')"/>
+
+                                            <!-- Quotation / Draft -->
+                                            <t t-if="order.state in ['draft', 'sent']">
+                                                <span class="badge pending">Pending</span>
+                                            </t>
+
+                                            <!-- Cancelled -->
+                                            <t t-elif="order.state == 'cancel'">
+                                                <span class="badge cancel">Canceled</span>
+                                            </t>
+
+                                            <!-- Delivered: all delivery orders are done -->
+                                            <t t-elif="delivery_pickings and not delivery_pickings.filtered(lambda p: p.state != 'done')">
+                                                <span class="badge success">Delivered</span>
+                                            </t>
+
+                                            <!-- Confirmed sale order but not fully delivered -->
+                                            <t t-elif="order.state == 'sale'">
+                                                <span class="badge processing">Processing</span>
+                                            </t>
+
+                                            <!-- Locked / Done Sale Order -->
+                                            <t t-elif="order.state == 'done'">
+                                                <span class="badge success">Completed</span>
+                                            </t>
+
+                                            <!-- Fallback -->
+                                            <t t-else="">
+                                                <span class="badge pending">Pending</span>
+                                            </t>
                                     </p>
                                 </div>
                             </div>
@@ -195,7 +198,7 @@
             </section>
 
 
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"> </script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
             <script>
                 document.getElementById('downloadInvoiceBtn').addEventListener('click', function () {
                 const targetSection = document.querySelector('.order-details-card');

@@ -428,9 +428,9 @@ textarea {
 }
 
 .order-sec .badge.success {
-    background: #e6f4ea;
-    color: var(--color-secondary);
-    font-weight: 700;
+    background: green;
+    color: #ededed;
+    font-weight: 600;
 }
 
 .order-sec .badge.pending {

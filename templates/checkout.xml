@@ -1,7 +1,7 @@
 <odoo>
     <template id="checkout_page">
         <t t-call="time_access_portal.custom_layout">
-            <link rel="stylesheet" href="/time_access_portal/static/src/css/cart-checkout.css?v=1"/>
+            <link rel="stylesheet" href="/time_access_portal/static/src/css/cart-checkout.css?v=2"/>
 
             <!--=============================================================-->
             <!--================||  Checkout Section Here  ||=============== -->
