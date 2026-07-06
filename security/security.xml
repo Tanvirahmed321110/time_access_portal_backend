@@ -19,4 +19,5 @@
         <field name="category_id" ref="timeaccess_category_b2b_portal"/>
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
     </record>
+
 </odoo>

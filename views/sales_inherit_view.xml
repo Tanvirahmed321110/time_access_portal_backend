@@ -71,4 +71,21 @@
         </field>
     </record>
 
+    <!-- Hide B2B Sale Orders from B2B General User -->
+    <record id="rule_hide_b2b_sale_orders_for_general_user" model="ir.rule">
+        <field name="name">Hide B2B Sale Orders for B2B General User</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="domain_force">
+            [
+                '|',
+                ('b2b_sale', '=', False),
+                ('id', '!=', 0) if not user.has_group('time_access_portal.group_b2b_general_user') or user.has_group('time_access_portal.group_b2b_management') else ('id', '=', 0)
+            ]
+        </field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
 </odoo>
