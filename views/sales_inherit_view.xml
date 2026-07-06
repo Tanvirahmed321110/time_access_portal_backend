@@ -41,6 +41,22 @@
         </field>
     </record>
 
+
+    <!-- Add B2B Sale field below Payment Terms -->
+    <record id="view_order_form_inherit_b2b_sale_field" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.b2b.sale.field</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="priority">110</field>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="b2b_sale"/>
+            </xpath>
+
+        </field>
+    </record>
+
     <!-- Show per-row Price Type label (B2B Price / List Price) next to Unit Price -->
     <record id="view_order_form_inherit_b2b_dynamic_price_label" model="ir.ui.view">
         <field name="name">sale.order.form.inherit.b2b.dynamic.price.label</field>

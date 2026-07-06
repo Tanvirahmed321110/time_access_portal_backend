@@ -13,6 +13,8 @@ class SaleOrder(models.Model):
         }
     )
 
+    b2b_sale = fields.Boolean(string = "B2B Sale")
+
 
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'

@@ -111,6 +111,7 @@ class TimeAccessPortal(http.Controller):
             # Add to Cart state theke Draft/Quotation stage e niye jabe
             order.sudo().write({
                 'state': 'draft',
+                'b2b_sale': True,
             })
 
         return {
