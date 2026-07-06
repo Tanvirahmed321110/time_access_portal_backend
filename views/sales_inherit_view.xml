@@ -50,7 +50,7 @@
         <field name="arch" type="xml">
 
             <xpath expr="//field[@name='payment_term_id']" position="after">
-                <field name="b2b_sale"  readonly="1"/>
+                <field name="b2b_sale" readonly="1"/>
             </xpath>
 
         </field>
@@ -64,7 +64,7 @@
         <field name="priority">120</field>
         <field name="arch" type="xml">
 
-            <xpath expr="//field[@name='order_line']//list//field[@name='price_unit']" position="attributes">
+            <xpath expr="//field[@name='order_line']//list//field[@name='invoice_status']" position="attributes">
                 <attribute name="string">Unit Price / B2B Price</attribute>
             </xpath>
 
@@ -72,5 +72,58 @@
     </record>
 
 
+    <!-- Add B2B Sale Tag Column in Quotations List - After Status -->
+    <record id="view_quotation_tree_inherit_b2b_sale_tag" model="ir.ui.view">
+        <field name="name">sale.order.quotation.list.inherit.b2b.sale.tag</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree"/>
+        <field name="priority">130</field>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='state']" position="after">
+                <field name="b2b_sale_tag"
+                       string="B2B Sale"
+                       widget="badge"
+                       decoration-info="b2b_sale_tag == 'b2b'"
+                       optional="show"/>
+            </xpath>
+
+        </field>
+    </record>
+
+
+    <!-- Add B2B Sale Tag Column in Sales Orders List - After Status -->
+    <record id="view_order_tree_inherit_b2b_sale_tag" model="ir.ui.view">
+        <field name="name">sale.order.list.inherit.b2b.sale.tag</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="priority">130</field>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='invoice_status']" position="after">
+                <field name="b2b_sale_tag"
+                       string="B2B Sale"
+                       widget="badge"
+                       decoration-info="b2b_sale_tag == 'b2b'"
+                       optional="show"/>
+            </xpath>
+
+        </field>
+    </record>
+
+
+    <record id="view_order_tree_inherit_invoice_status_center" model="ir.ui.view">
+        <field name="name">sale.order.list.invoice.status.center</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="priority">150</field>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='invoice_status']" position="attributes">
+                <attribute name="class" separator=" "/>
+            </xpath>
+
+        </field>
+    </record>
 
 </odoo>

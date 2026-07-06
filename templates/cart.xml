@@ -216,7 +216,7 @@
             </section>
 
 
-            <script src="/time_access_portal/static/src/js/cart.js?v=1"></script>
+            <script src="/time_access_portal/static/src/js/cart.js?v=2"></script>
         </t>
     </template>
 </odoo>

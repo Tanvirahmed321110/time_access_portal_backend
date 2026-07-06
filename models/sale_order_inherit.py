@@ -19,12 +19,25 @@ class SaleOrder(models.Model):
         readonly=True,
     )
 
+    b2b_sale_tag = fields.Selection(
+        selection=[
+            ('b2b', 'B2B Sale'),
+        ],
+        string="B2B Tag",
+        compute="_compute_b2b_sale_tag",
+        store=True,
+    )
+
+    @api.depends('b2b_sale')
+    def _compute_b2b_sale_tag(self):
+        for order in self:
+            if order.b2b_sale:
+                order.b2b_sale_tag = 'b2b'
+            else:
+                order.b2b_sale_tag = False
+
     @api.onchange('b2b_sale')
     def _onchange_b2b_sale(self):
-        """
-        When B2B Sale is checked/unchecked,
-        reload sale order line unit prices.
-        """
         for order in self:
             for line in order.order_line:
                 line._compute_price_unit()

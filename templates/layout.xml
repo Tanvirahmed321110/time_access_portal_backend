@@ -10,10 +10,10 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                 <!-- Ts Control Library CDN -->
                 <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet"/>
-                <link rel="stylesheet" href="/time_access_portal/static/src/css/custom_class.css?v=1"/>
-                <link rel="stylesheet" href="/time_access_portal/static/src/css/my_component.css?v=1"/>
-                <link rel="stylesheet" href="/time_access_portal/static/src/css/global.css?v=1"/>
-                <link rel="stylesheet" href="/time_access_portal/static/src/css/pages.css?v=1"/>
+                <link rel="stylesheet" href="/time_access_portal/static/src/css/custom_class.css?v=2"/>
+                <link rel="stylesheet" href="/time_access_portal/static/src/css/my_component.css?v=2"/>
+                <link rel="stylesheet" href="/time_access_portal/static/src/css/global.css?v=2"/>
+                <link rel="stylesheet" href="/time_access_portal/static/src/css/pages.css?v=2"/>
                 <t t-raw="header"/>
             </head>
 
@@ -126,7 +126,7 @@
 
 
                 <!--    Javascript Links Here     -->
-                <script src="/time_access_portal/static/src/js/main.js?v=1"></script>
+                <script src="/time_access_portal/static/src/js/main.js?v=2"></script>
             </body>
         </html>
     </template>

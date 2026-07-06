@@ -236,112 +236,12 @@
                                         </div>
                                     </div>
                                 </t>
-
-                                <!--================= single product card ===============-->
-                                <!--                                <div class="product-card">-->
-
-                                <!--                                    &lt;!&ndash; cart tag &ndash;&gt;-->
-                                <!--                                    <div class="tag-badge">hot seller</div>-->
-
-                                <!--                                    &lt;!&ndash;===== Product Images =====&ndash;&gt;-->
-                                <!--                                    <div class="top-area">-->
-                                <!--                                        <div class="top">-->
-                                <!--                                            <img class="default-img"-->
-                                <!--                                                 src="https://timeaccess-store.com/cdn/shop/files/SPB473J1-G.jpg?v=1781940506&amp;width=1000"-->
-                                <!--                                                 alt=""/>-->
-                                <!--                                            <img class="hover-img"-->
-                                <!--                                                 src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&amp;q=80"-->
-                                <!--                                                 alt=""/>-->
-                                <!--                                        </div>-->
-                                <!--                                    </div>-->
-
-                                <!--                                    &lt;!&ndash;===== Product Content ====&ndash;&gt;-->
-                                <!--                                    <div class="product-content">-->
-                                <!--                                        <div>-->
-                                <!--                                            &lt;!&ndash; product id &ndash;&gt;-->
-                                <!--                                            <div class="product-id fs-xs">Item ID: PROD-105</div>-->
-
-                                <!--                                            &lt;!&ndash; product name &ndash;&gt;-->
-                                <!--                                            <a href="#" class="product-name" onclick="viewDetails('PROD-105')">UltraHD-->
-                                <!--                                                4K Display Panels (Wholesale) Display New-->
-                                <!--                                            </a>-->
-
-                                <!--                                            &lt;!&ndash; price &ndash;&gt;-->
-                                <!--                                            <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">-->
-                                <!--                                                <div class="new-price fs-md">TK-->
-                                <!--                                                    <span>1200.00</span>-->
-                                <!--                                                </div>-->
-                                <!--                                                <div class="old-price">TK-->
-                                <!--                                                    <span>1340.00</span>-->
-                                <!--                                                </div>-->
-                                <!--                                            </div>-->
-                                <!--                                        </div>-->
-
-
-                                <!--                                        <div class="qty-btns">-->
-                                <!--                                            &lt;!&ndash; quantity input &ndash;&gt;-->
-                                <!--                                            <div class="qty-wrapper d-flex align-center mt-3 gap-2">-->
-                                <!--                                                <label class="">Quantity:</label>-->
-                                <!--                                                <input type="number" class="qty-input" id="qty-PROD-101" value="5"-->
-                                <!--                                                       min="5"/>-->
-                                <!--                                            </div>-->
-
-                                <!--                                            &lt;!&ndash; Card Buttons &ndash;&gt;-->
-                                <!--                                            <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">-->
-                                <!--                                                <button  class="btn add_to_cart btn-outline">Add-->
-                                <!--                                                    to Cart-->
-                                <!--                                                </button>-->
-                                <!--                                                <a href="/cart.html" class="btn btn-primary"-->
-                                <!--                                                   onclick="addToCart('PROD-101', true)">Buy-->
-                                <!--                                                    Now-->
-                                <!--                                                </a>-->
-                                <!--                                            </div>-->
-                                <!--                                        </div>-->
-                                <!--                                    </div>-->
-                                <!--                                </div>-->
                             </div>
 
 
                             <!--============== Pagination (per page at least 30 item show)=============-->
                             <!-- Pagination  template call-->
                             <t t-call="time_access_portal.reusable_pagination"/>
-                            <!--                            <t t-if="len(products) > 1">-->
-                            <!--                                <div class="d-flex align-end justify-end mt-7 active">-->
-                            <!--                                    <nav class="pagination d-flex gap-4 " aria-="Page navigation">-->
-                            <!--                                        <a href="#" class="page prev">-->
-                            <!--                                            <svg viewBox="0 0 24 24" fill="none"-->
-                            <!--                                                 xmlns="http://www.w3.org/2000/svg">-->
-                            <!--                                                <path d="M15 19L8 12L15 5" stroke="currentColor" stroke-width="1.8"-->
-                            <!--                                                      stroke-linecap="round" stroke-linejoin="round"/>-->
-                            <!--                                            </svg>-->
-                            <!--                                        </a>-->
-                            <!--                                        <ul class="d-flex gap-2">-->
-                            <!--                                            <li>-->
-                            <!--                                                <a href="#" class="page ">1</a>-->
-                            <!--                                            </li>-->
-                            <!--                                            <li>-->
-                            <!--                                                <a href="#" class="page active">2</a>-->
-                            <!--                                            </li>-->
-                            <!--                                            <li>-->
-                            <!--                                                <a href="#" class="page">3</a>-->
-                            <!--                                            </li>-->
-                            <!--                                            <li>-->
-                            <!--                                                <span class="page jump">...</span>-->
-                            <!--                                            </li>-->
-                            <!--                                            <li>-->
-                            <!--                                                <a href="#" class="page">12</a>-->
-                            <!--                                            </li>-->
-                            <!--                                        </ul>-->
-                            <!--                                        <a href="#" class="page next">-->
-                            <!--                                            <svg viewBox="0 0 24 24" fill="none"-->
-                            <!--                                                 xmlns="http://www.w3.org/2000/svg">-->
-                            <!--                                                <path d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="1.8"-->
-                            <!--                                                      stroke-linecap="round" stroke-linejoin="round"/>-->
-                            <!--                                            </svg>-->
-                            <!--                                        </a>-->
-                            <!--                                    </nav>-->
-                            <!--                                </div>-->
-                            <!--                            </t>-->
                         </div>
 
                         <!--===================  When Search Result Not Match  ====================-->
@@ -391,8 +291,8 @@
             </div>
 
 
-            <script src="/time_access_portal/static/src/js/home.js?v=1"></script>
-            <script src="/time_access_portal/static/src/js/cart.js?v=1"></script>
+            <script src="/time_access_portal/static/src/js/home.js?v=2"></script>
+            <script src="/time_access_portal/static/src/js/cart.js?v=2"></script>
         </t>
     </template>
 </odoo>
