@@ -21,16 +21,16 @@
                                         <t t-esc="order.name"/>
                                     </h5>
                                     <p class="mt-2 ">
-                                        <span class="fw-bolder">Placed on:
+                                       <t t-if="order.date_order">
                                             <t t-set="order_bd" t-value="order.with_context(tz='Asia/Dhaka')"/>
 
                                             <span class="fw-normal"
                                                   t-field="order_bd.date_order"
                                                   t-options="{
-                                                  'widget': 'datetime',
-                                                  'format': 'dd MMMM yyyy at hh:mm a'
-                                              }"/>
-                                        </span>
+                                                      'widget': 'datetime',
+                                                      'format': &quot;dd MMMM yyyy 'at' hh:mm a&quot;
+                                                  }"/>
+                                        </t>
                                     </p>
                                 </div>
                                 <div class=" d-flex justify-end gap-4 flex-wrap btn-wraps gap-sm-3"
@@ -45,7 +45,7 @@
                                 <div class="info-box">
                                     <h5 class="text-primary mb-2 fw-bolder">Shipping Address</h5>
                                     <p>
-                                        <span class="fw-medium">
+                                        <span class="fw-bold">
                                             <t t-esc="order.partner_id.name or 'N/A'"/>
                                         </span>
                                         <br/>
@@ -195,7 +195,7 @@
             </section>
 
 
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"> </script>
             <script>
                 document.getElementById('downloadInvoiceBtn').addEventListener('click', function () {
                 const targetSection = document.querySelector('.order-details-card');
