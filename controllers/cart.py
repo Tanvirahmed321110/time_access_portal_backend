@@ -24,7 +24,7 @@ class TimeAccessPortal(http.Controller):
 
     # ================== Add To Cart ===================
     @http.route('/cart/add', type='json', auth='user', website=True)
-    def add_to_cart(self, product_id, quantity=1, **kw):
+    def add_to_cart(self, product_id, quantity=1, replace_qty=False, **kw):
         partner = request.env.user.partner_id
 
         product = request.env['product.product'].sudo().browse(int(product_id)).exists()
@@ -35,6 +35,12 @@ class TimeAccessPortal(http.Controller):
             }
 
         quantity = float(quantity or 1)
+
+        if quantity < 1:
+            quantity = 1
+
+        # Convert JS true/false safely
+        replace_qty = bool(replace_qty)
 
         order = request.env['sale.order'].sudo().search([
             ('partner_id', '=', partner.id),
@@ -52,8 +58,17 @@ class TimeAccessPortal(http.Controller):
         )
 
         if existing_line:
-            existing_line[0].sudo().write({
-                'product_uom_qty': existing_line[0].product_uom_qty + quantity,
+            line = existing_line[0]
+
+            if replace_qty:
+                # Buy Now flow: selected qty will replace old cart qty
+                new_qty = quantity
+            else:
+                # Normal Add to Cart flow: qty will increase
+                new_qty = line.product_uom_qty + quantity
+
+            line.sudo().write({
+                'product_uom_qty': new_qty,
             })
         else:
             request.env['sale.order.line'].sudo().create({

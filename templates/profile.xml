@@ -75,40 +75,48 @@
                             <div class="box-panel">
                                 <h3 class="text-primary fw-bolder">Account Configuration &amp; Terms</h3>
 
-                                <div class="mt-2">
+                                <form action="/index/profile/save" method="post" class="mt-2">
+                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
                                     <div class="grid-2 gap-5 gap-sm-3">
                                         <div class="input-group">
                                             <label>Primary Contact Person</label>
-                                            <input type="text" class="" value="Rahat Chowdhury"/>
+                                            <input type="text" name="name" class="" t-att-value="partner.name or ''"/>
                                             <div class="error-message">Error Message</div>
                                         </div>
                                         <div class="input-group">
                                             <label>Corporate Email Address</label>
-                                            <input type="email" value="procurement@apexglobal.com"/>
+                                            <input type="email" name="email" t-att-value="partner.email or ''"/>
                                         </div>
                                     </div>
                                     <div class="grid-2 gap-5 gap-sm-3 mt-5">
-                                        <div class="input-group">
-                                            <label>Account Credit Limit</label>
-                                            <input type="text"
-                                                   value="$50,000.00"/>
-                                        </div>
+
                                         <div class="input-group">
                                             <label>Phone</label>
                                             <input type="text"
-                                                   value="0170545641545"/>
+                                               name="mobile"
+                                               t-att-value="partner.mobile or ''"/>
                                         </div>
                                     </div>
                                     <div class="input-group mt-5">
                                         <label for="">Address</label>
-                                        <textarea name="" id=""></textarea>
+                                         <textarea name="street"><t t-esc="partner.street or ''"/></textarea>
                                     </div>
-                                </div>
 
-                                <!-- save button -->
-                                <div class="flex-end d-flex justify-end mt-6">
-                                    <button class="btn btn-primary">Save Changes</button>
-                                </div>
+                                    <t t-if="profile_saved">
+                                        <p id="profileSuccessMsg"
+                                           class="note mt-5 text-success fs-md fw-bold text-right"
+                                           style="color: green;">
+                                            Successfully Added
+                                        </p>
+                                    </t>
+
+                                    <!-- save button -->
+                                    <div class="flex-end d-flex justify-end mt-6">
+                                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                                    </div>
+                                </form>
+
                             </div>
                         </div>
                     </div>
@@ -116,6 +124,22 @@
                 </div>
             </section>
 
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const successMsg = document.getElementById("profileSuccessMsg");
+
+                if (successMsg) {
+                    setTimeout(function () {
+                        successMsg.style.transition = "opacity 0.4s ease";
+                        successMsg.style.opacity = "0";
+
+                        setTimeout(function () {
+                            successMsg.remove();
+                        }, 400);
+                    }, 3000);
+                }
+            });
+        </script>
         </t>
     </template>
 </odoo>

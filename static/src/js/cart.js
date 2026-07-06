@@ -170,6 +170,7 @@ if (qtyInputs.length > 0) {
 
 
 // =========== Buy Now ==============
+// =========== Buy Now ==============
 let buyNowBtns = document.querySelectorAll('.btn-buy-now');
 if (buyNowBtns.length > 0) {
     buyNowBtns.forEach(function(btn) {
@@ -180,14 +181,24 @@ if (buyNowBtns.length > 0) {
             let qtyInput = document.querySelector('#qty-' + productId);
             let quantity = qtyInput ? parseInt(qtyInput.value) : 1;
 
+            if (!quantity || quantity < 1) {
+                quantity = 1;
+            }
+
             fetch('/cart/add', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
-                    jsonrpc: '2.0', method: 'call',
+                    jsonrpc: '2.0',
+                    method: 'call',
                     params: {
                         product_id: productId,
                         quantity: quantity,
+
+                        // IMPORTANT:
+                        // Buy Now hole old qty er sathe add korbe na.
+                        // Selected qty diye replace korbe.
+                        replace_qty: true,
                     }
                 })
             })
