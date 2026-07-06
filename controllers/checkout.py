@@ -46,8 +46,7 @@ class TimeAccessPortal(http.Controller):
             'partner': partner,
         })
 
-    # ===== Cart flow =====
-    # ===== Confirm Cart / Buy Now as Draft Quotation =====
+
     @http.route('/cart/confirm', type='json', auth='user', website=True)
     def confirm_order(self, product_id=None, qty=1, **kw):
         partner = request.env.user.partner_id.sudo()
@@ -57,24 +56,30 @@ class TimeAccessPortal(http.Controller):
         email = kw.get('email', '').strip()
         street = kw.get('street', '').strip()
 
-        current_company = request.env.company.sudo()
+        # =====================================================
+        # Update customer/contact from checkout form
+        # =====================================================
+        partner_vals = {}
 
-        if current_company:
-            vals = {}
+        if name:
+            partner_vals['name'] = name
 
-            if name:
-                vals['name'] = name
-            if mobile:
-                vals['phone'] = mobile
-            if email:
-                vals['email'] = email
-            if street:
-                vals['street'] = street
+        if mobile:
+            partner_vals['phone'] = mobile
+            partner_vals['mobile'] = mobile
 
-            if vals:
-                current_company.write(vals)
+        if email:
+            partner_vals['email'] = email
 
-        # ===== Buy Now flow =====
+        if street:
+            partner_vals['street'] = street
+
+        if partner_vals:
+            partner.write(partner_vals)
+
+        # =====================================================
+        # Buy Now flow
+        # =====================================================
         if product_id:
             product = request.env['product.product'].sudo().browse(int(product_id)).exists()
 
@@ -87,17 +92,22 @@ class TimeAccessPortal(http.Controller):
             order = request.env['sale.order'].sudo().create({
                 'partner_id': partner.id,
                 'state': 'draft',
+                'b2b_sale': True,
             })
+
+            b2b_price = product.product_tmpl_id.b2b_price or 0.0
 
             request.env['sale.order.line'].sudo().create({
                 'order_id': order.id,
                 'product_id': product.id,
                 'product_uom_qty': float(qty or 1),
                 'product_uom': product.uom_id.id,
-                'price_unit': product.lst_price,
+                'price_unit': b2b_price,
             })
 
-        # ===== Cart flow =====
+        # =====================================================
+        # Cart flow
+        # =====================================================
         else:
             order = request.env['sale.order'].sudo().search([
                 ('partner_id', '=', partner.id),
@@ -110,11 +120,15 @@ class TimeAccessPortal(http.Controller):
                     'error': 'No cart found',
                 }
 
-            # Add to Cart state theke Draft/Quotation stage e niye jabe
             order.sudo().write({
                 'state': 'draft',
                 'b2b_sale': True,
             })
+
+            # Recalculate lines with B2B price
+            for line in order.order_line:
+                if line.product_id:
+                    line.price_unit = line.product_id.product_tmpl_id.b2b_price or 0.0
 
         return {
             'success': True,

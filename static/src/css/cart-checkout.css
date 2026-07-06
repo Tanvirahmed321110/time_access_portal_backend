@@ -419,11 +419,12 @@ textarea {
 
 .order-sec .badge {
     display: inline-block;
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-size: 0.75rem;
+    padding: 3px 10px;
+    border-radius: 16px;
+    font-size: 0.7rem;
     font-weight: 700;
     text-transform: uppercase;
+
 }
 
 .order-sec .badge.success {

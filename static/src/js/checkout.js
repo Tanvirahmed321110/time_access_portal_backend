@@ -1,20 +1,22 @@
 // =========== Confirm Order ==============
 let confirmBtn = document.querySelector('.btn-confirm-order');
+
 if (confirmBtn) {
-    confirmBtn.addEventListener('click', function() {
+    confirmBtn.addEventListener('click', function () {
 
         let productId = this.getAttribute('data-product-id');
         let qty = this.getAttribute('data-qty');
 
-
         let companyName = document.querySelector('[name="company_name"]')?.value || '';
-        let phone = document.querySelector('[name="phone"]')?.value || '';
+        let mobile = document.querySelector('[name="mobile"]')?.value || '';
         let email = document.querySelector('[name="email"]')?.value || '';
-        let shippingAddress = document.querySelector('[name="shipping_address"]')?.value || '';
+        let street = document.querySelector('[name="street"]')?.value || '';
 
         fetch('/cart/confirm', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+                'Content-Type': 'application/json',
+            },
             body: JSON.stringify({
                 jsonrpc: '2.0',
                 method: 'call',
@@ -22,9 +24,9 @@ if (confirmBtn) {
                     product_id: productId,
                     qty: qty,
                     company_name: companyName,
-                    phone: phone,
+                    mobile: mobile,
                     email: email,
-                    shipping_address: shippingAddress
+                    street: street,
                 }
             })
         })
@@ -37,6 +39,7 @@ if (confirmBtn) {
             }
         })
         .catch(err => {
+            console.error(err);
             alert('Order confirmation failed.');
         });
     });
