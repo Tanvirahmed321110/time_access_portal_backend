@@ -214,3 +214,90 @@ if (buyNowBtns.length > 0) {
 
 
 
+// ========== Cart Page Qty Stock Validation ==========
+function validateCartQtyInput(input) {
+    if (!input) {
+        return true;
+    }
+
+    let stock = parseFloat(input.getAttribute('data-stock') || input.getAttribute('max') || 0);
+    let minQty = parseFloat(input.getAttribute('min') || 1);
+    let qty = parseFloat(input.value || 0);
+
+    let row = input.closest('tr');
+    let errorBox = row ? row.querySelector('.error-text') : null;
+
+    let valid = true;
+    let message = '';
+
+    if (stock <= 0) {
+        valid = false;
+        message = 'Stock not available.';
+    } else if (!qty || qty < minQty) {
+        valid = false;
+        message = 'Minimum quantity is ' + minQty + '.';
+    } else if (qty > stock) {
+        valid = false;
+        message = 'Only ' + stock + ' items available in stock.';
+    }
+
+    if (errorBox) {
+        errorBox.textContent = message;
+        errorBox.style.display = valid ? 'none' : 'block';
+    }
+
+    input.dataset.qtyInvalid = valid ? '0' : '1';
+
+    updateCheckoutButtonState();
+
+    return valid;
+}
+
+
+// ========== Disable Checkout if Any Cart Qty Invalid ==========
+function updateCheckoutButtonState() {
+    let checkoutBtn = document.querySelector('.btn-checkout');
+
+    if (!checkoutBtn) {
+        return;
+    }
+
+    let hasInvalidQty = Array.from(document.querySelectorAll('.qty-update-input')).some(function(input) {
+        return input.dataset.qtyInvalid === '1';
+    });
+
+    if (hasInvalidQty) {
+        if (!checkoutBtn.dataset.originalHref && checkoutBtn.getAttribute('href')) {
+            checkoutBtn.dataset.originalHref = checkoutBtn.getAttribute('href');
+        }
+
+        checkoutBtn.removeAttribute('href');
+        checkoutBtn.classList.add('disabled');
+        checkoutBtn.style.pointerEvents = 'none';
+    } else {
+        checkoutBtn.classList.remove('disabled');
+        checkoutBtn.style.pointerEvents = '';
+
+        if (checkoutBtn.dataset.originalHref) {
+            checkoutBtn.setAttribute('href', checkoutBtn.dataset.originalHref);
+        } else {
+            checkoutBtn.setAttribute('href', '/checkout');
+        }
+    }
+}
+
+
+// ========== Init Cart Qty Validation ==========
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.qty-update-input').forEach(function(input) {
+        validateCartQtyInput(input);
+
+        input.addEventListener('input', function() {
+            validateCartQtyInput(this);
+        });
+
+        input.addEventListener('change', function() {
+            validateCartQtyInput(this);
+        });
+    });
+});

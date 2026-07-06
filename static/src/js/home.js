@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 // ========== Reusable Stock Qty Validation ==========
-function validateQtyInput(input) {
+  function validateQtyInput(input) {
     if (!input) {
         return true;
     }
