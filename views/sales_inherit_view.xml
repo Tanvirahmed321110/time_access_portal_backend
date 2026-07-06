@@ -10,7 +10,6 @@
         <field name="context">{'default_state': 'add_to_cart'}</field>
     </record>
 
-    <!-- Menu under Sales > Orders -->
     <menuitem id="menu_add_to_carts"
               name="Add to Carts"
               parent="sale.sale_order_menu"
@@ -32,6 +31,7 @@
         <field name="name">sale.order.form.inherit.add.to.cart.state</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="priority">100</field>
         <field name="arch" type="xml">
 
             <xpath expr="//field[@name='state']" position="attributes">
@@ -41,7 +41,6 @@
         </field>
     </record>
 
-
     <!-- Add B2B Sale field below Payment Terms -->
     <record id="view_order_form_inherit_b2b_sale_field" model="ir.ui.view">
         <field name="name">sale.order.form.inherit.b2b.sale.field</field>
@@ -50,41 +49,28 @@
         <field name="priority">110</field>
         <field name="arch" type="xml">
 
-            <xpath expr="//field[@name='journal_id']" position="after">
-                <field name="b2b_sale"/>
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="b2b_sale"  readonly="1"/>
             </xpath>
 
         </field>
     </record>
 
-    <!-- Show per-row Price Type label (B2B Price / List Price) next to Unit Price -->
-    <record id="view_order_form_inherit_b2b_dynamic_price_label" model="ir.ui.view">
-        <field name="name">sale.order.form.inherit.b2b.dynamic.price.label</field>
+    <!-- Safer column label -->
+    <record id="view_order_form_inherit_b2b_price_column" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.b2b.price.column</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="priority">120</field>
         <field name="arch" type="xml">
 
-            <xpath expr="//field[@name='order_line']//field[@name='price_unit']" position="before">
-                <field name="is_b2b_portal_line" column_invisible="1"/>
+            <xpath expr="//field[@name='order_line']//list//field[@name='price_unit']" position="attributes">
+                <attribute name="string">Unit Price / B2B Price</attribute>
             </xpath>
+
         </field>
     </record>
 
-    <!-- Hide B2B Sale Orders from B2B General User -->
-    <record id="rule_hide_b2b_sale_orders_for_general_user" model="ir.rule">
-        <field name="name">Hide B2B Sale Orders for B2B General User</field>
-        <field name="model_id" ref="sale.model_sale_order"/>
-        <field name="domain_force">
-            [
-                '|',
-                ('b2b_sale', '=', False),
-                ('id', '!=', 0) if not user.has_group('time_access_portal.group_b2b_general_user') or user.has_group('time_access_portal.group_b2b_management') else ('id', '=', 0)
-            ]
-        </field>
-        <field name="perm_read" eval="True"/>
-        <field name="perm_write" eval="True"/>
-        <field name="perm_create" eval="True"/>
-        <field name="perm_unlink" eval="True"/>
-    </record>
+
 
 </odoo>

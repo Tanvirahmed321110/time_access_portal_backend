@@ -1,4 +1,4 @@
-from odoo import api, models, fields
+from odoo import api, fields, models
 
 
 class SaleOrder(models.Model):
@@ -13,7 +13,30 @@ class SaleOrder(models.Model):
         }
     )
 
-    b2b_sale = fields.Boolean(string = "B2B Sale")
+    b2b_sale = fields.Boolean(
+        string="B2B Sale",
+        tracking=True,
+        readonly=True,
+    )
+
+    @api.onchange('b2b_sale')
+    def _onchange_b2b_sale(self):
+        """
+        When B2B Sale is checked/unchecked,
+        reload sale order line unit prices.
+        """
+        for order in self:
+            for line in order.order_line:
+                line._compute_price_unit()
+
+    def write(self, vals):
+        res = super().write(vals)
+
+        if 'b2b_sale' in vals:
+            for order in self:
+                order.order_line._compute_price_unit()
+
+        return res
 
 
 class SaleOrderLine(models.Model):
@@ -36,24 +59,14 @@ class SaleOrderLine(models.Model):
         related="product_id.product_tmpl_id.b2b_price",
         readonly=True,
         store=False,
+        digits='Product Price',
     )
 
-    @api.depends('product_id')
+    @api.depends('order_id.b2b_sale', 'product_id')
     def _compute_b2b_price_info(self):
         for line in self:
-            product = line.product_id
-            template = product.product_tmpl_id if product else False
-
-            is_b2b = False
-
-            if template and 'is_b2b_portal' in template._fields:
-                is_b2b = template.is_b2b_portal
-
-            if product and 'is_b2b_portal' in product._fields:
-                is_b2b = product.is_b2b_portal
-
-            line.is_b2b_portal_line = is_b2b
-            line.price_type_label = "B2B Price" if is_b2b else "Unit Price"
+            line.price_type_label = "B2B Price" if line.order_id.b2b_sale else "Unit Price"
+            line.is_b2b_portal_line = bool(line.order_id.b2b_sale)
 
     @api.depends(
         'product_id',
@@ -63,33 +76,29 @@ class SaleOrderLine(models.Model):
         'order_id.pricelist_id',
         'order_id.date_order',
         'order_id.company_id',
+        'order_id.currency_id',
+        'order_id.b2b_sale',
+        'product_id.product_tmpl_id.b2b_price',
     )
     def _compute_price_unit(self):
+        """
+        Logic:
+        If Sale Order B2B Sale = True:
+            Unit Price = Product B2B Price
+            Amount = B2B Price * Quantity
+
+        Else:
+            Unit Price = Normal Odoo Price / Pricelist Price
+            Amount = Unit Price * Quantity
+        """
+
+        # First let Odoo calculate normal price_unit
         super()._compute_price_unit()
 
+        # Then override only B2B sale order lines
         for line in self:
-            if not line.product_id:
+            if line.display_type or not line.product_id:
                 continue
 
-            product = line.product_id
-            template = product.product_tmpl_id
-
-            is_b2b_portal = False
-            b2b_price = 0.0
-
-            if 'is_b2b_portal' in template._fields:
-                is_b2b_portal = template.is_b2b_portal
-
-            if 'b2b_price' in template._fields:
-                b2b_price = template.b2b_price or 0.0
-
-            if 'is_b2b_portal' in product._fields:
-                is_b2b_portal = product.is_b2b_portal
-
-            if 'b2b_price' in product._fields:
-                b2b_price = product.b2b_price or 0.0
-
-            if is_b2b_portal:
-                line.price_unit = b2b_price
-            else:
-                line.price_unit = product.lst_price or 0.0
+            if line.order_id.b2b_sale:
+                line.price_unit = line.product_id.product_tmpl_id.b2b_price or 0.0

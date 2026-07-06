@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+
     <!-- Group Category -->
     <record id="timeaccess_category_b2b_portal" model="ir.module.category">
         <field name="name">B2B Portal</field>
@@ -9,8 +10,8 @@
     <!-- General User -->
     <record id="group_b2b_general_user" model="res.groups">
         <field name="name">B2B General User</field>
-        <field name="category_id" ref="timeaccess_category_b2b_portal"> </field>
-        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"> </field>
+        <field name="category_id" ref="timeaccess_category_b2b_portal"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
     </record>
 
     <!-- Management -->
@@ -18,6 +19,19 @@
         <field name="name">B2B Management</field>
         <field name="category_id" ref="timeaccess_category_b2b_portal"/>
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <!-- B2B Sale Orders visible only to B2B Management -->
+    <record id="rule_b2b_sale_orders_only_management" model="ir.rule">
+        <field name="name">B2B Sale Orders Only B2B Management</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="domain_force">
+            [(1, '=', 1)] if user.has_group('time_access_portal.group_b2b_management') else [('b2b_sale', '=', False)]
+        </field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
     </record>
 
 </odoo>
