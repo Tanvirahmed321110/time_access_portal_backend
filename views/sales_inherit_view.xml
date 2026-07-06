@@ -50,7 +50,7 @@
         <field name="priority">110</field>
         <field name="arch" type="xml">
 
-            <xpath expr="//field[@name='payment_term_id']" position="after">
+            <xpath expr="//field[@name='journal_id']" position="after">
                 <field name="b2b_sale"/>
             </xpath>
 
@@ -67,7 +67,6 @@
             <xpath expr="//field[@name='order_line']//field[@name='price_unit']" position="before">
                 <field name="is_b2b_portal_line" column_invisible="1"/>
             </xpath>
-
         </field>
     </record>
 

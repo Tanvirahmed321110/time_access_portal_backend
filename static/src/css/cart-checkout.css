@@ -175,7 +175,15 @@ textarea {
 
 
 
-
+.order-item-card .btn-primary{
+    background-color: #ededed;
+    color:#010101;
+    border: 1px solid var(--border-secondary);
+}
+.order-item-card .btn-primary:hover{
+    color: var(--color-white);
+    background-color: var(--color-primary);
+}
 
 
 
@@ -425,7 +433,7 @@ textarea {
 }
 
 .order-sec .badge.pending {
-    background: #b0db34;
+    background: #cbf74b;
     color: #915621;
     font-weight: 700;
 }

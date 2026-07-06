@@ -185,8 +185,11 @@
                                                         <input type="number"
                                                                class="qty-input"
                                                                t-att-id="'qty-%s' % variant.id"
-                                                               value="5"
-                                                               min="5"/>
+                                                               t-att-value="2 if variant.qty_available >= 2 else int(variant.qty_available)"
+                                                               min="2"
+                                                               t-att-max="int(variant.qty_available)"
+                                                               t-att-data-stock="int(variant.qty_available)"
+                                                               t-att-disabled="variant.qty_available &lt; 2"/>
                                                     </div>
 
                                                     <div class="mt-2">
@@ -196,6 +199,12 @@
                                                               t-options="{'widget': 'float', 'precision': 0}"/>
                                                     </div>
                                                 </div>
+
+
+                                                <!-- quantity validation sms here -->
+<!--                                                <div class="error-text mt-3 px-2 p-2 radius-sm fw-medium fs-xs " style="background:red;color:#f2f2f2">-->
+<!--                                                    error sms show here-->
+<!--                                                </div>-->
 
                                                 <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
 
