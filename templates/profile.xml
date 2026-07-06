@@ -100,7 +100,7 @@
                                     </div>
                                     <div class="input-group mt-5">
                                         <label for="">Address</label>
-                                         <textarea name="street"><t t-esc="partner.street or ''"/></textarea>
+                                         <textarea name="street" t-att-value="partner.street"><t t-esc="partner.street or ''"/></textarea>
                                     </div>
 
                                     <t t-if="profile_saved">

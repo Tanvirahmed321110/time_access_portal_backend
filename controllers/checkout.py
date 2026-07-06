@@ -6,7 +6,8 @@ class TimeAccessPortal(http.Controller):
 
     @http.route('/checkout', type='http', auth='user', website=True)
     def checkout_page(self, product_id=None, qty=1, **kw):
-        partner = request.env.user.partner_id
+        partner = request.env.user.partner_id.sudo()
+
         order_line = None
         order_lines = []
         amount_total = 0.0
@@ -37,37 +38,38 @@ class TimeAccessPortal(http.Controller):
         return request.render('time_access_portal.checkout_page', {
             'active_menu': 'checkout',
             'is_buy_now': is_buy_now,
-            'order_line': order_line,  # Buy Now এর জন্য
-            'order_lines': order_lines,  # Cart এর জন্য
+            'order_line': order_line,
+            'order_lines': order_lines,
             'amount_total': amount_total,
             'qty': qty,
             'product_id': product_id,
+            'partner': partner,
         })
 
     # ===== Cart flow =====
     # ===== Confirm Cart / Buy Now as Draft Quotation =====
     @http.route('/cart/confirm', type='json', auth='user', website=True)
     def confirm_order(self, product_id=None, qty=1, **kw):
-        partner = request.env.user.partner_id
+        partner = request.env.user.partner_id.sudo()
 
-        company_name = kw.get('company_name', '').strip()
-        phone = kw.get('phone', '').strip()
+        name = kw.get('company_name', '').strip()
+        mobile = kw.get('mobile', '').strip()
         email = kw.get('email', '').strip()
-        shipping_address = kw.get('shipping_address', '').strip()
+        street = kw.get('street', '').strip()
 
         current_company = request.env.company.sudo()
 
         if current_company:
             vals = {}
 
-            if company_name:
-                vals['name'] = company_name
-            if phone:
-                vals['phone'] = phone
+            if name:
+                vals['name'] = name
+            if mobile:
+                vals['phone'] = mobile
             if email:
                 vals['email'] = email
-            if shipping_address:
-                vals['street'] = shipping_address
+            if street:
+                vals['street'] = street
 
             if vals:
                 current_company.write(vals)

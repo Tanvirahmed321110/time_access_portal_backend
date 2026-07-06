@@ -11,30 +11,30 @@
                     <div id="cart-page" class="page active-page">
                         <h2 class="page-title">Secure B2B Checkout</h2>
 
-                        <!-- TYPO FIXED: 'from' কে 'form' করা হয়েছে -->
+
                         <form action="#" class="two-column-layout mt-6">
                             <div class="box-panel p-4">
                                 <h4 class="fs-lg fw-bolder text-primary">Corporate Shipping &amp; Billing Information</h4>
 
                                 <div class="flex-column gap-6 mt-5">
                                     <div class="input-group">
-                                        <label>Company Name</label>
-                                        <input type="text" name="company_name" placeholder="Company Name"
-                                               t-att-value="request.env.company.name or ''"/>
+                                        <label> Name</label>
+                                        <input type="text" name="company_name" placeholder=" Name"
+                                               t-att-value="partner.name or ''"/>
                                     </div>
                                     <div class="input-group">
-                                        <label>Phone</label>
-                                        <input type="text" name="phone" placeholder="Enter Phone"
-                                               t-att-value="request.env.company.phone or ''"/>
+                                        <label>Mobile</label>
+                                        <input type="text" name="mobile" placeholder="Enter Phone"
+                                               t-att-value="partner.phone or ''"/>
                                     </div>
                                     <div class="input-group">
                                         <label>Email</label>
                                         <input type="text" name="email" placeholder="Enter Email"
-                                               t-att-value="request.env.company.email or ''"/>
+                                               t-att-value="partner.email or ''"/>
                                     </div>
                                     <div class="input-group">
                                         <label>Shipping Warehouse Address</label>
-                                        <textarea name="shipping_address" placeholder="Full Address..." rows="4"><t t-esc="request.env.company.street or ''"/></textarea>
+                                        <textarea name="street" placeholder="Full Address..." rows="4"><t t-esc="partner.street or ''"/></textarea>
                                     </div>
                                 </div>
                             </div>

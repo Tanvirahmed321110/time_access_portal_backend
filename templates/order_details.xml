@@ -22,9 +22,14 @@
                                     </h5>
                                     <p class="mt-2 ">
                                         <span class="fw-bolder">Placed on:
-                                            <span class="fw-normal">
-                                                <t t-esc="order.date_order.strftime('%B %d, %Y at %I:%M %p') if order.date_order else ''"/>
-                                            </span>
+                                            <t t-set="order_bd" t-value="order.with_context(tz='Asia/Dhaka')"/>
+
+                                            <span class="fw-normal"
+                                                  t-field="order_bd.date_order"
+                                                  t-options="{
+                                                  'widget': 'datetime',
+                                                  'format': 'dd MMMM yyyy at hh:mm a'
+                                              }"/>
                                         </span>
                                     </p>
                                 </div>
@@ -41,10 +46,10 @@
                                     <h5 class="text-primary mb-2 fw-bolder">Shipping Address</h5>
                                     <p>
                                         <span class="fw-medium">
-                                            <t t-esc="request.env.company.name"/>
+                                            <t t-esc="order.partner_id.name or 'N/A'"/>
                                         </span>
                                         <br/>
-                                        <t t-esc="request.env.company.street or 'N/A'"/>
+                                        <t t-esc="order.partner_id.street or 'N/A'"/>
                                     </p>
                                 </div>
                                 <div class="info-box">
