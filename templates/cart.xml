@@ -64,7 +64,9 @@
 
                                                         <!--  Quantity   -->
                                                         <td style="padding:15px;">
-                                                            <input type="number" value="5" min="5"
+                                                            <input type="number"
+                                                                   min="2"
+                                                                   t-att-max="int(line.product_id.qty_available or 0)"
                                                                    t-att-value="line.product_uom_qty"
                                                                    t-att-data-line-id="line.id"
                                                                    class="qty-update-input"

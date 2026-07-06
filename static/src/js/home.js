@@ -166,3 +166,70 @@ document.addEventListener('DOMContentLoaded', function() {
         cards.forEach(card => container.appendChild(card));
     });
 });
+
+
+
+
+// ========== Reusable Stock Qty Validation ==========
+function validateQtyInput(input) {
+    let stock = parseFloat(input.getAttribute('data-stock') || input.getAttribute('max') || 0);
+    let minQty = parseFloat(input.getAttribute('min') || 1);
+    let qty = parseFloat(input.value || 0);
+
+    let scope = input.closest('.product-card') || input.closest('tr') || document;
+    let errorBox = scope.querySelector('.error-text');
+    let buttons = scope.querySelectorAll('.add_to_cart, .btn-buy-now');
+
+    let valid = true;
+    let message = '';
+
+    if (stock <= 0) {
+        valid = false;
+        message = 'Stock not available.';
+    } else if (!qty || qty < minQty) {
+        valid = false;
+        message = 'Minimum quantity is ' + minQty + '.';
+    } else if (qty > stock) {
+        valid = false;
+        message = 'Only ' + stock + ' items available in stock.';
+    }
+
+    if (errorBox) {
+        errorBox.textContent = message;
+        errorBox.style.display = valid ? 'none' : 'block';
+    }
+
+    buttons.forEach(function(btn) {
+        if (!valid) {
+            btn.dataset.stockDisabled = '1';
+            btn.classList.add('disabled');
+            btn.setAttribute('disabled', 'disabled');
+            btn.style.pointerEvents = 'none';
+        } else {
+            if (btn.dataset.stockDisabled === '1') {
+                btn.classList.remove('disabled');
+                btn.removeAttribute('disabled');
+                btn.style.pointerEvents = '';
+                delete btn.dataset.stockDisabled;
+            }
+        }
+    });
+
+    input.dataset.qtyInvalid = valid ? '0' : '1';
+    return valid;
+}
+
+
+
+// ========== Init Qty Validation ==========
+document.querySelectorAll('.qty-input, .qty-update-input').forEach(function(input) {
+    validateQtyInput(input);
+
+    input.addEventListener('input', function() {
+        validateQtyInput(this);
+    });
+
+    input.addEventListener('change', function() {
+        validateQtyInput(this);
+    });
+});

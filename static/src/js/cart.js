@@ -170,7 +170,6 @@ if (qtyInputs.length > 0) {
 
 
 // =========== Buy Now ==============
-// =========== Buy Now ==============
 let buyNowBtns = document.querySelectorAll('.btn-buy-now');
 if (buyNowBtns.length > 0) {
     buyNowBtns.forEach(function(btn) {
@@ -211,3 +210,7 @@ if (buyNowBtns.length > 0) {
         });
     });
 }
+
+
+
+

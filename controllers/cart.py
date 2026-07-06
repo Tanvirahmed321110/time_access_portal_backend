@@ -60,12 +60,7 @@ class TimeAccessPortal(http.Controller):
         if existing_line:
             line = existing_line[0]
 
-            if replace_qty:
-                # Buy Now flow: selected qty will replace old cart qty
-                new_qty = quantity
-            else:
-                # Normal Add to Cart flow: qty will increase
-                new_qty = line.product_uom_qty + quantity
+            new_qty = quantity
 
             line.sudo().write({
                 'product_uom_qty': new_qty,
