@@ -57,11 +57,16 @@ class TimeAccessPortal(http.Controller):
 
 
     # ================== Add To Cart ===================
+    # ================== Add To Cart ===================
     @http.route('/cart/add', type='json', auth='user', website=True)
     def add_to_cart(self, product_id, quantity=1, replace_qty=False, **kw):
         partner = request.env.user.partner_id
 
-        product = request.env['product.product'].sudo().browse(int(product_id)).exists()
+        Product = request.env['product.product'].sudo()
+        SaleOrder = request.env['sale.order'].sudo()
+        SaleOrderLine = request.env['sale.order.line'].sudo()
+
+        product = Product.browse(int(product_id)).exists()
         if not product:
             return {
                 'success': False,
@@ -69,23 +74,44 @@ class TimeAccessPortal(http.Controller):
             }
 
         quantity = float(quantity or 1)
-
         if quantity < 1:
             quantity = 1
 
-        # Convert JS true/false safely
         replace_qty = bool(replace_qty)
 
-        order = request.env['sale.order'].sudo().search([
+        has_b2b_sale = 'b2b_sale' in SaleOrder._fields
+
+        # Find existing add_to_cart order
+        order = SaleOrder.search([
             ('partner_id', '=', partner.id),
             ('state', '=', 'add_to_cart'),
         ], limit=1)
 
+        # ==========================================
+        # IMPORTANT: Create order in add_to_cart stage
+        # and set b2b_sale = True
+        # ==========================================
         if not order:
-            order = request.env['sale.order'].sudo().create({
+            order_vals = {
                 'partner_id': partner.id,
                 'state': 'add_to_cart',
-            })
+            }
+
+            if has_b2b_sale:
+                order_vals['b2b_sale'] = True
+
+            order = SaleOrder.create(order_vals)
+
+        else:
+            # Existing add_to_cart order holeo b2b_sale True kore dao
+            write_vals = {
+                'state': 'add_to_cart',
+            }
+
+            if has_b2b_sale:
+                write_vals['b2b_sale'] = True
+
+            order.write(write_vals)
 
         existing_line = order.order_line.filtered(
             lambda line: line.product_id.id == product.id
@@ -94,13 +120,16 @@ class TimeAccessPortal(http.Controller):
         if existing_line:
             line = existing_line[0]
 
+            # Buy Now hole replace qty
+            # Add to Cart hole also current selected qty set kortesi
             new_qty = quantity
 
             line.sudo().write({
                 'product_uom_qty': new_qty,
             })
+
         else:
-            request.env['sale.order.line'].sudo().create({
+            line = SaleOrderLine.create({
                 'order_id': order.id,
                 'product_id': product.id,
                 'product_uom_qty': quantity,
@@ -110,6 +139,8 @@ class TimeAccessPortal(http.Controller):
         return {
             'success': True,
             'order_id': order.id,
+            'state': order.state,
+            'b2b_sale': bool(order.b2b_sale) if has_b2b_sale else False,
         }
 
     # ================== Cart Remove ===================

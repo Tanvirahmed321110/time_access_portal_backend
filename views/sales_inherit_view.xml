@@ -14,7 +14,7 @@
           name="Add to Carts"
           parent="sale.sale_order_menu"
           action="action_add_to_carts"
-          sequence="1"
+          sequence="-15"
           groups="time_access_portal.group_b2b_management"/>
 
     <!-- Quotations Menu: hide Add to Cart orders -->

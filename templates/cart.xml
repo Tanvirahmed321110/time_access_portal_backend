@@ -59,7 +59,7 @@
 
                                                         <!--  Price   -->
                                                         <td style="padding:15px;">TK
-                                                            <t t-esc="'%.2f' % line.price_unit"/>
+                                                            <t t-esc="'%.2f' % line.b2b_price"/>
                                                         </td>
 
                                                         <!--  Quantity   -->

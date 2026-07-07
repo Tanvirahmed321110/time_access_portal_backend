@@ -52,7 +52,7 @@ class TimeAccessPortal(http.Controller):
         if selected_category_id:
             pager_url_args['category_id'] = selected_category_id
 
-        per_page = int(kw.get('per_page', 30))
+        per_page = int(kw.get('per_page', 15))
         total = request.env['product.template'].sudo().search_count(domain)
 
         pager = get_pager(
