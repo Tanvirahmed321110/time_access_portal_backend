@@ -8,6 +8,13 @@ class TimeAccessPortal(http.Controller):
     # ===================  Orders Page  ====================
     @http.route('/orders', type='http', auth='user', website=True)
     def index_f(self, **kw):
+        # Block B2B General User from /index portal
+        if (
+                request.env.user.has_group('time_access_portal.group_b2b_general_user')
+                and not request.env.user.has_group('time_access_portal.group_b2b_management')
+        ):
+            return request.redirect('/web')
+
         partner = request.env.user.partner_id
 
         domain = [
@@ -44,6 +51,13 @@ class TimeAccessPortal(http.Controller):
     # ===================  Orders Details Page  ====================
     @http.route('/orders/<int:order_id>', type='http', auth='user', website=True)
     def order_details_f(self, order_id, **kw):
+        # Block B2B General User from /index portal
+        if (
+                request.env.user.has_group('time_access_portal.group_b2b_general_user')
+                and not request.env.user.has_group('time_access_portal.group_b2b_management')
+        ):
+            return request.redirect('/web')
+
         partner = request.env.user.partner_id
 
         order = request.env['sale.order'].sudo().search([

@@ -169,10 +169,10 @@
                                                 <a href="#" class="product-name" t-esc="product.name"/>
 
                                                 <!-- B2B price only for management -->
-                                                <t t-if="request.env.user.has_group('time_access_portal.group_b2b_management')">
+                                                <t t-if="not request.env.user.has_group('time_access_portal.group_b2b_general_user')">
                                                     <div class="price d-flex align-center gap-4 mt-1 gap-sm-2">
                                                         <div class="new-price fs-md">TK
-                                                            <span t-esc="'%.2f' % product.b2b_price"/>
+                                                            <span t-esc="'%.2f' % (product.b2b_price or 0.0)"/>
                                                         </div>
                                                     </div>
                                                 </t>
@@ -180,16 +180,23 @@
 
                                             <div class="qty-btns">
                                                 <div class="d-flex align-center gap-4">
+                                                    <t t-set="min_b2b_qty"
+                                                       t-value="int((product_min_qty_map or {}).get(product.id) or 1)"/>
+                                                    <t t-set="stock_qty"
+                                                       t-value="int((product_stock_qty_map or {}).get(product.id) or 0)"/>
+                                                    <t t-set="default_qty"
+                                                       t-value="int((product_default_qty_map or {}).get(product.id) or min_b2b_qty)"/>
                                                     <div class="qty-wrapper d-flex align-center mt-3 gap-2">
                                                         <label>Quantity:</label>
                                                         <input type="number"
                                                                class="qty-input"
                                                                t-att-id="'qty-%s' % variant.id"
-                                                               t-att-value="2 if variant.qty_available >= 2 else int(variant.qty_available)"
-                                                               min="2"
-                                                               t-att-max="int(variant.qty_available)"
-                                                               t-att-data-stock="int(variant.qty_available)"
-                                                               t-att-disabled="variant.qty_available &lt; 2"/>
+                                                               t-att-value="default_qty"
+                                                               t-att-min="min_b2b_qty"
+                                                               t-att-max="stock_qty"
+                                                               t-att-data-stock="stock_qty"
+                                                               t-att-data-min-qty="min_b2b_qty"
+                                                               t-att-disabled="stock_qty &lt; min_b2b_qty"/>
                                                     </div>
 
                                                     <div class="mt-2">
@@ -202,9 +209,9 @@
 
 
                                                 <!-- quantity validation sms here -->
-                                               <div class="error-text mt-3 px-2 p-2 radius-sm fw-medium fs-xs"
-                                                 style="background:red;color:#f2f2f2; display:none;">
-                                            </div>
+                                                <div class="error-text mt-3 px-2 p-2 radius-sm fw-medium fs-xs"
+                                                     style="background:red;color:#f2f2f2; display:none;">
+                                                </div>
 
                                                 <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
 

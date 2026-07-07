@@ -55,7 +55,6 @@
                                 <div class="info-box">
                                     <h5 class="text-primary mb-2 fw-bolder">Payment Method</h5>
                                     <p>
-                                        <br/>
                                         <span class="fw-medium">Status:</span>
                                         <t t-if="order.invoice_ids">
                                             <span class="badge success">Paid</span>
@@ -177,13 +176,19 @@
                                             <td class="text-primary" style="text-align: right;font-weight: 600;">TK 0.00
                                             </td>
                                         </tr>
+                                          <tr>
+                                            <td class="text-primary" style="text-align: left;font-weight: 600;">Others
+                                            </td>
+                                            <td class="text-primary" style="text-align: right;font-weight: 600;">TK 0.00
+                                            </td>
+                                        </tr>
                                         <tr class="total-row">
                                             <td class="text-primary"
-                                                style="text-align: left;font-weight: 700;font-size: var(--fs-md);">Grand
+                                                style="text-align: left;font-weight: 700;font-size: var(--fs-lg);">Grand
                                                 Total
                                             </td>
                                             <td class="text-primary"
-                                                style="text-align:right; font-weight:700; font-size:var(--fs-md);">
+                                                style="text-align:right; font-weight:700; font-size:var(--fs-lg);">
                                                 TK
                                                 <t t-esc="'%.2f' % order.amount_total"/>
                                             </td>

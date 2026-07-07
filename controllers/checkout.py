@@ -6,6 +6,13 @@ class TimeAccessPortal(http.Controller):
 
     @http.route('/checkout', type='http', auth='user', website=True)
     def checkout_page(self, product_id=None, qty=1, **kw):
+        # Block B2B General User from /index portal
+        if (
+                request.env.user.has_group('time_access_portal.group_b2b_general_user')
+                and not request.env.user.has_group('time_access_portal.group_b2b_management')
+        ):
+            return request.redirect('/web')
+
         partner = request.env.user.partner_id.sudo()
 
         order_line = None

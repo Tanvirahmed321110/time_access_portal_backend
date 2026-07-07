@@ -11,10 +11,11 @@
     </record>
 
     <menuitem id="menu_add_to_carts"
-              name="Add to Carts"
-              parent="sale.sale_order_menu"
-              action="action_add_to_carts"
-              sequence="1"/>
+          name="Add to Carts"
+          parent="sale.sale_order_menu"
+          action="action_add_to_carts"
+          sequence="1"
+          groups="time_access_portal.group_b2b_management"/>
 
     <!-- Quotations Menu: hide Add to Cart orders -->
     <record id="sale.action_quotations_with_onboarding" model="ir.actions.act_window">

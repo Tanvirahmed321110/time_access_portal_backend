@@ -1,7 +1,7 @@
 from urllib.parse import urlencode
 
 
-def get_pager(url, total, page=1, per_page=12, url_args=None):
+def get_pager(url, total, page=1, per_page=2, url_args=None):
     url_args = url_args or {}
     page = int(page) if str(page).isdigit() else 1
 

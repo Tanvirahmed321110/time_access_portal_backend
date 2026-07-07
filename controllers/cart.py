@@ -8,6 +8,13 @@ class TimeAccessPortal(http.Controller):
     # ================== Cart Page ===================
     @http.route('/cart', type='http', auth='user', website=True)
     def index_f(self, **kw):
+        # Block B2B General User from /index portal
+        if (
+                request.env.user.has_group('time_access_portal.group_b2b_general_user')
+                and not request.env.user.has_group('time_access_portal.group_b2b_management')
+        ):
+            return request.redirect('/web')
+
         partner = request.env.user.partner_id
 
         order = request.env['sale.order'].sudo().search([
@@ -16,6 +23,35 @@ class TimeAccessPortal(http.Controller):
         ], limit=1)
 
         order_lines = order.order_line if order else []
+
+        # =====================================================
+        # B2B Minimum Qty Logic
+        # Product b2b_qty first.
+        # If product b2b_qty empty/0, then category b2b_quantity.
+        # If both empty/0, fallback 1.
+        # =====================================================
+        product_min_qty_map = {}
+        product_stock_qty_map = {}
+        product_default_qty_map = {}
+
+        for product in products:
+            variant = product.product_variant_id
+
+            stock_qty = int(variant.qty_available or 0)
+
+            product_min_qty = int(product.b2b_qty or 0)
+            category_min_qty = int(product.categ_id.b2b_quantity or 0)
+
+            min_qty = product_min_qty or category_min_qty or 1
+
+            if stock_qty >= min_qty:
+                default_qty = min_qty
+            else:
+                default_qty = stock_qty
+
+            product_min_qty_map[product.id] = min_qty
+            product_stock_qty_map[product.id] = stock_qty
+            product_default_qty_map[product.id] = default_qty
 
         return request.render('time_access_portal.cart_page', {
             'order': order,
