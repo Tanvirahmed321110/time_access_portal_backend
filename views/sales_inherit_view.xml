@@ -11,24 +11,24 @@
     </record>
 
 
-    <!-- Force Sales > Orders parent click to open Quotations menu_id -->
-<record id="action_open_quotations_as_active_menu" model="ir.actions.act_url">
-    <field name="name">Open Quotations</field>
-    <field name="url"
-           eval="'/web#action=%s&amp;menu_id=%s&amp;model=sale.order&amp;view_type=list' % (ref('sale.action_quotations_with_onboarding'), ref('sale.menu_sale_quotations'))"/>
-    <field name="target">self</field>
-</record>
+    <!-- Force Sales > Orders parent click to open Quotations menu_id active -->
+    <record id="action_open_quotations_as_active_menu" model="ir.actions.act_url">
+        <field name="name">Open Quotations</field>
+        <field name="url"
+               eval="'/web#action=%s&amp;menu_id=%s&amp;model=sale.order&amp;view_type=list' % (ref('sale.action_quotations_with_onboarding'), ref('sale.menu_sale_quotations'))"/>
+        <field name="target">self</field>
+    </record>
 
-<record id="sale.sale_order_menu" model="ir.ui.menu">
-    <field name="action" eval="'ir.actions.act_url,%d' % ref('action_open_quotations_as_active_menu')"/>
-</record>
+    <record id="sale.sale_order_menu" model="ir.ui.menu">
+        <field name="action" eval="'ir.actions.act_url,%d' % ref('action_open_quotations_as_active_menu')"/>
+    </record>
 
     <menuitem id="menu_add_to_carts"
-          name="Add to Carts"
-          parent="sale.sale_order_menu"
-          action="action_add_to_carts"
-          sequence="-15"
-          groups="time_access_portal.group_b2b_management"/>
+              name="Add to Carts"
+              parent="sale.sale_order_menu"
+              action="action_add_to_carts"
+              sequence="-15"
+              groups="time_access_portal.group_b2b_management"/>
 
     <!-- Quotations Menu: hide Add to Cart orders -->
     <record id="sale.action_quotations_with_onboarding" model="ir.actions.act_window">
