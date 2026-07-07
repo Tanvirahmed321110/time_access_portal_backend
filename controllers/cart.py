@@ -55,7 +55,7 @@ class TimeAccessPortal(http.Controller):
         })
 
 
-    
+
     # ================== Add To Cart ===================
     @http.route('/cart/add', type='json', auth='user', website=True)
     def add_to_cart(self, product_id, quantity=1, replace_qty=False, **kw):

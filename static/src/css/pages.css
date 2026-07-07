@@ -321,8 +321,49 @@ footer {
     transform: translateY(0%);
     object-fit: cover;
 }
+.error-text{
+    position: absolute;
+    top:160px;
+    left:0;
+    border-radius: 0 20px 20px 0;
+    width: fit-content;
+    z-index: 2;
+}
 
+.error-text {
+    position: absolute;
+    top: 160px;
+    left: 0;
+    border-radius: 0 20px 20px 0;
+    width: fit-content;
+    z-index: 3;
+    /* 3D look */
+    background: linear-gradient(180deg, #ff4d4d 0%, #d90000 60%, #a30000 100%) !important;
+    padding: 6px 14px;
+    box-shadow:
+        0 2px 0 #8a0000,      /* bottom edge depth */
+        0 4px 4px rgba(0,0,0,0.35),  /* soft shadow below */
+        inset 0 1px 0 rgba(255,255,255,0.5); /* top highlight */
+    transform: rotateX(22deg) skew(-2deg);
+    transform-origin: left top; perspective(2200px)
+}
 
+/* Fold shadow at the pointed/attached side */
+.error-text::after {
+    content: "";
+    position: absolute;
+    left: 1px;
+    top: 100%;
+    width: 6px;
+    height: 6px;
+    background: #6b0000;
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+    z-index: 1; perspective(2200px)
+}
+
+.content.list-contents .product-card .error-text{
+   top:120px;
+}
 /*============== .product-card Details ==============*/
 .product-card .product-content {
     padding: 14px;

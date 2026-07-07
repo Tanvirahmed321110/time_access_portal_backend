@@ -13,7 +13,7 @@
                 <link rel="stylesheet" href="/time_access_portal/static/src/css/custom_class.css?v=2"/>
                 <link rel="stylesheet" href="/time_access_portal/static/src/css/my_component.css?v=2"/>
                 <link rel="stylesheet" href="/time_access_portal/static/src/css/global.css?v=2"/>
-                <link rel="stylesheet" href="/time_access_portal/static/src/css/pages.css?v=2"/>
+                <link rel="stylesheet" href="/time_access_portal/static/src/css/pages.css?v=3"/>
                 <t t-raw="header"/>
             </head>
 
