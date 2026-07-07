@@ -64,13 +64,27 @@
 
                                                         <!--  Quantity   -->
                                                         <td style="padding:15px;">
+                                                            <t t-set="min_b2b_qty"
+                                                               t-value="int((line_min_qty_map or {}).get(line.id) or 1)"/>
+                                                            <t t-set="stock_qty"
+                                                               t-value="int((line_stock_qty_map or {}).get(line.id) or 0)"/>
+                                                            <t t-set="line_qty"
+                                                               t-value="int(line.product_uom_qty or 0)"/>
+
                                                             <input type="number"
-                                                                   min="2"
-                                                                   t-att-max="int(line.product_id.qty_available or 0)"
-                                                                   t-att-value="line.product_uom_qty"
+                                                                   t-att-min="min_b2b_qty"
+                                                                   t-att-max="stock_qty"
+                                                                   t-att-value="line_qty if line_qty >= min_b2b_qty else min_b2b_qty"
                                                                    t-att-data-line-id="line.id"
+                                                                   t-att-data-min-qty="min_b2b_qty"
+                                                                   t-att-data-stock="stock_qty"
+                                                                   t-att-disabled="'disabled' if stock_qty &lt; min_b2b_qty else None"
                                                                    class="qty-update-input"
                                                                    style="width:60px; padding:5px;background:#eded; text-align:center;"/>
+
+                                                            <div class="error-text mt-2 px-2 p-2 radius-sm fw-medium fs-xs"
+                                                                 style="background:red;color:#f2f2f2; display:none;">
+                                                            </div>
                                                         </td>
 
                                                         <!--  Subtotal   -->
@@ -113,9 +127,9 @@
                                                 </t>
 
 
-
                                                 <div class="error-text mt-3 px-2 p-2 radius-sm fw-medium fs-xs"
-                                                     style="background:red;color:#f2f2f2; display:none"> errer texter ddffd
+                                                     style="background:red;color:#f2f2f2; display:none">errer texter
+                                                    ddffd
                                                 </div>
                                             </tbody>
 

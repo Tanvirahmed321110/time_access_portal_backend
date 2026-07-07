@@ -30,34 +30,32 @@ class TimeAccessPortal(http.Controller):
         # If product b2b_qty empty/0, then category b2b_quantity.
         # If both empty/0, fallback 1.
         # =====================================================
-        product_min_qty_map = {}
-        product_stock_qty_map = {}
-        product_default_qty_map = {}
+        line_min_qty_map = {}
+        line_stock_qty_map = {}
 
-        for product in products:
-            variant = product.product_variant_id
+        for line in order_lines:
+            product = line.product_id
+            product_tmpl = product.product_tmpl_id
 
-            stock_qty = int(variant.qty_available or 0)
+            stock_qty = int(product.qty_available or 0)
 
-            product_min_qty = int(product.b2b_qty or 0)
-            category_min_qty = int(product.categ_id.b2b_quantity or 0)
+            product_min_qty = int(product_tmpl.b2b_qty or 0)
+            category_min_qty = int(product_tmpl.categ_id.b2b_quantity or 0)
 
             min_qty = product_min_qty or category_min_qty or 1
 
-            if stock_qty >= min_qty:
-                default_qty = min_qty
-            else:
-                default_qty = stock_qty
-
-            product_min_qty_map[product.id] = min_qty
-            product_stock_qty_map[product.id] = stock_qty
-            product_default_qty_map[product.id] = default_qty
+            line_min_qty_map[line.id] = min_qty
+            line_stock_qty_map[line.id] = stock_qty
 
         return request.render('time_access_portal.cart_page', {
             'order': order,
             'order_lines': order_lines,
+            'line_min_qty_map': line_min_qty_map,
+            'line_stock_qty_map': line_stock_qty_map,
         })
 
+
+    
     # ================== Add To Cart ===================
     @http.route('/cart/add', type='json', auth='user', website=True)
     def add_to_cart(self, product_id, quantity=1, replace_qty=False, **kw):
