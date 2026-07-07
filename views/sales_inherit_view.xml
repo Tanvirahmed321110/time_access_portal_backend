@@ -10,6 +10,19 @@
         <field name="context">{'default_state': 'add_to_cart'}</field>
     </record>
 
+
+    <!-- Force Sales > Orders parent click to open Quotations menu_id -->
+<record id="action_open_quotations_as_active_menu" model="ir.actions.act_url">
+    <field name="name">Open Quotations</field>
+    <field name="url"
+           eval="'/web#action=%s&amp;menu_id=%s&amp;model=sale.order&amp;view_type=list' % (ref('sale.action_quotations_with_onboarding'), ref('sale.menu_sale_quotations'))"/>
+    <field name="target">self</field>
+</record>
+
+<record id="sale.sale_order_menu" model="ir.ui.menu">
+    <field name="action" eval="'ir.actions.act_url,%d' % ref('action_open_quotations_as_active_menu')"/>
+</record>
+
     <menuitem id="menu_add_to_carts"
           name="Add to Carts"
           parent="sale.sale_order_menu"
