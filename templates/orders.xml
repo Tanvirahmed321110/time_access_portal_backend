@@ -71,7 +71,12 @@
                                             <hr style="border: 0; border-top: 1px solid #f1f5f9; margin-bottom: 16px;"/>
 
                                             <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px;">
-                                                <!-- মোট বিল -->
+                                                <t t-set="paid_invoices"
+                                                   t-value="order.invoice_ids.filtered(lambda i: i.state == 'posted')"/>
+                                                <t t-set="total_paid"
+                                                   t-value="sum((inv.amount_total - inv.amount_residual) if inv.move_type == 'out_invoice' else -(inv.amount_total - inv.amount_residual) for inv in paid_invoices)"/>
+
+
                                                 <div style="display: flex; justify-content: space-between; font-size: 14px; color: #64748b;">
                                                     <span>Total Amount:</span>
                                                     <span style="font-weight: 600; color: #0f172a;">TK
@@ -82,14 +87,13 @@
                                                 <div style="display: flex; justify-content: space-between; font-size: 14px; color: #64748b;">
                                                     <span>Total Paid:</span>
                                                     <span style="font-weight: 600; color: #16a34a;">TK
-                                                        <t t-esc="'%.2f' % order.amount_invoiced"/>
+                                                        <t t-esc="'%.2f' % total_paid"/>
                                                     </span>
                                                 </div>
 
                                                 <div style="display: flex; justify-content: space-between; font-size: 15px; padding-top: 10px; border-top: 1px dashed #e2e8f0;">
                                                     <span style="font-weight: 600; color: #1e293b;">Total Due:</span>
-                                                    <t t-set="total_due"
-                                                       t-value="order.amount_total - order.amount_invoiced"/>
+                                                    <t t-set="total_due" t-value="order.amount_total - total_paid"/>
                                                     <t t-if="total_due &lt;= 0">
                                                         <span style="font-weight: 700; color: #16a34a;">TK 0.00</span>
                                                     </t>

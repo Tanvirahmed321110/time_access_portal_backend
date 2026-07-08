@@ -52,55 +52,67 @@
                                         <t t-esc="order.partner_id.street or 'N/A'"/>
                                     </p>
                                 </div>
+
                                 <div class="info-box">
                                     <h5 class="text-primary mb-2 fw-bolder">Payment Method</h5>
                                     <p>
                                         <span class="fw-medium">Status:</span>
-                                        <t t-if="order.invoice_ids">
+
+                                        <t t-set="posted_invoices"
+                                           t-value="order.invoice_ids.filtered(lambda i: i.state == 'posted')"/>
+
+                                        <t t-if="not posted_invoices">
+                                            <span class="badge pending">Unpaid</span>
+                                        </t>
+                                        <t t-elif="all(inv.payment_state == 'paid' for inv in posted_invoices)">
                                             <span class="badge success">Paid</span>
+                                        </t>
+                                        <t t-elif="any(inv.payment_state in ('partial', 'paid', 'in_payment') for inv in posted_invoices)">
+                                            <span class="badge processing">Partial</span>
                                         </t>
                                         <t t-else="">
                                             <span class="badge pending">Unpaid</span>
                                         </t>
                                     </p>
                                 </div>
+
                                 <div class="info-box">
                                     <h5 class="text-primary mb-2 fw-bold">Fulfillment Status</h5>
                                     <p>
                                         <span class="fw-medium">Status:</span>
 
-                                            <t t-set="delivery_pickings"
-                                               t-value="order.picking_ids.filtered(lambda p: p.state != 'cancel')"/>
+                                        <t t-set="delivery_pickings"
+                                           t-value="order.picking_ids.filtered(lambda p: p.state != 'cancel')"/>
 
-                                            <!-- Quotation / Draft -->
-                                            <t t-if="order.state in ['draft', 'sent']">
-                                                <span class="badge pending">Pending</span>
-                                            </t>
+                                        <!-- Quotation / Draft -->
+                                        <t t-if="order.state in ['draft', 'sent']">
+                                            <span class="badge pending">Pending</span>
+                                        </t>
 
-                                            <!-- Cancelled -->
-                                            <t t-elif="order.state == 'cancel'">
-                                                <span class="badge cancel">Canceled</span>
-                                            </t>
+                                        <!-- Cancelled -->
+                                        <t t-elif="order.state == 'cancel'">
+                                            <span class="badge cancel">Canceled</span>
+                                        </t>
 
-                                            <!-- Delivered: all delivery orders are done -->
-                                            <t t-elif="delivery_pickings and not delivery_pickings.filtered(lambda p: p.state != 'done')">
-                                                <span class="badge success">Delivered</span>
-                                            </t>
+                                        <!-- Delivered: all delivery orders are done -->
+                                        <t t-elif="delivery_pickings and not delivery_pickings.filtered(lambda p: p.state != 'done')">
+                                            <span class="badge success">Delivered</span>
+                                        </t>
 
-                                            <!-- Confirmed sale order but not fully delivered -->
-                                            <t t-elif="order.state == 'sale'">
-                                                <span class="badge processing">Processing</span>
-                                            </t>
+                                        <!-- Confirmed sale order but not fully delivered -->
+                                        <t t-elif="order.state == 'sale'">
+                                            <span class="badge processing">Processing</span>
+                                        </t>
 
-                                            <!-- Locked / Done Sale Order -->
-                                            <t t-elif="order.state == 'done'">
-                                                <span class="badge success">Completed</span>
-                                            </t>
+                                        <!-- Locked / Done Sale Order -->
+                                        <t t-elif="order.state == 'done'">
+                                            <span class="badge success">Completed</span>
+                                        </t>
 
-                                            <!-- Fallback -->
-                                            <t t-else="">
-                                                <span class="badge pending">Pending</span>
-                                            </t>
+                                        <!-- Fallback -->
+                                        <t t-else="">
+                                            <span class="badge pending">Pending</span>
+                                        </t>
                                     </p>
                                 </div>
                             </div>
@@ -176,7 +188,7 @@
                                             <td class="text-primary" style="text-align: right;font-weight: 600;">TK 0.00
                                             </td>
                                         </tr>
-                                          <tr>
+                                        <tr>
                                             <td class="text-primary" style="text-align: left;font-weight: 600;">Others
                                             </td>
                                             <td class="text-primary" style="text-align: right;font-weight: 600;">TK 0.00
