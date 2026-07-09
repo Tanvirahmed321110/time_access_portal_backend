@@ -47,7 +47,7 @@
         ],
 
         'web.assets_backend': [
-            'time_access_portal/static/src/css/custom_backend.css',
+            # 'time_access_portal/static/src/css/custom_backend.css',
         ],
     },
     # only loaded in demonstration mode

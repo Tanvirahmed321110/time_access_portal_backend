@@ -71,19 +71,19 @@
     </record>
 
     <!-- Safer column label -->
-    <record id="view_order_form_inherit_b2b_price_column" model="ir.ui.view">
-        <field name="name">sale.order.form.inherit.b2b.price.column</field>
-        <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_form"/>
-        <field name="priority">120</field>
-        <field name="arch" type="xml">
+<!--    <record id="view_order_form_inherit_b2b_price_column" model="ir.ui.view">-->
+<!--        <field name="name">sale.order.form.inherit.b2b.price.column</field>-->
+<!--        <field name="model">sale.order</field>-->
+<!--        <field name="inherit_id" ref="sale.view_order_form"/>-->
+<!--        <field name="priority">120</field>-->
+<!--        <field name="arch" type="xml">-->
 
-            <xpath expr="//field[@name='order_line']//list//field[@name='invoice_status']" position="attributes">
-                <attribute name="string">Unit Price / B2B Price</attribute>
-            </xpath>
+<!--            <xpath expr="//field[@name='order_line']//list//field[@name='invoice_status']" position="attributes">-->
+<!--                <attribute name="string">Unit Price / B2B Price</attribute>-->
+<!--            </xpath>-->
 
-        </field>
-    </record>
+<!--        </field>-->
+<!--    </record>-->
 
 
     <!-- Add B2B Sale Tag Column in Quotations List - After Status -->
