@@ -19,11 +19,12 @@ class TimeAccessPortal(http.Controller):
 
         selected_category = False
 
-        b2b_products = request.env['product.template'].sudo().search([
-            ('is_b2b_portal', '=', True),
-            ('b2b_category', '!=', False),
-        ])
-        raw_categories = b2b_products.mapped('b2b_category')
+        grouped = request.env['product.template'].sudo().read_group(
+            domain=[('is_b2b_portal', '=', True), ('b2b_category', '!=', False)],
+            fields=['b2b_category'],
+            groupby=['b2b_category'],
+        )
+        raw_categories = [g['b2b_category'] for g in grouped if g['b2b_category']]
 
         category_map = {}
         for cat in raw_categories:
@@ -51,7 +52,7 @@ class TimeAccessPortal(http.Controller):
         if selected_category:
             pager_url_args['b2b_category'] = selected_category
 
-        per_page = int(kw.get('per_page', 75))
+        per_page = int(kw.get('per_page', 40))
         total = request.env['product.template'].sudo().search_count(domain)
 
         pager = get_pager(
@@ -82,18 +83,23 @@ class TimeAccessPortal(http.Controller):
             ('code', '=', 'MAIN')  #
         ], limit=1)
 
+        # (age proti product-er jonno loop-er bhitore alada-alada query hocchilo - N+1 problem)
+        ProductProduct = request.env['product.product'].sudo()
+        variants = products.mapped('product_variant_id')
+
+        if b2b_warehouse:
+            variants = variants.with_context(warehouse=b2b_warehouse.id)
+
+        # >>> CHANGE: ekbar-e sob variant-er qty_available prefetch/compute kora hocche (batch)
+        stock_by_template = {v.product_tmpl_id.id: int(v.qty_available or 0) for v in variants}
+
         product_min_qty_map = {}
         product_stock_qty_map = {}
         product_default_qty_map = {}
 
         for product in products:
-            variant = product.product_variant_id
-
-            if b2b_warehouse:
-                variant_with_wh = variant.with_context(warehouse=b2b_warehouse.id)
-                stock_qty = int(variant_with_wh.qty_available or 0)
-            else:
-                stock_qty = int(variant.qty_available or 0)
+            # >>> CHANGE: age-r individual with_context() call bad, dictionary theke direct lookup
+            stock_qty = stock_by_template.get(product.id, 0)
 
             product_min_qty = int(product.b2b_qty or 0)
             category_min_qty = int(product.categ_id.b2b_quantity or 0)
