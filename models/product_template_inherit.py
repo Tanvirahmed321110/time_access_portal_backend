@@ -13,3 +13,4 @@ class ProductProductInherit(models.Model):
         groups='time_access_portal.group_b2b_management'
     )
     b2b_qty = fields.Integer(string='B2B  Qty')
+    b2b_category = fields.Char(string='B2B  Category')

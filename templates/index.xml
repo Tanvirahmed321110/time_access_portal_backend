@@ -13,18 +13,16 @@
 
                             <!-- All Categories -->
                             <a t-att-href="'/index?sort=%s' % sort"
-                               t-att-class="'cart-btn active' if not selected_category_id else 'cart-btn'">
+                               t-att-class="'cart-btn active' if not selected_category else 'cart-btn'">
                                 All Categories
                             </a>
 
-                            <!-- Child categories -->
-                            <t t-foreach="categories" t-as="category">
-                                <t t-if="category.parent_id">
-                                    <a t-att-href="'/index?category_id=%s&amp;sort=%s' % (category.id, sort)"
-                                       t-att-class="'cart-btn active' if selected_category_id == category.id else 'cart-btn'">
-                                        <t t-esc="category.name"/>
-                                    </a>
-                                </t>
+                            <!-- >>> CHANGE: product.category loop bad, simple string list loop -->
+                            <t t-foreach="categories" t-as="cat">
+                                <a t-att-href="'/index?b2b_category=%s&amp;sort=%s' % (cat, sort)"
+                                   t-att-class="'cart-btn active' if selected_category == cat else 'cart-btn'" style="text-transform: capitalize;">
+                                    <t t-esc="cat"/>
+                                </a>
                             </t>
 
                         </div>

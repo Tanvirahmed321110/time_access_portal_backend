@@ -23,8 +23,9 @@
                        class="oe_inline"/>
             </xpath>
 
+
             <xpath expr="//field[@name='b2b_price']" position="after">
-                <field name="b2b_qty" string="B2B Quantity" class="oe_inline"/>
+                <field name="b2b_category" string="B2B Category" class="oe_inline"/>
             </xpath>
 
         </field>

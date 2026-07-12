@@ -1,12 +1,12 @@
 <odoo>
     <template id="reusable_pagination" name="Reusable Pagination Component">
         <t t-if="pager and pager['total_pages'] > 1">
-            <div class="pagination mt-6 flex-between">
+            <div class="pagination mt-6 flex-between  flex-wrap gap-4">
                 <span class="page-info">
                     Showing <t t-esc="pager['start']"/>–<t t-esc="pager['end']"/> of <t t-esc="pager['total']"/> items
                 </span>
 
-                <div class="page-btns d-flex gap-2">
+                <div class="page-btns d-flex flex-wrap gap-2">
 
                     <!-- Prev Button -->
                     <t t-if="pager['has_prev']">
