@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 // ========== Reusable Stock Qty Validation ==========
-  function validateQtyInput(input) {
+function validateQtyInput(input) {
     if (!input) {
         return true;
     }
@@ -179,7 +179,9 @@ document.addEventListener('DOMContentLoaded', function() {
     let minQty = parseFloat(input.getAttribute('min') || 1);
     let qty = parseFloat(input.value || 0);
 
-    let scope = input.closest('.qty-btns') || input.closest('.product-card') || input.closest('tr') || document;
+    // >>> CHANGE: '.qty-btns' baad dewa hocche, karon error-text ar buttons oi div-er bhitore na.
+    // '.product-content' ba '.product-card' ke scope dhora hocche jate error-text ar buttons dutai pawa jay.
+    let scope = input.closest('.product-content') || input.closest('.product-card') || input.closest('tr') || document;
 
     let errorBox = scope.querySelector('.error-text');
     let buttons = scope.querySelectorAll('.add_to_cart, .btn-buy-now');

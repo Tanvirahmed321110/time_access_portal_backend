@@ -20,7 +20,8 @@
                             <!-- >>> CHANGE: product.category loop bad, simple string list loop -->
                             <t t-foreach="categories" t-as="cat">
                                 <a t-att-href="'/index?b2b_category=%s&amp;sort=%s' % (cat, sort)"
-                                   t-att-class="'cart-btn active' if selected_category == cat else 'cart-btn'" style="text-transform: capitalize;">
+                                   t-att-class="'cart-btn active' if selected_category == cat else 'cart-btn'"
+                                   style="text-transform: capitalize;">
                                     <t t-esc="cat"/>
                                 </a>
                             </t>
@@ -159,7 +160,7 @@
 
                                         <!--===== Product Content ====-->
                                         <div class="product-content">
-                                            <div>
+                                            <div class="first">
                                                 <div class="product-id fs-xs">SKU:
                                                     <span t-esc="product.default_code or ''"/>
                                                 </div>
@@ -176,14 +177,16 @@
                                                 </t>
                                             </div>
 
+
+                                            <t t-set="min_b2b_qty"
+                                               t-value="int((product_min_qty_map or {}).get(product.id) or 1)"/>
+                                            <t t-set="stock_qty"
+                                               t-value="int((product_stock_qty_map or {}).get(product.id) or 0)"/>
+                                            <t t-set="default_qty"
+                                               t-value="int((product_default_qty_map or {}).get(product.id) or min_b2b_qty)"/>
+
                                             <div class="qty-btns">
                                                 <div class="d-flex align-center gap-4">
-                                                    <t t-set="min_b2b_qty"
-                                                       t-value="int((product_min_qty_map or {}).get(product.id) or 1)"/>
-                                                    <t t-set="stock_qty"
-                                                       t-value="int((product_stock_qty_map or {}).get(product.id) or 0)"/>
-                                                    <t t-set="default_qty"
-                                                       t-value="int((product_default_qty_map or {}).get(product.id) or min_b2b_qty)"/>
                                                     <div class="qty-wrapper d-flex align-center mt-3 gap-2">
                                                         <label>Quantity:</label>
                                                         <input type="number"
@@ -197,47 +200,61 @@
                                                                t-att-disabled="stock_qty &lt; min_b2b_qty"/>
                                                     </div>
 
-                                                    <div class="mt-2">
+                                                    <div class="mt-2 stock">
                                                         <span>Stock:</span>
-                                                        <span class="fw-bold"
-                                                              t-field="product.qty_available"
-                                                              t-options="{'widget': 'float', 'precision': 0}"/>
+                                                        <span class="fw-bold" t-esc="stock_qty"/>
                                                     </div>
                                                 </div>
-
-
-                                                <!-- quantity validation sms here -->
-                                                <div class="error-text mt-3 px-2 p-2 radius-sm fw-medium fs-xs"
-                                                     style="background:red;color:#fff; display:none;">
-                                                </div>
-
-                                                <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
-
-                                                    <!-- Add to Cart Button -->
-                                                    <t t-if="variant.id in cart_product_ids">
-                                                        <button class="btn add_to_cart btn-outline disabled"
-                                                                t-att-data-product-id="variant.id"
-                                                                disabled="disabled"
-                                                                title="Already added to cart">
-                                                            Added to Cart
-                                                        </button>
-                                                    </t>
-
-                                                    <t t-else="">
-                                                        <button class="btn add_to_cart btn-outline"
-                                                                t-att-data-product-id="variant.id">
-                                                            Add to Cart
-                                                        </button>
-                                                    </t>
-
-                                                    <!-- Buy Now Button -->
-                                                    <a href="#"
-                                                       class="btn btn-primary btn-buy-now"
-                                                       t-att-data-product-id="variant.id">
-                                                        Buy Now
-                                                    </a>
-                                                </div>
                                             </div>
+
+                                            <!-- quantity validation msg here -->
+                                            <div class="error-text mt-3 px-2 p-2 radius-sm fw-medium fs-xs"
+                                                 style="background:red;color:#fff; display:none;">
+                                            </div>
+
+                                            <div class="card-actions grid-2 gap-3 mt-4 grid-sm-1">
+
+    <!-- Add to Cart Button -->
+    <t t-if="variant.id in cart_product_ids">
+        <button class="btn add_to_cart btn-outline disabled"
+                t-att-data-product-id="variant.id"
+                disabled="disabled"
+                title="Already added to cart">
+            Added to Cart
+        </button>
+    </t>
+    <t t-elif="stock_qty &lt; min_b2b_qty">
+        <button class="btn add_to_cart btn-outline disabled"
+                t-att-data-product-id="variant.id"
+                disabled="disabled"
+                title="Out of stock">
+            Out of Stock
+        </button>
+    </t>
+    <t t-else="">
+        <button class="btn add_to_cart btn-outline"
+                t-att-data-product-id="variant.id">
+            Add to Cart
+        </button>
+    </t>
+
+    <!-- Buy Now Button -->
+    <t t-if="stock_qty &lt; min_b2b_qty">
+        <a href="#"
+           class="btn btn-primary btn-buy-now disabled"
+           style="pointer-events:none; opacity:0.5;"
+           t-att-data-product-id="variant.id">
+            Out of Stock
+        </a>
+    </t>
+    <t t-else="">
+        <a href="#"
+           class="btn btn-primary btn-buy-now"
+           t-att-data-product-id="variant.id">
+            Buy Now
+        </a>
+    </t>
+</div>
                                         </div>
                                     </div>
                                 </t>
