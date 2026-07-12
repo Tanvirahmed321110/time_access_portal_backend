@@ -19,7 +19,6 @@ class TimeAccessPortal(http.Controller):
 
         selected_category = False
 
-        # >>> CHANGE: case-insensitive unique category list
         b2b_products = request.env['product.template'].sudo().search([
             ('is_b2b_portal', '=', True),
             ('b2b_category', '!=', False),
@@ -34,14 +33,12 @@ class TimeAccessPortal(http.Controller):
 
         categories = sorted(category_map.values())
 
-        # >>> CHANGE: case-insensitive filter match
         if b2b_category:
             key = b2b_category.strip().lower()
             if key in category_map:
                 selected_category = category_map[key]
                 domain.append(('b2b_category', '=ilike', selected_category))
 
-        # =======  Product sort desc and asc  =========
         order_by = 'id desc'
         if sort == 'low-high':
             order_by = 'list_price asc, id asc'
@@ -80,13 +77,24 @@ class TimeAccessPortal(http.Controller):
 
         cart_product_ids = sale_order.order_line.mapped('product_id').ids if sale_order else []
 
+        # warehouse stock
+        b2b_warehouse = request.env['stock.warehouse'].sudo().search([
+            ('code', '=', 'MAIN')  #
+        ], limit=1)
+
         product_min_qty_map = {}
         product_stock_qty_map = {}
         product_default_qty_map = {}
 
         for product in products:
             variant = product.product_variant_id
-            stock_qty = int(variant.qty_available or 0)
+
+            if b2b_warehouse:
+                variant_with_wh = variant.with_context(warehouse=b2b_warehouse.id)
+                stock_qty = int(variant_with_wh.qty_available or 0)
+            else:
+                stock_qty = int(variant.qty_available or 0)
+
             product_min_qty = int(product.b2b_qty or 0)
             category_min_qty = int(product.categ_id.b2b_quantity or 0)
             min_qty = product_min_qty or category_min_qty or 1
